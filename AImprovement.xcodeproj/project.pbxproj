@@ -11,14 +11,16 @@
 		EF42417F2B5E9CD800E4FF80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF42417E2B5E9CD800E4FF80 /* ContentView.swift */; };
 		EF4241812B5E9CD900E4FF80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4241802B5E9CD900E4FF80 /* Assets.xcassets */; };
 		EF4241842B5E9CD900E4FF80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4241832B5E9CD900E4FF80 /* Preview Assets.xcassets */; };
+		EFE489882B5EA2F300C5AEBA /* Umbrella in Frameworks */ = {isa = PBXBuildFile; productRef = EFE489872B5EA2F300C5AEBA /* Umbrella */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF4241792B5E9CD800E4FF80 /* aimrpovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aimrpovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF4241792B5E9CD800E4FF80 /* aimprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aimprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF42417C2B5E9CD800E4FF80 /* AImprovementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AImprovementApp.swift; sourceTree = "<group>"; };
 		EF42417E2B5E9CD800E4FF80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EF4241802B5E9CD900E4FF80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF4241832B5E9CD900E4FF80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EFE489852B5E9F7200C5AEBA /* Umbrella */ = {isa = PBXFileReference; lastKnownFileType = text; path = Umbrella; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFE489882B5EA2F300C5AEBA /* Umbrella in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,13 +40,14 @@
 			children = (
 				EF42417B2B5E9CD800E4FF80 /* aimprovement */,
 				EF42417A2B5E9CD800E4FF80 /* Products */,
+				EFE489862B5EA2F300C5AEBA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		EF42417A2B5E9CD800E4FF80 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EF4241792B5E9CD800E4FF80 /* aimrpovement.app */,
+				EF4241792B5E9CD800E4FF80 /* aimprovement.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,6 +55,7 @@
 		EF42417B2B5E9CD800E4FF80 /* aimprovement */ = {
 			isa = PBXGroup;
 			children = (
+				EFE489842B5E9F4F00C5AEBA /* Modules */,
 				EF42417C2B5E9CD800E4FF80 /* AImprovementApp.swift */,
 				EF42417E2B5E9CD800E4FF80 /* ContentView.swift */,
 				EF4241802B5E9CD900E4FF80 /* Assets.xcassets */,
@@ -67,12 +72,27 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		EFE489842B5E9F4F00C5AEBA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				EFE489852B5E9F7200C5AEBA /* Umbrella */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		EFE489862B5EA2F300C5AEBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EF4241782B5E9CD800E4FF80 /* aimrpovement */ = {
+		EF4241782B5E9CD800E4FF80 /* aimprovement */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF4241872B5E9CD900E4FF80 /* Build configuration list for PBXNativeTarget "aimrpovement" */;
+			buildConfigurationList = EF4241872B5E9CD900E4FF80 /* Build configuration list for PBXNativeTarget "aimprovement" */;
 			buildPhases = (
 				EF4241752B5E9CD800E4FF80 /* Sources */,
 				EF4241762B5E9CD800E4FF80 /* Frameworks */,
@@ -82,9 +102,12 @@
 			);
 			dependencies = (
 			);
-			name = aimrpovement;
+			name = aimprovement;
+			packageProductDependencies = (
+				EFE489872B5EA2F300C5AEBA /* Umbrella */,
+			);
 			productName = aimrpovement;
-			productReference = EF4241792B5E9CD800E4FF80 /* aimrpovement.app */;
+			productReference = EF4241792B5E9CD800E4FF80 /* aimprovement.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -115,7 +138,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EF4241782B5E9CD800E4FF80 /* aimrpovement */,
+				EF4241782B5E9CD800E4FF80 /* aimprovement */,
 			);
 		};
 /* End PBXProject section */
@@ -197,7 +220,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -254,7 +277,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -278,8 +301,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,8 +330,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -334,7 +357,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF4241872B5E9CD900E4FF80 /* Build configuration list for PBXNativeTarget "aimrpovement" */ = {
+		EF4241872B5E9CD900E4FF80 /* Build configuration list for PBXNativeTarget "aimprovement" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF4241882B5E9CD900E4FF80 /* Debug */,
@@ -344,6 +367,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EFE489872B5EA2F300C5AEBA /* Umbrella */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Umbrella;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF4241712B5E9CD800E4FF80 /* Project object */;
 }
