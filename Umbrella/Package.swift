@@ -8,11 +8,17 @@ let package = Package(
     products: [
         .library(
             name: "Umbrella",
-            targets: ["Authorization"]),
+            targets: [
+                "Authorization",
+                "UIComponents"
+            ]),
     ],
     targets: [
         .target(
             name: "Authorization"
+        ),
+        .target(
+            name: "UIComponents"
         )
     ]
 )
