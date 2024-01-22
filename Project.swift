@@ -3,7 +3,7 @@ import ProjectDescription
 let project = Project(
     name: "AImprovement",
     organizationName: "FCS",
-    packages: [.local(path: "Dependencies")],
+    packages: [.local(path: "AImprovement/Libraries")],
     targets: [
         Target(
             name: "AImprovement",
@@ -14,7 +14,7 @@ let project = Project(
             infoPlist: .default,
             sources: ["AImprovement/Sources/**"],
             dependencies: [
-                .package(product: "Dependencies")
+                .package(product: "Libraries")
             ]
         ),
     ]
