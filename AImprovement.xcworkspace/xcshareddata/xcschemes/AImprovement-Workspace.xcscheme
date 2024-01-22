@@ -20,20 +20,6 @@
                ReferencedContainer = "container:AImprovement.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8872711C0F7458D926705BDC"
-               BuildableName = "Authorization.framework"
-               BlueprintName = "Authorization"
-               ReferencedContainer = "container:Modules/Authorization/Authorization.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

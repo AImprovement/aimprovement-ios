@@ -4,11 +4,4 @@
    <FileRef
       location = "group:AImprovement.xcodeproj">
    </FileRef>
-   <Group
-      location = "group:Modules"
-      name = "Modules">
-      <FileRef
-         location = "group:Authorization/Authorization.xcodeproj">
-      </FileRef>
-   </Group>
 </Workspace>

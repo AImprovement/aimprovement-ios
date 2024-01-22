@@ -3,6 +3,7 @@ import ProjectDescription
 let project = Project(
     name: "AImprovement",
     organizationName: "FCS",
+    packages: [.local(path: "Dependencies")],
     targets: [
         Target(
             name: "AImprovement",
@@ -13,7 +14,7 @@ let project = Project(
             infoPlist: .default,
             sources: ["AImprovement/Sources/**"],
             dependencies: [
-                .project(target: "Authorization", path: "Modules/Authorization")
+                .package(product: "Dependencies")
             ]
         ),
     ]

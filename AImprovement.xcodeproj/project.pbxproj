@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */; };
-		4E974AD653FB54BB271D620A /* Authorization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D17787C51E5397B3F7EAFE /* Authorization.framework */; };
+		86420367537DF0FA95D0320A /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 641765F5597ACA7D0045E865 /* Dependencies */; };
 		C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,8 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		317F37F7B713C0570E24F87B /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dependencies; sourceTree = "<group>"; };
 		34720F1204CC940F9B5C6B6A /* AImprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AImprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		52D17787C51E5397B3F7EAFE /* Authorization.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Authorization.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EB163E5B489A2C757DC7C6C7 /* AImprovement-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "AImprovement-Info.plist"; sourceTree = "<group>"; };
 		FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AImprovementApp.swift; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E974AD653FB54BB271D620A /* Authorization.framework in Frameworks */,
+				86420367537DF0FA95D0320A /* Dependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +51,7 @@
 				A57D0B132D3EE037B4C4F33F /* Project */,
 				E3A56C0976A9DCE9707954E3 /* Compiled */,
 				50BEAB3D7621D72AC1AA09B1 /* Products */,
+				317F37F7B713C0570E24F87B /* Dependencies */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				34720F1204CC940F9B5C6B6A /* AImprovement.app */,
-				52D17787C51E5397B3F7EAFE /* Authorization.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +129,9 @@
 			dependencies = (
 			);
 			name = AImprovement;
+			packageProductDependencies = (
+				641765F5597ACA7D0045E865 /* Dependencies */,
+			);
 			productName = AImprovement;
 			productReference = 34720F1204CC940F9B5C6B6A /* AImprovement.app */;
 			productType = "com.apple.product-type.application";
@@ -141,8 +144,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = FCS;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 8DA82007B3159AA4FD26DB60 /* Build configuration list for PBXProject "AImprovement" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -370,6 +371,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		641765F5597ACA7D0045E865 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Dependencies;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC45564E2AFF051B50622D8D /* Project object */;
 }
