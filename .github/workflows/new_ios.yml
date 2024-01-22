@@ -19,11 +19,7 @@ jobs:
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
-          echo Using default scheme: $default
-      - name: GitHub Action for SwiftLint
-        # You may pin to the exact commit or the version.
-        # uses: norio-nomura/action-swiftlint@9f4dcd7fd46b4e75d7935cf2f4df406d5cae3684
-        uses: norio-nomura/action-swiftlint@3.2.1   
+          echo Using default scheme: $default 
       - name: Build
         env:
           scheme: ${{ 'default' }}
