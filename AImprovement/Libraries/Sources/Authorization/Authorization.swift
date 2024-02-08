@@ -1,3 +1,7 @@
 import Foundation
+import UIComponents
 
-public protocol AuthorizationProvider {}
+final class AuthorizationProvider {
+    func test() {
+    }
+}
