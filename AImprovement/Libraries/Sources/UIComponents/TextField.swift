@@ -5,9 +5,14 @@ public struct TextFieldView: View {
     public struct Model {
         let validate: (_ text: String) -> Bool
         let placeholder: String
+
+        public init(validate: @escaping (_: String) -> Bool, placeholder: String) {
+            self.validate = validate
+            self.placeholder = placeholder
+        }
     }
 
-    init(model: Model, input: String = "", emailFieldIsFocused: Bool = false) {
+    public init(model: Model, input: String = "", emailFieldIsFocused: Bool = false) {
         self.model = model
         self.input = input
         self.emailFieldIsFocused = emailFieldIsFocused

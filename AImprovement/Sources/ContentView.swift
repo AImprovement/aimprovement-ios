@@ -8,7 +8,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
-            MainButton()
+                .font(Font.custom("CoFoSans-Bold", size: 26))
         }
         .padding()
     }

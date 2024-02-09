@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */; };
 		86420367537DF0FA95D0320A /* Libraries in Frameworks */ = {isa = PBXBuildFile; productRef = 453F06BC0B12A22FD2D7BDDC /* Libraries */; };
 		C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */; };
+		EF9F8E472B758294005C594F /* CoFoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9F8E442B758294005C594F /* CoFoSans-Black.ttf */; };
+		EF9F8E482B758294005C594F /* CoFoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9F8E452B758294005C594F /* CoFoSans-Bold.ttf */; };
+		EF9F8E492B758294005C594F /* CoFoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9F8E462B758294005C594F /* CoFoSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +33,9 @@
 		759D37E7AF7128821103C5CD /* Libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libraries; path = AImprovement/Libraries; sourceTree = "<group>"; };
 		7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EB163E5B489A2C757DC7C6C7 /* AImprovement-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "AImprovement-Info.plist"; sourceTree = "<group>"; };
+		EF9F8E442B758294005C594F /* CoFoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Black.ttf"; sourceTree = "<group>"; };
+		EF9F8E452B758294005C594F /* CoFoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Bold.ttf"; sourceTree = "<group>"; };
+		EF9F8E462B758294005C594F /* CoFoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Regular.ttf"; sourceTree = "<group>"; };
 		FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AImprovementApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +80,7 @@
 		9C92F16AFF6AF6449DABE005 /* AImprovement */ = {
 			isa = PBXGroup;
 			children = (
+				EF9F8E422B75827D005C594F /* Resources */,
 				B73411F7182B36A4ABECC19C /* Sources */,
 			);
 			path = AImprovement;
@@ -112,6 +119,24 @@
 			path = Derived;
 			sourceTree = "<group>";
 		};
+		EF9F8E422B75827D005C594F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EF9F8E432B758289005C594F /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EF9F8E432B758289005C594F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EF9F8E442B758294005C594F /* CoFoSans-Black.ttf */,
+				EF9F8E452B758294005C594F /* CoFoSans-Bold.ttf */,
+				EF9F8E462B758294005C594F /* CoFoSans-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,8 +169,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = FCS;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 8DA82007B3159AA4FD26DB60 /* Build configuration list for PBXProject "AImprovement" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -170,6 +193,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9F8E472B758294005C594F /* CoFoSans-Black.ttf in Resources */,
+				EF9F8E482B758294005C594F /* CoFoSans-Bold.ttf in Resources */,
+				EF9F8E492B758294005C594F /* CoFoSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
