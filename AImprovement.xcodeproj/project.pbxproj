@@ -3,16 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */; };
+		633A8374F3746C589721FAA2 /* CoFoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */; };
 		86420367537DF0FA95D0320A /* Libraries in Frameworks */ = {isa = PBXBuildFile; productRef = 453F06BC0B12A22FD2D7BDDC /* Libraries */; };
+		8708D0AE39383728380E84F6 /* TuistBundle+AImprovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */; };
+		BD0730CAD50207E5DBF81CA7 /* CoFoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59DA72C6113CC3F8F3A615C1 /* CoFoSans-Black.ttf */; };
 		C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */; };
-		EF9F8E472B758294005C594F /* CoFoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9F8E442B758294005C594F /* CoFoSans-Black.ttf */; };
-		EF9F8E482B758294005C594F /* CoFoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9F8E452B758294005C594F /* CoFoSans-Bold.ttf */; };
-		EF9F8E492B758294005C594F /* CoFoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9F8E462B758294005C594F /* CoFoSans-Regular.ttf */; };
+		CEE04AD417F451F81A8F49BF /* CoFoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8321CE2F6DE9D7E404E3F /* CoFoSans-Regular.ttf */; };
+		FA6B83424A02DD64A5449711 /* TuistFonts+AImprovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,12 +32,14 @@
 
 /* Begin PBXFileReference section */
 		34720F1204CC940F9B5C6B6A /* AImprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AImprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59DA72C6113CC3F8F3A615C1 /* CoFoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Black.ttf"; sourceTree = "<group>"; };
+		689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistFonts+AImprovement.swift"; sourceTree = "<group>"; };
 		759D37E7AF7128821103C5CD /* Libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libraries; path = AImprovement/Libraries; sourceTree = "<group>"; };
 		7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EB163E5B489A2C757DC7C6C7 /* AImprovement-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "AImprovement-Info.plist"; sourceTree = "<group>"; };
-		EF9F8E442B758294005C594F /* CoFoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Black.ttf"; sourceTree = "<group>"; };
-		EF9F8E452B758294005C594F /* CoFoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Bold.ttf"; sourceTree = "<group>"; };
-		EF9F8E462B758294005C594F /* CoFoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Regular.ttf"; sourceTree = "<group>"; };
+		84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+AImprovement.swift"; sourceTree = "<group>"; };
+		9FE8321CE2F6DE9D7E404E3F /* CoFoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Regular.ttf"; sourceTree = "<group>"; };
+		B93AAA89BD9D47D04B6BC4D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Bold.ttf"; sourceTree = "<group>"; };
 		FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AImprovementApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +55,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0463B0DBFFF0D6448526A24F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				05192474B10B946FC61AB2C5 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		05192474B10B946FC61AB2C5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				59DA72C6113CC3F8F3A615C1 /* CoFoSans-Black.ttf */,
+				D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */,
+				9FE8321CE2F6DE9D7E404E3F /* CoFoSans-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		0D331993062E40FB38B17C29 = {
 			isa = PBXGroup;
 			children = (
@@ -69,18 +91,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5DCDCAA441C3761097056DF8 /* InfoPlists */ = {
+		69CB9DB240F0799AD18D9CB0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				EB163E5B489A2C757DC7C6C7 /* AImprovement-Info.plist */,
+				84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */,
+				689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */,
 			);
-			path = InfoPlists;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		9C92F16AFF6AF6449DABE005 /* AImprovement */ = {
 			isa = PBXGroup;
 			children = (
-				EF9F8E422B75827D005C594F /* Resources */,
+				0463B0DBFFF0D6448526A24F /* Resources */,
 				B73411F7182B36A4ABECC19C /* Sources */,
 			);
 			path = AImprovement;
@@ -100,6 +123,7 @@
 			children = (
 				FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */,
 				7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */,
+				B93AAA89BD9D47D04B6BC4D4 /* Info.plist */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -114,27 +138,9 @@
 		EC3405D61392F61791092102 /* Derived */ = {
 			isa = PBXGroup;
 			children = (
-				5DCDCAA441C3761097056DF8 /* InfoPlists */,
+				69CB9DB240F0799AD18D9CB0 /* Sources */,
 			);
 			path = Derived;
-			sourceTree = "<group>";
-		};
-		EF9F8E422B75827D005C594F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				EF9F8E432B758289005C594F /* Fonts */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		EF9F8E432B758289005C594F /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				EF9F8E442B758294005C594F /* CoFoSans-Black.ttf */,
-				EF9F8E452B758294005C594F /* CoFoSans-Bold.ttf */,
-				EF9F8E462B758294005C594F /* CoFoSans-Regular.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +175,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = FCS;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 8DA82007B3159AA4FD26DB60 /* Build configuration list for PBXProject "AImprovement" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -193,9 +201,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF9F8E472B758294005C594F /* CoFoSans-Black.ttf in Resources */,
-				EF9F8E482B758294005C594F /* CoFoSans-Bold.ttf in Resources */,
-				EF9F8E492B758294005C594F /* CoFoSans-Regular.ttf in Resources */,
+				BD0730CAD50207E5DBF81CA7 /* CoFoSans-Black.ttf in Resources */,
+				633A8374F3746C589721FAA2 /* CoFoSans-Bold.ttf in Resources */,
+				CEE04AD417F451F81A8F49BF /* CoFoSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +216,8 @@
 			files = (
 				C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */,
 				24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */,
+				8708D0AE39383728380E84F6 /* TuistBundle+AImprovement.swift in Sources */,
+				FA6B83424A02DD64A5449711 /* TuistFonts+AImprovement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +342,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Derived/InfoPlists/AImprovement-Info.plist";
+				INFOPLIST_FILE = AImprovement/Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -357,7 +367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Derived/InfoPlists/AImprovement-Info.plist";
+				INFOPLIST_FILE = AImprovement/Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

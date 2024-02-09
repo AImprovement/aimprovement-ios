@@ -11,8 +11,9 @@ let project = Project(
             product: .app,
             bundleId: "fcs.aimprovement",
             deploymentTargets: .iOS("16.0"),
-            infoPlist: .default,
+            infoPlist: "AImprovement/Sources/Info.plist",
             sources: ["AImprovement/Sources/**"],
+            resources: ["AImprovement/Resources/**"],
             dependencies: [
                 .package(product: "Libraries")
             ]
