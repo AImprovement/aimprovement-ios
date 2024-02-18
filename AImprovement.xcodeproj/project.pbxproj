@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */; };
+		275E4DA0DF45C356F15391A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2922E652D084645F32B9D91 /* Assets.xcassets */; };
+		5FDBB5944D7DA198AA072F6D /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037D1B6B5AC9056261A55404 /* AppContainer.swift */; };
 		633A8374F3746C589721FAA2 /* CoFoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */; };
 		86420367537DF0FA95D0320A /* Libraries in Frameworks */ = {isa = PBXBuildFile; productRef = 453F06BC0B12A22FD2D7BDDC /* Libraries */; };
 		8708D0AE39383728380E84F6 /* TuistBundle+AImprovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */; };
+		A4E02F5ECE0D111FEF6ABD74 /* TuistAssets+AImprovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214ABEB8F1C40C38DCD75A30 /* TuistAssets+AImprovement.swift */; };
 		BD0730CAD50207E5DBF81CA7 /* CoFoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59DA72C6113CC3F8F3A615C1 /* CoFoSans-Black.ttf */; };
 		C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */; };
 		CEE04AD417F451F81A8F49BF /* CoFoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8321CE2F6DE9D7E404E3F /* CoFoSans-Regular.ttf */; };
@@ -31,6 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		037D1B6B5AC9056261A55404 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		214ABEB8F1C40C38DCD75A30 /* TuistAssets+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+AImprovement.swift"; sourceTree = "<group>"; };
 		34720F1204CC940F9B5C6B6A /* AImprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AImprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59DA72C6113CC3F8F3A615C1 /* CoFoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Black.ttf"; sourceTree = "<group>"; };
 		689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistFonts+AImprovement.swift"; sourceTree = "<group>"; };
@@ -38,6 +43,7 @@
 		7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+AImprovement.swift"; sourceTree = "<group>"; };
 		9FE8321CE2F6DE9D7E404E3F /* CoFoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Regular.ttf"; sourceTree = "<group>"; };
+		A2922E652D084645F32B9D91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B93AAA89BD9D47D04B6BC4D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Bold.ttf"; sourceTree = "<group>"; };
 		FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AImprovementApp.swift; sourceTree = "<group>"; };
@@ -59,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				05192474B10B946FC61AB2C5 /* Fonts */,
+				A2922E652D084645F32B9D91 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -94,6 +101,7 @@
 		69CB9DB240F0799AD18D9CB0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				214ABEB8F1C40C38DCD75A30 /* TuistAssets+AImprovement.swift */,
 				84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */,
 				689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */,
 			);
@@ -122,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */,
+				037D1B6B5AC9056261A55404 /* AppContainer.swift */,
 				7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */,
 				B93AAA89BD9D47D04B6BC4D4 /* Info.plist */,
 			);
@@ -201,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275E4DA0DF45C356F15391A8 /* Assets.xcassets in Resources */,
 				BD0730CAD50207E5DBF81CA7 /* CoFoSans-Black.ttf in Resources */,
 				633A8374F3746C589721FAA2 /* CoFoSans-Bold.ttf in Resources */,
 				CEE04AD417F451F81A8F49BF /* CoFoSans-Regular.ttf in Resources */,
@@ -215,7 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */,
+				5FDBB5944D7DA198AA072F6D /* AppContainer.swift in Sources */,
 				24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */,
+				A4E02F5ECE0D111FEF6ABD74 /* TuistAssets+AImprovement.swift in Sources */,
 				8708D0AE39383728380E84F6 /* TuistBundle+AImprovement.swift in Sources */,
 				FA6B83424A02DD64A5449711 /* TuistFonts+AImprovement.swift in Sources */,
 			);

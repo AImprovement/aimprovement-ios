@@ -1,15 +1,28 @@
 import SwiftUI
 import UIComponents
+import Authorization
 
 struct ContentView: View {
+
+    @ObservedObject var container: AppContainer = AppContainer()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-                .font(Font.custom("CoFoSans-Bold", size: 26))
+        TabView {
+            NavigationStack {
+                EmptyView()
+                    .navigationTitle("Home")
+            }
+            .tabItem {
+                Label("Tab 1", systemImage: "1.circle")
+            }
+            Text("hihi")
+                .tabItem {
+                    Label("Tab 2", systemImage: "2.circle")
+                }
         }
-        .padding()
+        .overlay {
+            container.makeLoginViewAssembly().view()
+        }
+
     }
 }
