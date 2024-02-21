@@ -1,8 +1,14 @@
-import Foundation
 import SwiftUI
 
+public struct RestorePasswordViewState {
+    let email: String
+
+    static var initial = RestorePasswordViewState(email: "")
+}
+
 @MainActor
-public protocol LoginViewModel: ObservableObject {
+public protocol RestorePasswordViewModel: ObservableObject {
+    var viewState: RestorePasswordViewState { get }
     func onViewAppear()
     func onLoginTap()
     func onViewDisappear()
@@ -10,10 +16,13 @@ public protocol LoginViewModel: ObservableObject {
 }
 
 @MainActor
-public final class LoginViewModelImpl: LoginViewModel {
+public final class RestorePasswordViewModelImpl: RestorePasswordViewModel {
+
+    @Published private(set) public var viewState: RestorePasswordViewState = .initial
 
     public init(textFieldValidator: TextFieldValidator) {
         self.textFieldValidator = textFieldValidator
+        self.viewState = RestorePasswordViewState(email: "yanawishnya@mail.ru")
     }
 
     public func onViewAppear() {

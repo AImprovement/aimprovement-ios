@@ -6,6 +6,7 @@ public protocol TextFieldValidator {
 public enum InputType {
     case usernameOrEmail(String)
     case password(String)
+    case restoreCode(String)
 }
 
 public final class TextFieldValidatorImpl: TextFieldValidator {
@@ -18,6 +19,8 @@ public final class TextFieldValidatorImpl: TextFieldValidator {
             return isUsernameOrEmailValid(text)
         case .password(let text):
             return isPasswordValid(text)
+        case .restoreCode(let text):
+            return isRestoreCodeValid(text)
         }
     }
 
@@ -37,5 +40,9 @@ public final class TextFieldValidatorImpl: TextFieldValidator {
     private func isPasswordValid(_ password: String) -> Bool {
         return true
     }
-    
+
+    private func isRestoreCodeValid(_ code: String) -> Bool {
+        return true
+    }
+
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */; };
 		275E4DA0DF45C356F15391A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2922E652D084645F32B9D91 /* Assets.xcassets */; };
+		5556B9317894FFC1B24FC58F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 174343F09E756588203C094B /* Localizable.xcstrings */; };
 		5FDBB5944D7DA198AA072F6D /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037D1B6B5AC9056261A55404 /* AppContainer.swift */; };
 		633A8374F3746C589721FAA2 /* CoFoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */; };
 		86420367537DF0FA95D0320A /* Libraries in Frameworks */ = {isa = PBXBuildFile; productRef = 453F06BC0B12A22FD2D7BDDC /* Libraries */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		037D1B6B5AC9056261A55404 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		174343F09E756588203C094B /* Localizable.xcstrings */ = {isa = PBXFileReference; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		214ABEB8F1C40C38DCD75A30 /* TuistAssets+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+AImprovement.swift"; sourceTree = "<group>"; };
 		34720F1204CC940F9B5C6B6A /* AImprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AImprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59DA72C6113CC3F8F3A615C1 /* CoFoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Black.ttf"; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			children = (
 				05192474B10B946FC61AB2C5 /* Fonts */,
 				A2922E652D084645F32B9D91 /* Assets.xcassets */,
+				174343F09E756588203C094B /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				BD0730CAD50207E5DBF81CA7 /* CoFoSans-Black.ttf in Resources */,
 				633A8374F3746C589721FAA2 /* CoFoSans-Bold.ttf in Resources */,
 				CEE04AD417F451F81A8F49BF /* CoFoSans-Regular.ttf in Resources */,
+				5556B9317894FFC1B24FC58F /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

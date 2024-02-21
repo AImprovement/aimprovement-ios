@@ -3,9 +3,8 @@ import SwiftUI
 public struct TextFieldView: View {
 
     public enum Model {
-        case email
-        case usernameOrEmail
-        case password
+        case `default`(headline: String, placeholder: String)
+        case password(headline: String, placeholder: String)
     }
 
     public enum InputState {
@@ -29,10 +28,10 @@ public struct TextFieldView: View {
     public var body: some View {
         VStack(alignment: .leading) {
             switch model {
-            case .email:
-                Text(Static.Strings.emailHeadline)
+            case .default(let headline, let placeholder):
+                Text(headline)
                     .font(Static.Fonts.headline)
-                TextField(Static.Strings.emailPlaceholder, text: $input)
+                TextField(placeholder, text: $input)
                     .frame(
                         width: Static.Layout.width,
                         height: Static.Layout.height
@@ -41,23 +40,20 @@ public struct TextFieldView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: Static.Layout.cornerRadius)
                             .stroke(
-                                emailFieldIsFocused ? .black : .gray,
+                                isFocused ? .black : .gray,
                                 lineWidth: Static.Layout.borderWidth
                             )
                     )
-                    .focused($emailFieldIsFocused)
+                    .focused($isFocused)
                     .disableAutocorrection(true)
                 if case .incorrect = inputState {
-                    Text("Incorrect")
+                    Text("Некорректный ввод")
                         .foregroundStyle(.red)
                 }
-            case .usernameOrEmail:
-                Text(Static.Strings.usernameOrEmailHeadline)
+            case .password(let headline, let placeholder):
+                Text(headline)
                     .font(Static.Fonts.headline)
-                TextField(
-                    Static.Strings.usernameOrEmailPlaceholder,
-                    text: $input
-                )
+                SecureField(placeholder, text: $input)
                     .frame(
                         width: Static.Layout.width,
                         height: Static.Layout.height
@@ -66,43 +62,21 @@ public struct TextFieldView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: Static.Layout.cornerRadius)
                             .stroke(
-                                emailFieldIsFocused ? .black : .gray,
+                                isFocused ? .black : .gray,
                                 lineWidth: Static.Layout.borderWidth
                             )
                     )
-                    .focused($emailFieldIsFocused)
+                    .focused($isFocused)
                     .disableAutocorrection(true)
                 if case .incorrect = inputState {
-                    Text("Incorrect")
-                        .foregroundStyle(.red)
-                }
-            case .password:
-                Text(Static.Strings.passwordHeadline)
-                    .font(Static.Fonts.headline)
-                SecureField(Static.Strings.passwordHeadline, text: $input)
-                    .frame(
-                        width: Static.Layout.width,
-                        height: Static.Layout.height
-                    )
-                    .padding(.horizontal, 10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: Static.Layout.cornerRadius)
-                            .stroke(
-                                emailFieldIsFocused ? .black : .gray,
-                                lineWidth: Static.Layout.borderWidth
-                            )
-                    )
-                    .focused($emailFieldIsFocused)
-                    .disableAutocorrection(true)
-                if case .incorrect = inputState {
-                    Text("Incorrect")
+                    Text("Некорректный ввод")
                         .foregroundStyle(.red)
                 }
             }
         }
     }
 
-    @FocusState private var emailFieldIsFocused: Bool
+    @FocusState private var isFocused: Bool
     private let model: Model
 }
 
@@ -116,14 +90,5 @@ private enum Static {
 
     enum Fonts {
         static let headline: Font = Font.custom("CoFoSans-Regular", size: 20)
-    }
-
-    enum Strings {
-        static let emailHeadline: String = "email"
-        static let emailPlaceholder: String = "duck@apple.com"
-        static let usernameOrEmailHeadline: String = "Никнейм / email"
-        static let usernameOrEmailPlaceholder: String = "timcook"
-        static let passwordHeadline: String = "Пароль"
-        static let passwordPlaceholder: String = "Пароль"
     }
 }
