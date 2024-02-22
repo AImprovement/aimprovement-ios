@@ -21,6 +21,7 @@
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum AImprovementAsset {
   public static let accentColor = AImprovementColors(name: "AccentColor")
+  public static let brandBackground = AImprovementImages(name: "BrandBackground")
   public static let hintColor = AImprovementColors(name: "HintColor")
   public static let launchScreen = AImprovementImages(name: "LaunchScreen")
 }
