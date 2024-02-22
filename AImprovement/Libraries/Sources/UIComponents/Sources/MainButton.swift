@@ -39,7 +39,7 @@ public struct MainButton: View {
             case .accentBordered:
                 return Model(backgroundColor: .clear, textColor: Static.Colors.accent, font: .default)
             case .filled:
-                return Model(backgroundColor: .white, textColor: .clear, font: .default)
+                return Model(backgroundColor: .white, textColor: Static.Colors.accent, font: .default)
             case .bordered:
                 return Model(backgroundColor: .clear, textColor: .white, font: .default)
             case .custom(let model):
@@ -81,8 +81,8 @@ public struct MainButton: View {
                         .padding(.vertical, 17)
                         .background {
                             RoundedRectangle(cornerRadius: 10)
+                                .stroke(style.model.textColor, lineWidth: 3)
                                 .foregroundColor(style.model.backgroundColor)
-                                .border(style.model.textColor, width: 3)
                         }
                 case .custom(let model):
                     Text(text)

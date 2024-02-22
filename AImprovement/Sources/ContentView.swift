@@ -21,8 +21,10 @@ struct ContentView: View {
                 }
         }
         .overlay {
-            container.makeLoginViewAssembly().view()
+            // if no auth token saved
+            EntryPointView()
         }
 
     }
+
 }
