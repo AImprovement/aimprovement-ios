@@ -1,12 +1,9 @@
 import SwiftUI
 import UIComponents
-import SwiftUIRouter
 import Authorization
 
 @MainActor
 struct EntryPointView: View {
-
-    @EnvironmentObject private var navigator: Navigator
 
     var body: some View {
         NavigationStack {
@@ -16,8 +13,43 @@ struct EntryPointView: View {
                     .font(Static.Fonts.logo)
                     .foregroundColor(.white)
                 VStack {
-                    MainButton(model: .text("Войти"), style: .bordered, action: navigator.navigate("login"))
-                    MainButton(model: .text("Регистрация"), style: .filled, action: {})
+                    NavigationLink(
+                        destination: LoginView(
+                            model: LoginViewModelImpl(
+                                textFieldValidator: TextFieldValidatorImpl()
+                            )
+                        )
+                    )
+                    {
+                        Text("Войти")
+                            .font(Static.Fonts.main)
+                            .foregroundColor(.white)
+                            .frame(width: 248)
+                            .padding(.vertical, 17)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.white, lineWidth: 3)
+                                    .foregroundColor(.clear)
+                            }
+                    }
+                    NavigationLink(
+                        destination: RegistrationView(
+                            model: RegistrationViewModelImpl(
+                                textFieldValidator: TextFieldValidatorImpl()
+                            )
+                        )
+                    )
+                    {
+                        Text("Регистрация")
+                            .font(Static.Fonts.main)
+                            .foregroundColor(Static.Colors.accent)
+                            .frame(width: 248)
+                            .padding(.vertical, 17)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(.white)
+                            }
+                    }
                 }
             }
             .padding(.bottom, 58)
@@ -32,21 +64,11 @@ struct EntryPointView: View {
 private enum Static {
     enum Fonts {
         static let logo: Font = Font.custom("CoFoSans-Bold", size: 40)
+        static let main: Font = Font.custom("CoFoSans-Bold", size: 20)
     }
-}
 
-private struct RootRoutes: View {
-    var body: some View {
-        SwitchRoutes {
-            Route("login", content: LoginView(model: LoginViewModelImpl(textFieldValidator: TextFieldValidatorImpl())))
-
-            Route("register", content: RegistrationView(model: RegistrationViewModelImpl(textFieldValidator: TextFieldValidatorImpl())))
-
-            Route {
-                Navigate(to: "login", replace: true)
-            }
-        }
-        .navigationTransition()
+    enum Colors {
+        static let accent: Color = Color("AccentColor", bundle: .main)
     }
 }
 

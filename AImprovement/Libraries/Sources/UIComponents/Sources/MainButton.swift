@@ -106,8 +106,11 @@ public struct MainButton: View {
 
 }
 
-struct BasicButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
+public struct BasicButtonStyle: ButtonStyle {
+
+    public init() {}
+    
+    public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .animation(.linear(duration: 0.2), value: configuration.isPressed)
