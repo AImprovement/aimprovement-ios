@@ -5,7 +5,7 @@
 
 #if os(macOS)
   import AppKit.NSFont
-#elseif os(iOS) || os(tvOS) || os(watchOS)
+#elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
   import UIKit.UIFont
 #endif
 #if canImport(SwiftUI)
@@ -41,7 +41,7 @@ public struct AImprovementFontConvertible {
 
   #if os(macOS)
   public typealias Font = NSFont
-  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  #elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
   public typealias Font = UIFont
   #endif
 
@@ -60,7 +60,7 @@ public struct AImprovementFontConvertible {
     }
     #if os(macOS)
     return SwiftUI.Font.custom(font.fontName, size: font.pointSize)
-    #elseif os(iOS) || os(tvOS) || os(watchOS)
+    #elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     return SwiftUI.Font(font)
     #endif
   }
@@ -80,7 +80,7 @@ public struct AImprovementFontConvertible {
 
 public extension AImprovementFontConvertible.Font {
   convenience init?(font: AImprovementFontConvertible, size: CGFloat) {
-    #if os(iOS) || os(tvOS) || os(watchOS)
+    #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
     if !UIFont.fontNames(forFamilyName: font.family).contains(font.name) {
       font.register()
     }

@@ -63,24 +63,24 @@ public struct LoginView<Model: LoginViewModel>: View {
     }
 
     private var restorePasswordButton: some View {
-        MainButton(
-            model: .text("не помню пароль"),
-            style: .custom(
-                MainButton.Style.Model(
-                    backgroundColor: .clear,
-                    textColor: Static.Colors.hint,
-                    font: Static.Fonts.hintButton,
-                    shouldApplyPadding: false
+        NavigationLink(
+            destination: RestorePasswordView(
+                model: RestorePasswordViewModelImpl(
+                    textFieldValidator: TextFieldValidatorImpl()
                 )
-            ),
-            action: {}
+            )
         )
-        .frame(maxWidth: .infinity, alignment: .trailing)
+        {
+            Text("не помню пароль")
+                .font(Static.Fonts.hintButton)
+                .foregroundColor(Static.Colors.hint)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        }
     }
 
     private var loginButton: some View {
         MainButton(
-            model: .text("Дальше"),
+            model: .text("Войти"),
             style: .accentFilled,
             action: {}
         )

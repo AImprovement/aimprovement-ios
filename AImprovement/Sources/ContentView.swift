@@ -1,7 +1,6 @@
 import SwiftUI
 import UIComponents
 import Authorization
-import SwiftUIRouter
 
 struct ContentView: View {
 

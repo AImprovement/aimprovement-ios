@@ -124,21 +124,6 @@ public struct AImprovementImages {
   #endif
 }
 
-public extension AImprovementImages.Image {
-  @available(macOS, deprecated,
-    message: "This initializer is unsafe on macOS, please use the AImprovementImages.image property")
-  convenience init?(asset: AImprovementImages) {
-    #if os(iOS) || os(tvOS)
-    let bundle = AImprovementResources.bundle
-    self.init(named: asset.name, in: bundle, compatibleWith: nil)
-    #elseif os(macOS)
-    self.init(named: NSImage.Name(asset.name))
-    #elseif os(watchOS)
-    self.init(named: asset.name)
-    #endif
-  }
-}
-
 #if canImport(SwiftUI)
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 public extension SwiftUI.Image {

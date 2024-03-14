@@ -1,7 +1,7 @@
 import SwiftUI
 import UIComponents
 
-public struct RestorePasswordView<Model: RestorePasswordViewModel>: View {
+public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
 
     @State private var action: Int? = 0
 
@@ -33,7 +33,7 @@ public struct RestorePasswordView<Model: RestorePasswordViewModel>: View {
     }
 
     private var headline: some View {
-        Text("Восстановление пароля")
+        Text("Регистрация")
             .font(Static.Fonts.main)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -48,15 +48,34 @@ public struct RestorePasswordView<Model: RestorePasswordViewModel>: View {
     }
 
     private var textField: some View {
-        TextFieldView(
-            model: .default(headline: "Код восстановления", placeholder: "123456"),
-            input: $codeInput,
-            inputState: $codeInputState
-        )
-        .onSubmit {
-            if !model.isValid(.restoreCode(codeInput)) {
-                codeInputState = .incorrect
+        VStack {
+            TextFieldView(
+                model: .default(headline: "Код подтверждения", placeholder: "123456"),
+                input: $codeInput,
+                inputState: $codeInputState
+            )
+            .onSubmit {
+                if !model.isValid(.restoreCode(codeInput)) {
+                    codeInputState = .incorrect
+                }
             }
+            resendCodeButton
+        }
+    }
+
+    private var resendCodeButton: some View {
+        NavigationLink(
+            destination: RestorePasswordView(
+                model: RestorePasswordViewModelImpl(
+                    textFieldValidator: TextFieldValidatorImpl()
+                )
+            )
+        )
+        {
+            Text("отправить повторно")
+                .font(Static.Fonts.hintButton)
+                .foregroundColor(Static.Colors.hint)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 
@@ -70,6 +89,11 @@ private enum Static {
         static let main: Font = Font.custom("CoFoSans-Bold", size: 35)
         static let description: Font = Font.custom("CoFoSans-Regular", size: 20)
         static let email: Font = Font.custom("CoFoSans-Bold", size: 20)
+        static let hintButton: Font = Font.custom("CoFoSans-Regular", size: 15)
+    }
+
+    enum Colors {
+        static let hint: Color = Color("HintColor", bundle: .main)
     }
 }
 
