@@ -13,6 +13,8 @@ import Materials
 struct TrackDetailView<Model: TrackDetailViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -20,6 +22,9 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
     
     var body: some View {
         VStack(spacing: CommonConstants.stackSpacing) {
+            CustomNavBar(onBack: {
+                presentationMode.wrappedValue.dismiss()
+            })
             headline
             if state {
                 Button(action: {
@@ -30,6 +35,7 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
             }
             Spacer()
         }
+        .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $isPresented){
             MaterialDetailView(model: MaterialDetailViewModelImpl())
         }

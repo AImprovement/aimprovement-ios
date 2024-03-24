@@ -17,7 +17,6 @@ public struct CustomNavBar: View {
             Spacer()
         }
         .frame(maxWidth: .infinity)
-        .padding(.leading, 35)
         .padding(.top, 15)
     }
 
