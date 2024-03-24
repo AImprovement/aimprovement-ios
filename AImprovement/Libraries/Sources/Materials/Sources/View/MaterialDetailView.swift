@@ -22,12 +22,11 @@ public struct MaterialDetailView: View {
     }
     
     public var body: some View {
-
         VStack() {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
             })
-            ScrollView{
+            ScrollView {
                 VStack(alignment: .leading,spacing: 5){
                     headline
                         .padding(.top, 17)
@@ -43,6 +42,7 @@ public struct MaterialDetailView: View {
                     review
                 }
             }
+            .scrollIndicators(.hidden)
             createButton
             
         }
@@ -96,13 +96,13 @@ public struct MaterialDetailView: View {
     }
     
     public var link: some View {
-        Link(destination: URL(string: "https://www.litres.ru/book/daniel-kaneman/dumay-medlenno-reshay-bystro-6444517/chitat-onlayn/")!) {
+        Link(destination: material.link) {
             ZStack {
                 HStack(spacing:3) {
                     Static.Symbols.link
-                    Text("Литрес")
+                    Text(material.site)
                         .font(Fonts.subText)
-                    Text("399₽")
+                    Text(material.price)
                         .font(Fonts.subText)
                 }
                 .foregroundColor(Static.Colors.accent)

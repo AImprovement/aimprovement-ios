@@ -4,6 +4,7 @@ import UIComponents
 public struct NewPasswordView<Model: LoginViewModel>: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var action: Int? = 0
 
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -14,18 +15,19 @@ public struct NewPasswordView<Model: LoginViewModel>: View {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
             })
-            VStack(spacing: CommonConstants.stackSpacing) {
-                headline
-                VStack {
-                    newPasswordTextField
-                    repeatPasswordTextField
-                }
-                Spacer()
-                MainButton(model: .text("Сменить пароль"), style: .accentFilled, action: {})
+            headline
+            VStack {
+                newPasswordTextField
+                repeatPasswordTextField
             }
-            .padding(.bottom, CommonConstants.bottomPadding)
-            .padding(.horizontal, CommonConstants.horizontalPadding)
+            Spacer()
+            MainButton(model: .text("Сменить пароль"), style: .accentFilled, action: {
+                self.action = 1
+            })
+            nextButton
         }
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
         .navigationBarBackButtonHidden()
     }
 
@@ -58,6 +60,16 @@ public struct NewPasswordView<Model: LoginViewModel>: View {
             if !model.isValid(.password(repeatPasswordInput)) {
                 repeatPasswordInputState = .incorrect
             }
+        }
+    }
+
+    private var nextButton: some View {
+        NavigationLink(
+            destination: LoginView(model: model),
+            tag: 1,
+            selection: $action
+        ) {
+            EmptyView()
         }
     }
 

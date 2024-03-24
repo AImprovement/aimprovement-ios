@@ -23,13 +23,11 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
             questionField
             ScrollView {
                 if state {
-                    Button(action: {
+                    MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
+                        print("hello")
+                    }, onTap: {
                         isPresented = true
-                    }) {
-                        MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
-                            print("hello")
-                        }))
-                    }
+                    }))
                 }
             }
             Spacer()

@@ -5,7 +5,7 @@ public struct MessageBubble: View {
     
     public enum Model {
         case text(String, Style)
-        case material(Types.Material, Style, onLikeClicked: () -> Void)
+        case material(Types.Material, Style, onLikeClicked: () -> Void, onTap: () -> Void)
     }
     
     public enum Style {
@@ -21,7 +21,7 @@ public struct MessageBubble: View {
         switch type {
         case .text(let text, let style):
             textMessage(text: text, style: style)
-        case .material(let material, let style, let onLikeCliked):
+        case .material(let material, let style, let onLikeCliked, let onTap):
             VStack (alignment: .leading, spacing: 8) {
                 title(material: material, onLikeClicked: onLikeCliked)
                 rating(material: material)
@@ -30,6 +30,9 @@ public struct MessageBubble: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(3)
                     .font(Fonts.subText)
+            }
+            .onTapGesture {
+                onTap()
             }
             .shapeStyled(with: style)
         }

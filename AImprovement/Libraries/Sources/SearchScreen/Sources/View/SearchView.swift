@@ -1,7 +1,8 @@
 import SwiftUI
+import Materials
+import MaterialsProvider
 import UIComponents
 import Types
-import MaterialsProvider
 
 public struct SearchView<Model: SearchViewModel>: View {
 
@@ -10,17 +11,16 @@ public struct SearchView<Model: SearchViewModel>: View {
     }
 
     public var body: some View {
-        Group {
+        NavigationStack {
             VStack {
                 materialsList(model.materials)
                 Spacer()
                 questionField
             }
         }
-        .padding(.horizontal, CommonConstants.horizontalPadding)
-        .onTapGesture {
-            hideKeyboard()
-        }
+//        .onTapGesture {
+//            hideKeyboard()
+//        }
         .onAppear {
             model.getMaterials()
         }
@@ -40,17 +40,19 @@ public struct SearchView<Model: SearchViewModel>: View {
     private func materialsList(_ materials: [Types.Material]) -> some View {
         ScrollView {
             ForEach(Array(filteredItems.enumerated()), id: \.1.id) { ind, material in
-                MessageBubble(
-                    type: .material(
-                        material,
-                        .bordered,
-                        onLikeClicked: {
-                            model.onLikedMaterial(ind: ind)
-//                            self.materials = model.getMaterials()
-                        }
+                NavigationLink(destination: MaterialDetailView(material: material)) {
+                    MessageBubble(
+                        type: .material(
+                            material,
+                            .bordered,
+                            onLikeClicked: {
+                                model.onLikedMaterial(ind: ind)
+                            }, onTap: {}
+                        )
                     )
-                )
-                .padding(.bottom, 19)
+                    .padding(.horizontal, CommonConstants.horizontalPadding)
+                    .padding(.bottom, 19)
+                }
             }
         }
         .scrollIndicators(.hidden)

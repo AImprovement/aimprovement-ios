@@ -14,16 +14,14 @@ public struct LoginView<Model: LoginViewModel>: View {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
             })
-            VStack(spacing: CommonConstants.stackSpacing) {
-                headline
-                textFields
-                Spacer()
-                loginButton
-            }
-            .padding(.bottom, CommonConstants.bottomPadding)
-            .padding(.horizontal, CommonConstants.horizontalPadding)
-            .background(.white)
+            headline
+            textFields
+            Spacer()
+            loginButton
         }
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
+        .background(.white)
         .navigationBarBackButtonHidden()
     }
 
