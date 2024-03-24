@@ -13,7 +13,8 @@ let package = Package(
             name: "Libraries",
             targets: [
                 "Authorization",
-                "UIComponents"
+                "UIComponents",
+                "Profile"
             ]
         ),
     ],
@@ -30,6 +31,14 @@ let package = Package(
         ),
         .target(
             name: "UIComponents"
+        ),
+        .target(
+            name: "Profile",
+            dependencies: [
+                "UIComponents"
+            ],
+            sources: ["Sources"],
+            resources: [.process("Resources")]
         ),
     ]
 )

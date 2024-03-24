@@ -1,13 +1,15 @@
 import SwiftUI
 import UIComponents
 import Authorization
+import Profile
 
 struct ContentView: View {
 
     @ObservedObject var container: AppContainer = AppContainer()
 
     var body: some View {
-        EntryPointView()
+        ProfileView(model: ProfileViewModelImpl())
+//        EntryPointView()
 //        Router {
 //            TabView {
 //                NavigationStack {

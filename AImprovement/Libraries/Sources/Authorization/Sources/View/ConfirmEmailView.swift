@@ -75,7 +75,7 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
         {
             Text("отправить повторно")
                 .font(Fonts.subText)
-                .foregroundColor(Static.Colors.hint)
+                .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
@@ -83,12 +83,6 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
     @ObservedObject private var model: Model
     @State private var codeInput: String = ""
     @State private var codeInputState: TextFieldView.InputState = .idle
-}
-
-private enum Static {
-    enum Colors {
-        static let hint: Color = Color("HintColor", bundle: .main)
-    }
 }
 
 #Preview {
