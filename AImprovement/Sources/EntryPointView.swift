@@ -5,6 +5,8 @@ import Authorization
 @MainActor
 struct EntryPointView: View {
 
+    @Binding var isAuthorized: Bool
+
     var body: some View {
         NavigationStack {
             VStack(spacing: CommonConstants.stackSpacing) {
@@ -13,43 +15,8 @@ struct EntryPointView: View {
                     .font(Static.Fonts.logo)
                     .foregroundColor(.white)
                 VStack {
-                    NavigationLink(
-                        destination: LoginView(
-                            model: LoginViewModelImpl(
-                                textFieldValidator: TextFieldValidatorImpl()
-                            )
-                        )
-                    )
-                    {
-                        Text("Войти")
-                            .font(Static.Fonts.main)
-                            .foregroundColor(.white)
-                            .frame(width: CommonConstants.buttonWidth)
-                            .padding(.vertical, 17)
-                            .background {
-                                RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
-                                    .stroke(.white, lineWidth: 3)
-                                    .foregroundColor(.clear)
-                            }
-                    }
-                    NavigationLink(
-                        destination: RegistrationView(
-                            model: RegistrationViewModelImpl(
-                                textFieldValidator: TextFieldValidatorImpl()
-                            )
-                        )
-                    )
-                    {
-                        Text("Регистрация")
-                            .font(Static.Fonts.main)
-                            .foregroundColor(Static.Colors.accent)
-                            .frame(width: CommonConstants.buttonWidth)
-                            .padding(.vertical, 17)
-                            .background {
-                                RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
-                                    .foregroundColor(.white)
-                            }
-                    }
+                    loginView
+                    registrationView
                 }
             }
             .padding(.bottom, 58)
@@ -57,6 +24,53 @@ struct EntryPointView: View {
                 Image(.brandBackground)
                     .ignoresSafeArea()
             }
+        }
+    }
+
+    private var loginView: some View {
+        NavigationLink(
+            destination: LoginView(
+                model: LoginViewModelImpl(
+                    textFieldValidator: TextFieldValidatorImpl(),
+                    onLoginComplete: {
+                        isAuthorized = true
+                    }
+                )
+            )
+        ) {
+            Text("Войти")
+                .font(Static.Fonts.main)
+                .foregroundColor(.white)
+                .frame(width: CommonConstants.buttonWidth)
+                .padding(.vertical, 17)
+                .background {
+                    RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
+                        .stroke(.white, lineWidth: 3)
+                        .foregroundColor(.clear)
+                }
+        }
+    }
+
+    private var registrationView: some View {
+        NavigationLink(
+            destination: RegistrationView(
+                model: RegistrationViewModelImpl(
+                    textFieldValidator: TextFieldValidatorImpl(),
+                    onRegistrationComplete: {
+                        isAuthorized = true
+                    }
+                )
+            )
+        ) {
+            Text("Регистрация")
+                .font(Static.Fonts.main)
+                .foregroundColor(Static.Colors.accent)
+                .frame(width: CommonConstants.buttonWidth)
+                .padding(.vertical, 17)
+                .background {
+                    RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
+                        .foregroundColor(.white)
+                }
         }
     }
 }
@@ -73,5 +87,5 @@ private enum Static {
 }
 
 #Preview {
-    EntryPointView()
+    EntryPointView(isAuthorized: .constant(true))
 }
