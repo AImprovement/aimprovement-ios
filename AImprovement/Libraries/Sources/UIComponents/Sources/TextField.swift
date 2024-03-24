@@ -5,7 +5,7 @@ public struct TextFieldView: View {
     public enum Model {
         case `default`(headline: String, placeholder: String)
         case password(headline: String, placeholder: String)
-        case question(placeholder: String)
+        case question(placeholder: String, onSubmit: () -> Void)
     }
 
     public enum InputState {
@@ -73,16 +73,20 @@ public struct TextFieldView: View {
                     Text("Некорректный ввод")
                         .foregroundStyle(.red)
                 }
-            case .question(let placeholder):
+            case .question(let placeholder, let onSubmit):
                 HStack(spacing: 15) {
                     TextField(placeholder, text: $input, axis: .vertical)
                         .frame(minHeight: 28)
                         .focused($isFocused)
                         .disableAutocorrection(true)
-                    Static.Symbols.send
-                        .resizable()
-                        .frame(width: 22, height: 18)
-                        .foregroundStyle(isFocused ? .black : .gray)
+                    Button {
+                        onSubmit()
+                    } label: {
+                        Static.Symbols.send
+                            .resizable()
+                            .frame(width: 22, height: 18)
+                            .foregroundStyle(isFocused ? .black : .gray)
+                    }
                 }
                 .padding(15)
                 .overlay(
