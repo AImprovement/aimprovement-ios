@@ -9,13 +9,13 @@ struct ContentView: View {
 
     var body: some View {
         if isAuthorized {
-            QuestionView()
+            MainView()
         } else {
             EntryPointView()
         }
     }
 
     // Add REAL checker
-    private let isAuthorized: Bool = false
+    private let isAuthorized: Bool = true
 
 }

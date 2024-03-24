@@ -40,7 +40,9 @@ let package = Package(
         .target(
             name: "Questions",
             dependencies: [
-                "UIComponents"
+                "UIComponents",
+                "MaterialsProvider",
+                "Types"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
