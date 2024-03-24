@@ -4,7 +4,7 @@ import Authorization
 import Profile
 import Questions
 import Track
-import MaterialsProvider
+import Providers
 
 struct ContentView: View {
 

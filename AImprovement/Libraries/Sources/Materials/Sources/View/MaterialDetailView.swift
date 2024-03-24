@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UIComponents
-import MaterialsProvider
+import Providers
 import Types
 
 

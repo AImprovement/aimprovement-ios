@@ -1,7 +1,7 @@
 import SwiftUI
 import UIComponents
 import Materials
-import MaterialsProvider
+import Providers
 
 public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     var state: Bool = true

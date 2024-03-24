@@ -1,6 +1,6 @@
 import SwiftUI
 import Types
-import MaterialsProvider
+import Providers
 import Combine
 
 public enum SearchViewState {

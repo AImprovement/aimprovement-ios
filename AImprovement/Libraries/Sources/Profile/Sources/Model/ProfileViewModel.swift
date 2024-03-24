@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Providers
+import Types
 
 public struct ProfileViewState {
     static var initial = ProfileViewState()
@@ -15,16 +17,23 @@ public struct ProfileViewState {
 public protocol ProfileViewModel: ObservableObject {
     func onViewAppear()
     func onLogoutTap()
+    func getProfile() -> Types.Profile
 }
 
 @MainActor
 public final class ProfileViewModelImpl: ProfileViewModel {
 
     @Published private(set) public var viewState: ProfileViewState = .initial
+    let profileProvider: ProfileProvider
 
-    public init(onLogoutAction: @escaping () -> Void) {
+    public init(onLogoutAction: @escaping () -> Void, provider: ProfileProvider) {
         self.viewState = ProfileViewState()
         self.onLogoutAction = onLogoutAction
+        self.profileProvider = provider
+    }
+    
+    public func getProfile() -> Types.Profile {
+        profileProvider.getProfiles()[0]
     }
 
     public func onViewAppear() {
