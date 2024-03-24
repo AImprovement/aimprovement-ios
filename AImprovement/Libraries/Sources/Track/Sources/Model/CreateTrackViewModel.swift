@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  CreateTrackFirstView
-//
-//  Created by Алиса Вышегородцева on 24.03.2024.
-//
-
 import Foundation
 
 public struct CreateTrackViewState {
@@ -14,7 +7,6 @@ public struct CreateTrackViewState {
 @MainActor
 public protocol CreateTrackViewModel: ObservableObject {
     func onViewAppear()
-    func onLoginTap()
     func onViewDisappear()
 }
 
@@ -28,9 +20,6 @@ public final class CreateTrackViewModelImpl: CreateTrackViewModel {
     }
 
     public func onViewAppear() {
-    }
-
-    public func onLoginTap() {
     }
 
     public func onViewDisappear() {

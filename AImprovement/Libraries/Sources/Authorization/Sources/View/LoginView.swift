@@ -82,7 +82,9 @@ public struct LoginView<Model: LoginViewModel>: View {
         MainButton(
             model: .text("Войти"),
             style: .accentFilled,
-            action: {}
+            action: {
+                model.onLoginTap()
+            }
         )
     }
 

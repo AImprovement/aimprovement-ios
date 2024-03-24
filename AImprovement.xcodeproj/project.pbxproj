@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		04F35FB4784B1139A0565229 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B274AC30D43260D8C9968B /* MainView.swift */; };
 		0B696230906AD54F777EB554 /* EntryPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453946E5B9C0A9C468A6634B /* EntryPointView.swift */; };
-		12216A393435EF9F7902A797 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE77AB8D43C5F32F09FE9C6 /* MainTabView.swift */; };
 		24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */; };
 		275E4DA0DF45C356F15391A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2922E652D084645F32B9D91 /* Assets.xcassets */; };
 		35A7D6F5730FAA582E3CF5E4 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911A2EA6B7742D367ED2800 /* CustomTabBar.swift */; };
@@ -40,12 +39,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		174343F09E756588203C094B /* Localizable.xcstrings */ = {isa = PBXFileReference; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		174343F09E756588203C094B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		214ABEB8F1C40C38DCD75A30 /* TuistAssets+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+AImprovement.swift"; sourceTree = "<group>"; };
 		34720F1204CC940F9B5C6B6A /* AImprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AImprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453946E5B9C0A9C468A6634B /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
 		59DA72C6113CC3F8F3A615C1 /* CoFoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Black.ttf"; sourceTree = "<group>"; };
-		5DE77AB8D43C5F32F09FE9C6 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistFonts+AImprovement.swift"; sourceTree = "<group>"; };
 		7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+AImprovement.swift"; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				E911A2EA6B7742D367ED2800 /* CustomTabBar.swift */,
 				453946E5B9C0A9C468A6634B /* EntryPointView.swift */,
 				B93AAA89BD9D47D04B6BC4D4 /* Info.plist */,
-				5DE77AB8D43C5F32F09FE9C6 /* MainTabView.swift */,
 				D4B274AC30D43260D8C9968B /* MainView.swift */,
 			);
 			path = Sources;
@@ -226,8 +223,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = FCS;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 8DA82007B3159AA4FD26DB60 /* Build configuration list for PBXProject "AImprovement" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -273,7 +268,6 @@
 				0B696230906AD54F777EB554 /* EntryPointView.swift in Sources */,
 				57EA928E0C35FD8BA7B5BC01 /* AccountInfoProvider.swift in Sources */,
 				CA37332FE583FB4989686250 /* KeyboardHeightHelper.swift in Sources */,
-				12216A393435EF9F7902A797 /* MainTabView.swift in Sources */,
 				04F35FB4784B1139A0565229 /* MainView.swift in Sources */,
 				A4E02F5ECE0D111FEF6ABD74 /* TuistAssets+AImprovement.swift in Sources */,
 				8708D0AE39383728380E84F6 /* TuistBundle+AImprovement.swift in Sources */,
@@ -439,10 +433,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

@@ -19,7 +19,8 @@ let package = Package(
                 "Types",
                 "MaterialsProvider",
                 "Track",
-                "Materials"
+                "Materials",
+				"SearchScreen"
             ]
         ),
     ],
@@ -81,6 +82,16 @@ let package = Package(
             name: "Materials",
             dependencies: [
                 "UIComponents"
+            ],
+            sources: ["Sources"],
+            resources: [.process("Resources")]
+        ),
+        .target(
+            name: "SearchScreen",
+            dependencies: [
+                "UIComponents",
+                "MaterialsProvider",
+                "Types"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
