@@ -8,21 +8,21 @@ public struct LoginView<Model: LoginViewModel>: View {
     }
 
     public var body: some View {
-        VStack(spacing: 22) {
+        VStack(spacing: CommonConstants.stackSpacing) {
             headline
             textFields
             Spacer()
             loginButton
         }
-        .padding(.top, 103)
-        .padding(.bottom, 24)
-        .padding(.horizontal, 31)
+        .padding(.top, CommonConstants.topPadding)
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
     }
 
     private var headline: some View {
         Text("Вход")
-            .font(Static.Fonts.main)
+            .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
@@ -72,7 +72,7 @@ public struct LoginView<Model: LoginViewModel>: View {
         )
         {
             Text("не помню пароль")
-                .font(Static.Fonts.hintButton)
+                .font(Fonts.subText)
                 .foregroundColor(Static.Colors.hint)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -94,11 +94,6 @@ public struct LoginView<Model: LoginViewModel>: View {
 }
 
 private enum Static {
-    enum Fonts {
-        static let main: Font = Font.custom("CoFoSans-Bold", size: 35)
-        static let hintButton: Font = Font.custom("CoFoSans-Regular", size: 15)
-    }
-
     enum Colors {
         static let hint: Color = Color("HintColor", bundle: .main)
     }

@@ -30,15 +30,15 @@ public struct TextFieldView: View {
             switch model {
             case .default(let headline, let placeholder):
                 Text(headline)
-                    .font(Static.Fonts.headline)
+                    .font(Fonts.mainText)
                 TextField(placeholder, text: $input)
                     .frame(
                         width: Static.Layout.width,
                         height: Static.Layout.height
                     )
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, CommonConstants.cornerRadius)
                     .overlay(
-                        RoundedRectangle(cornerRadius: Static.Layout.cornerRadius)
+                        RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
                             .stroke(
                                 isFocused ? .black : .gray,
                                 lineWidth: Static.Layout.borderWidth
@@ -52,15 +52,15 @@ public struct TextFieldView: View {
                 }
             case .password(let headline, let placeholder):
                 Text(headline)
-                    .font(Static.Fonts.headline)
+                    .font(Fonts.mainText)
                 SecureField(placeholder, text: $input)
                     .frame(
                         width: Static.Layout.width,
                         height: Static.Layout.height
                     )
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, CommonConstants.cornerRadius)
                     .overlay(
-                        RoundedRectangle(cornerRadius: Static.Layout.cornerRadius)
+                        RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
                             .stroke(
                                 isFocused ? .black : .gray,
                                 lineWidth: Static.Layout.borderWidth
@@ -84,11 +84,6 @@ private enum Static {
     enum Layout {
         static let width: CGFloat = 312
         static let height: CGFloat = 58
-        static let cornerRadius: CGFloat = 10
         static let borderWidth: CGFloat = 1
-    }
-
-    enum Fonts {
-        static let headline: Font = Font.custom("CoFoSans-Regular", size: 20)
     }
 }

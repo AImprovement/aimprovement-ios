@@ -8,21 +8,21 @@ public struct RegistrationView<Model: RegistrationViewModel>: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: CommonConstants.stackSpacing) {
             headline
             textField
             Spacer()
             MainButton(model: .text("Дальше"), style: .accentFilled, action: {})
         }
-        .padding(.top, 103)
-        .padding(.bottom, 24)
-        .padding(.leading, 31)
+        .padding(.top, CommonConstants.topPadding)
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
     }
 
     private var headline: some View {
         Text("Регистрация", bundle: .module)
-            .font(Static.Fonts.main)
+            .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
@@ -43,12 +43,6 @@ public struct RegistrationView<Model: RegistrationViewModel>: View {
     @State private var emailInput: String = ""
     @State private var emailInputState: TextFieldView.InputState = .idle
 
-}
-
-private enum Static {
-    enum Fonts {
-        static let main: Font = Font.custom("CoFoSans-Bold", size: 35)
-    }
 }
 
 #Preview {

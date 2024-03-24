@@ -8,7 +8,7 @@ public struct NewPasswordView<Model: NewPasswordViewModel>: View {
     }
 
     public var body: some View {
-        VStack(spacing: 22) {
+        VStack(spacing: CommonConstants.stackSpacing) {
             headline
             VStack {
                 newPasswordTextField
@@ -17,14 +17,14 @@ public struct NewPasswordView<Model: NewPasswordViewModel>: View {
             Spacer()
             MainButton(model: .text("Сменить пароль"), style: .accentFilled, action: {})
         }
-        .padding(.top, 103)
-        .padding(.bottom, 24)
-        .padding(.horizontal, 31)
+        .padding(.top, CommonConstants.topPadding)
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
     }
 
     private var headline: some View {
         Text("Восстановление пароля")
-            .font(Static.Fonts.main)
+            .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
@@ -59,12 +59,6 @@ public struct NewPasswordView<Model: NewPasswordViewModel>: View {
     @State private var repeatPasswordInput: String = ""
     @State private var newPasswordInputState: TextFieldView.InputState = .idle
     @State private var repeatPasswordInputState: TextFieldView.InputState = .idle
-}
-
-private enum Static {
-    enum Fonts {
-        static let main: Font = Font.custom("CoFoSans-Bold", size: 35)
-    }
 }
 
 #Preview {

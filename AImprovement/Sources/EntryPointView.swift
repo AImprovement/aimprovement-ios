@@ -7,7 +7,7 @@ struct EntryPointView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 22) {
+            VStack(spacing: CommonConstants.stackSpacing) {
                 Spacer()
                 Text("AImprovement")
                     .font(Static.Fonts.logo)
@@ -24,10 +24,10 @@ struct EntryPointView: View {
                         Text("Войти")
                             .font(Static.Fonts.main)
                             .foregroundColor(.white)
-                            .frame(width: 248)
+                            .frame(width: CommonConstants.buttonWidth)
                             .padding(.vertical, 17)
                             .background {
-                                RoundedRectangle(cornerRadius: 10)
+                                RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
                                     .stroke(.white, lineWidth: 3)
                                     .foregroundColor(.clear)
                             }
@@ -43,10 +43,10 @@ struct EntryPointView: View {
                         Text("Регистрация")
                             .font(Static.Fonts.main)
                             .foregroundColor(Static.Colors.accent)
-                            .frame(width: 248)
+                            .frame(width: CommonConstants.buttonWidth)
                             .padding(.vertical, 17)
                             .background {
-                                RoundedRectangle(cornerRadius: 10)
+                                RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
                                     .foregroundColor(.white)
                             }
                     }
