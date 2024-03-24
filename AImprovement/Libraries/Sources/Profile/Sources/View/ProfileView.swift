@@ -18,6 +18,8 @@ extension View {
 
 
 public struct ProfileView<Model: ProfileViewModel>: View {
+    @State private var action: Int? = 0
+    
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
     }
@@ -49,11 +51,9 @@ public struct ProfileView<Model: ProfileViewModel>: View {
     }
     
     private var logoutButton: some View {
-        MainButton(
-            model: .text("Выйти"),
-            style: .accentFilled,
-            action: {}
-        )
+        MainButton(model: .text("Выйти"), style: .accentFilled, action: {
+            self.action = 1
+        })
     }
     
     private var nickMail: some View {
