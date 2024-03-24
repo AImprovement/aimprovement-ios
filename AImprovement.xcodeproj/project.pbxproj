@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		275E4DA0DF45C356F15391A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2922E652D084645F32B9D91 /* Assets.xcassets */; };
 		35A7D6F5730FAA582E3CF5E4 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E911A2EA6B7742D367ED2800 /* CustomTabBar.swift */; };
 		5556B9317894FFC1B24FC58F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 174343F09E756588203C094B /* Localizable.xcstrings */; };
+		57EA928E0C35FD8BA7B5BC01 /* AccountInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C402C9906D036AAA746062 /* AccountInfoProvider.swift */; };
 		633A8374F3746C589721FAA2 /* CoFoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */; };
 		86420367537DF0FA95D0320A /* Libraries in Frameworks */ = {isa = PBXBuildFile; productRef = 453F06BC0B12A22FD2D7BDDC /* Libraries */; };
 		8708D0AE39383728380E84F6 /* TuistBundle+AImprovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */; };
@@ -22,7 +23,6 @@
 		C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */; };
 		CA37332FE583FB4989686250 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED792CA75912D733626123 /* KeyboardHeightHelper.swift */; };
 		CEE04AD417F451F81A8F49BF /* CoFoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FE8321CE2F6DE9D7E404E3F /* CoFoSans-Regular.ttf */; };
-		EF6800142BB081A4003B12E0 /* AccountInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6800132BB081A4003B12E0 /* AccountInfoProvider.swift */; };
 		FA6B83424A02DD64A5449711 /* TuistFonts+AImprovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		174343F09E756588203C094B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		174343F09E756588203C094B /* Localizable.xcstrings */ = {isa = PBXFileReference; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		214ABEB8F1C40C38DCD75A30 /* TuistAssets+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+AImprovement.swift"; sourceTree = "<group>"; };
 		34720F1204CC940F9B5C6B6A /* AImprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AImprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453946E5B9C0A9C468A6634B /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
@@ -49,6 +49,7 @@
 		689BAC0376657620D9E3FCF4 /* TuistFonts+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistFonts+AImprovement.swift"; sourceTree = "<group>"; };
 		7DEBB9D9D1D2A27A8DB4F245 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84B00C74F4E1CCB0E9CC4495 /* TuistBundle+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+AImprovement.swift"; sourceTree = "<group>"; };
+		86C402C9906D036AAA746062 /* AccountInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoProvider.swift; sourceTree = "<group>"; };
 		9293999822EFF4DD0BFB8563 /* Libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Libraries; path = AImprovement/Libraries; sourceTree = "<group>"; };
 		9FE8321CE2F6DE9D7E404E3F /* CoFoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Regular.ttf"; sourceTree = "<group>"; };
 		A2922E652D084645F32B9D91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		D8BE8A109C80B67286E44A1F /* CoFoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CoFoSans-Bold.ttf"; sourceTree = "<group>"; };
 		E4ED792CA75912D733626123 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		E911A2EA6B7742D367ED2800 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		EF6800132BB081A4003B12E0 /* AccountInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoProvider.swift; sourceTree = "<group>"; };
 		FDF49B6714265BAE06D5F858 /* AImprovementApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AImprovementApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,8 +180,8 @@
 		FBB02E43DF3FBC4209795651 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				86C402C9906D036AAA746062 /* AccountInfoProvider.swift */,
 				E4ED792CA75912D733626123 /* KeyboardHeightHelper.swift */,
-				EF6800132BB081A4003B12E0 /* AccountInfoProvider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -218,6 +218,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = FCS;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 8DA82007B3159AA4FD26DB60 /* Build configuration list for PBXProject "AImprovement" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -257,11 +259,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF6800142BB081A4003B12E0 /* AccountInfoProvider.swift in Sources */,
 				C51294526E050C50E2652781 /* AImprovementApp.swift in Sources */,
 				24DE8F304258B68E6FD032C1 /* ContentView.swift in Sources */,
 				35A7D6F5730FAA582E3CF5E4 /* CustomTabBar.swift in Sources */,
 				0B696230906AD54F777EB554 /* EntryPointView.swift in Sources */,
+				57EA928E0C35FD8BA7B5BC01 /* AccountInfoProvider.swift in Sources */,
 				CA37332FE583FB4989686250 /* KeyboardHeightHelper.swift in Sources */,
 				12216A393435EF9F7902A797 /* MainTabView.swift in Sources */,
 				04F35FB4784B1139A0565229 /* MainView.swift in Sources */,
@@ -429,7 +431,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
