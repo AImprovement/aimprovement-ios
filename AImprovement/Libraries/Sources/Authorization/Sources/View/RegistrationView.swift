@@ -14,7 +14,6 @@ public struct RegistrationView<Model: RegistrationViewModel>: View {
             Spacer()
             MainButton(model: .text("Дальше"), style: .accentFilled, action: {})
         }
-        .padding(.top, CommonConstants.topPadding)
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)

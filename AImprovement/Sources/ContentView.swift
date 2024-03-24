@@ -3,6 +3,7 @@ import UIComponents
 import Authorization
 import Profile
 import Questions
+import Track
 
 struct ContentView: View {
 
@@ -13,6 +14,7 @@ struct ContentView: View {
             MainView()
         } else {
             EntryPointView()
+//            IndividualTrackView(model: IndividualTrackViewModelImpl())
         }
     }
 

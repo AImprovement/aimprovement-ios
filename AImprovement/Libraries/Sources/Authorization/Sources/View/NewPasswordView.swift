@@ -17,7 +17,6 @@ public struct NewPasswordView<Model: NewPasswordViewModel>: View {
             Spacer()
             MainButton(model: .text("Сменить пароль"), style: .accentFilled, action: {})
         }
-        .padding(.top, CommonConstants.topPadding)
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
     }
