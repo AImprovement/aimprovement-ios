@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//
-//
-//  Created by Алиса Вышегородцева on 24.03.2024.
-//
-
 import SwiftUI
 import UIComponents
 import Materials
@@ -16,7 +9,6 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.presentationMode) var presentationModeF: Binding<PresentationMode>
 
-    
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -70,9 +62,17 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     }
     
     private var questionField: some View {
-        TextFieldView(model: .question(placeholder: "задайте вопрос...", onSubmit: {}), input: $input, inputState: $inputState)
+        TextFieldView(
+            model: .question(
+                placeholder: "задайте вопрос...",
+                onSubmit: {
+                    hideKeyboard()
+                }
+            ),
+            input: $input,
+            inputState: $inputState
+        )
     }
-    
     
     @ObservedObject private var model: Model
     @State private var input: String = ""
@@ -84,6 +84,15 @@ private enum Static {
         static let accent: Color = Color("AccentColor", bundle: .main)
     }
 }
+
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
+
 
 #Preview {
     CreateTrackFirstView(model: CreateTrackViewModelImpl())

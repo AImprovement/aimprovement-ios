@@ -2,6 +2,7 @@ import SwiftUI
 import Questions
 import UIComponents
 import MaterialsProvider
+import SearchScreen
 import Track
 import Profile
 
@@ -20,7 +21,7 @@ struct MainView: View {
             case .chat:
                 QuestionView(model: QuestionViewModelImpl(materialsProvider: materialsProvider))
             case .search:
-                EmptyView()
+                SearchView(model: SearchViewModelImpl(materialsProvider: materialsProvider))
             case .favourite:
                 IndividualTrackView(model: IndividualTrackViewModelImpl())
             case .profile:

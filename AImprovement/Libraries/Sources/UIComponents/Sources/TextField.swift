@@ -6,6 +6,7 @@ public struct TextFieldView: View {
         case `default`(headline: String, placeholder: String)
         case password(headline: String, placeholder: String)
         case question(placeholder: String, onSubmit: () -> Void)
+        case search(placeholder: String, onSubmit: () -> Void)
     }
 
     public enum InputState {
@@ -96,6 +97,29 @@ public struct TextFieldView: View {
                             lineWidth: Static.Layout.borderWidth
                         )
                 )
+            case .search(let placeholder, let onSubmit):
+                HStack(spacing: 15) {
+                    TextField(placeholder, text: $input)
+                        .frame(minHeight: 28)
+                        .focused($isFocused)
+                        .disableAutocorrection(true)
+                    Button {
+                        onSubmit()
+                    } label: {
+                        Static.Symbols.clear
+                            .resizable()
+                            .frame(width: 22, height: 22)
+                            .foregroundStyle(isFocused ? .black : .gray)
+                    }
+                }
+                .padding(15)
+                .overlay(
+                    RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
+                        .stroke(
+                            isFocused ? .black : .gray,
+                            lineWidth: Static.Layout.borderWidth
+                        )
+                )
             }
         }
     }
@@ -114,5 +138,6 @@ private enum Static {
 
 	enum Symbols {
         static let send: Image = Image(systemName: "arrow.right")
+        static let clear: Image = Image(systemName: "xmark.circle")
     }
 }

@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Алиса Вышегородцева on 24.03.2024.
-//
-
 import Foundation
 
 public struct IndividualTrackViewState {
@@ -14,7 +7,6 @@ public struct IndividualTrackViewState {
 @MainActor
 public protocol IndividualTrackViewModel: ObservableObject {
     func onViewAppear()
-    func onLoginTap()
     func onViewDisappear()
 }
 
@@ -28,9 +20,6 @@ public final class IndividualTrackViewModelImpl: IndividualTrackViewModel {
     }
 
     public func onViewAppear() {
-    }
-
-    public func onLoginTap() {
     }
 
     public func onViewDisappear() {
