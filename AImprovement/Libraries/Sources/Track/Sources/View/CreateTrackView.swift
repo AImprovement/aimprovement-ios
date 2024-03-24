@@ -7,12 +7,12 @@
 
 import SwiftUI
 import UIComponents
+import Materials
 import MaterialsProvider
 
-
-public struct CreateTrackFirstView<Model: CreateTrackFirstViewModel>: View {
+public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     var state: Bool = true
-    @State var showingPopup = false
+    @State private var isPresented: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     
@@ -26,9 +26,13 @@ public struct CreateTrackFirstView<Model: CreateTrackFirstViewModel>: View {
                 headline
                 questionField
                 if state {
-                    MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[1], .bordered, onLikeClicked: {
-                        print("hello")
-                    }))
+                    Button(action: {
+                        isPresented = true
+                    }) {
+                        MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
+                            print("hello")
+                        }))
+                    }
                 }
                 Spacer()
                 VStack {
@@ -38,6 +42,9 @@ public struct CreateTrackFirstView<Model: CreateTrackFirstViewModel>: View {
                         .foregroundStyle(.gray)
                 }
             }
+        }
+        .navigationDestination(isPresented: $isPresented) {
+            MaterialDetailView(model: MaterialDetailViewModelImpl())
         }
         .padding(.top, CommonConstants.horizontalPadding)
         .padding(.bottom, CommonConstants.bottomPadding)
@@ -58,7 +65,7 @@ public struct CreateTrackFirstView<Model: CreateTrackFirstViewModel>: View {
     }
     
     private var questionField: some View {
-        TextFieldView(model: .question(placeholder: "задайте вопрос..."), input: $input, inputState: $inputState)
+        TextFieldView(model: .question(placeholder: "задайте вопрос...", onSubmit: {}), input: $input, inputState: $inputState)
     }
     
     
@@ -74,5 +81,5 @@ private enum Static {
 }
 
 #Preview {
-    CreateTrackFirstView(model: CreateTrackFirstViewModelImpl())
+    CreateTrackFirstView(model: CreateTrackViewModelImpl())
 }

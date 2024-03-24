@@ -2,6 +2,8 @@ import SwiftUI
 import Questions
 import UIComponents
 import MaterialsProvider
+import Track
+import Profile
 
 struct MainView: View {
 
@@ -20,9 +22,9 @@ struct MainView: View {
             case .search:
                 EmptyView()
             case .favourite:
-                EmptyView()
+                IndividualTrackView(model: IndividualTrackViewModelImpl())
             case .profile:
-                EmptyView()
+                ProfileView(model: ProfileViewModelImpl())
             }
 
             Spacer()
