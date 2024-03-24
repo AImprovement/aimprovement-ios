@@ -12,6 +12,8 @@ import MaterialsProvider
 
 public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
     let material = MaterialsProviderImpl().getMaterials()[0]
+    @State private var isPresented: Bool = false
+    @State private var showingSheet: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     public init(model: Model) {
@@ -19,6 +21,7 @@ public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
     }
     
     public var body: some View {
+
         VStack() {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
@@ -39,10 +42,22 @@ public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
                     review
                 }
             }
+            createButton
+            
         }
+        .padding(.bottom, CommonConstants.bottomPadding)
         .navigationBarBackButtonHidden()
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
+    }
+    
+    private var createButton: some View {
+        MainButton(model: .text("Написать отзыв"), style: .accentFilled, action: {
+            showingSheet.toggle()
+        })
+        .sheet(isPresented: $showingSheet){
+            CreateReviewView(model: CreateReviewViewModelImpl())
+        }
     }
     
     private var headline: some View {

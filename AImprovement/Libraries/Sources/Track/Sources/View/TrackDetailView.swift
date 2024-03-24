@@ -58,8 +58,7 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
             print("hello")
         }))
     }
-    
-    
+
     @ObservedObject private var model: Model
 }
 
