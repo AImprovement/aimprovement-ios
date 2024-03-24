@@ -5,6 +5,7 @@ public struct TextFieldView: View {
     public enum Model {
         case `default`(headline: String, placeholder: String)
         case password(headline: String, placeholder: String)
+        case question(placeholder: String)
     }
 
     public enum InputState {
@@ -72,6 +73,25 @@ public struct TextFieldView: View {
                     Text("Некорректный ввод")
                         .foregroundStyle(.red)
                 }
+            case .question(let placeholder):
+                HStack(spacing: 15) {
+                    TextField(placeholder, text: $input, axis: .vertical)
+                        .frame(minHeight: 28)
+                        .focused($isFocused)
+                        .disableAutocorrection(true)
+                    Static.Symbols.send
+                        .resizable()
+                        .frame(width: 22, height: 18)
+                        .foregroundStyle(isFocused ? .black : .gray)
+                }
+                .padding(15)
+                .overlay(
+                    RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
+                        .stroke(
+                            isFocused ? .black : .gray,
+                            lineWidth: Static.Layout.borderWidth
+                        )
+                )
             }
         }
     }
@@ -83,7 +103,12 @@ public struct TextFieldView: View {
 private enum Static {
     enum Layout {
         static let width: CGFloat = 312
+        static let questionFieldWidth: CGFloat = 323
         static let height: CGFloat = 58
         static let borderWidth: CGFloat = 1
+    }
+
+	enum Symbols {
+        static let send: Image = Image(systemName: "arrow.right")
     }
 }
