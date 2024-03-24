@@ -30,43 +30,6 @@ struct MainView: View {
             CustomTabBar(selectedTab: $selectedTab)
                 .offset(y: self.keyboardHeightHelper.keyboardHeight)
         }
-
-//        TabView {
-//            QuestionView()
-//                .tabItem {
-//                    
-//                    Image(systemName: "message.circle")
-//                        .renderingMode(.template)
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                }
-//
-//            QuestionView()
-//                .tabItem {
-//                    Image(systemName: "magnifyingglass.circle")
-//                        .renderingMode(.template)
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                }
-//
-//            QuestionView()
-//                .tabItem {
-//                    Image(systemName: "heart.circle")
-//                        .renderingMode(.template)
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                }
-//
-//            QuestionView()
-//                .tabItem {
-//                    Image(systemName: "person.crop.circle")
-//                        .renderingMode(.template)
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                }
-//
-//        }
-//        .accentColor(.black)
     }
 
     private let materialsProvider: MaterialsProvider = MaterialsProviderImpl()
