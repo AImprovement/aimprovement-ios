@@ -22,7 +22,7 @@ public struct MessageBubble: View {
         case .text(let text, let style):
             textMessage(text: text, style: style)
         case .material(let material, let style, let onLikeCliked):
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 8) {
                 title(material: material, onLikeClicked: onLikeCliked)
                 rating(material: material)
                 Text(material.description)
@@ -52,10 +52,12 @@ public struct MessageBubble: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30)
                     .symbolRenderingMode(.monochrome)
+                    .foregroundColor(.black)
                 VStack(alignment: .leading, spacing: 0) {
                     Text(material.title)
                         .font(Fonts.subText)
                         .bold()
+                        .foregroundStyle(.black)
                     Text(material.author)
                         .font(Fonts.subText)
                         .foregroundStyle(.gray)

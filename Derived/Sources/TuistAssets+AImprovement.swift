@@ -33,11 +33,11 @@ public final class AImprovementColors {
 
   #if os(macOS)
   public typealias Color = NSColor
-  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  #elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
   public typealias Color = UIColor
   #endif
 
-  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, visionOS 1.0, *)
   public private(set) lazy var color: Color = {
     guard let color = Color(asset: self) else {
       fatalError("Unable to load color asset named \(name).")
@@ -47,7 +47,7 @@ public final class AImprovementColors {
 
   #if canImport(SwiftUI)
   private var _swiftUIColor: Any? = nil
-  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, visionOS 1.0, *)
   public private(set) var swiftUIColor: SwiftUI.Color {
     get {
       if self._swiftUIColor == nil {
@@ -68,10 +68,10 @@ public final class AImprovementColors {
 }
 
 public extension AImprovementColors.Color {
-  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
+  @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, visionOS 1.0, *)
   convenience init?(asset: AImprovementColors) {
     let bundle = AImprovementResources.bundle
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     self.init(named: asset.name, in: bundle, compatibleWith: nil)
     #elseif os(macOS)
     self.init(named: NSColor.Name(asset.name), bundle: bundle)
@@ -82,7 +82,7 @@ public extension AImprovementColors.Color {
 }
 
 #if canImport(SwiftUI)
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, visionOS 1.0, *)
 public extension SwiftUI.Color {
   init(asset: AImprovementColors) {
     let bundle = AImprovementResources.bundle
@@ -96,13 +96,13 @@ public struct AImprovementImages {
 
   #if os(macOS)
   public typealias Image = NSImage
-  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  #elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
   public typealias Image = UIImage
   #endif
 
   public var image: Image {
     let bundle = AImprovementResources.bundle
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     let image = Image(named: name, in: bundle, compatibleWith: nil)
     #elseif os(macOS)
     let image = bundle.image(forResource: NSImage.Name(name))
@@ -116,7 +116,7 @@ public struct AImprovementImages {
   }
 
   #if canImport(SwiftUI)
-  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, visionOS 1.0, *)
   public var swiftUIImage: SwiftUI.Image {
     SwiftUI.Image(asset: self)
   }
@@ -124,7 +124,7 @@ public struct AImprovementImages {
 }
 
 #if canImport(SwiftUI)
-@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, visionOS 1.0, *)
 public extension SwiftUI.Image {
   init(asset: AImprovementImages) {
     let bundle = AImprovementResources.bundle

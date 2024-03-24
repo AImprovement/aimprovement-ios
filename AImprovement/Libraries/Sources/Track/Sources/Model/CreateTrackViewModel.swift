@@ -7,24 +7,24 @@
 
 import Foundation
 
-public struct CreateTrackFirstViewState {
-    static var initial = CreateTrackFirstViewState()
+public struct CreateTrackViewState {
+    static var initial = CreateTrackViewState()
 }
 
 @MainActor
-public protocol CreateTrackFirstViewModel: ObservableObject {
+public protocol CreateTrackViewModel: ObservableObject {
     func onViewAppear()
     func onLoginTap()
     func onViewDisappear()
 }
 
 @MainActor
-public final class CreateTrackFirstViewModelImpl: CreateTrackFirstViewModel {
+public final class CreateTrackViewModelImpl: CreateTrackViewModel {
 
-    @Published private(set) public var viewState: CreateTrackFirstViewState = .initial
+    @Published private(set) public var viewState: CreateTrackViewState = .initial
 
     public init() {
-        self.viewState = CreateTrackFirstViewState()
+        self.viewState = CreateTrackViewState()
     }
 
     public func onViewAppear() {

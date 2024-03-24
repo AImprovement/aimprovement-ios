@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Алиса Вышегородцева on 24.03.2024.
 //
@@ -8,28 +8,34 @@
 import SwiftUI
 import UIComponents
 import MaterialsProvider
+import Materials
 
 struct TrackDetailView<Model: TrackDetailViewModel>: View {
     var state: Bool = true
-
+    @State private var isPresented: Bool = false
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
     }
     
     var body: some View {
-            VStack(spacing: CommonConstants.stackSpacing) {
-                headline
-                if state {
-                    card
-                    card
+        VStack(spacing: CommonConstants.stackSpacing) {
+            headline
+            if state {
+                Button(action: {
+                    isPresented = true
+                }) {
                     card
                 }
-                Spacer()
             }
-            .padding(.bottom, CommonConstants.bottomPadding)
-            .padding(.horizontal, CommonConstants.horizontalPadding)
-            .background(.white)
+            Spacer()
+        }
+        .navigationDestination(isPresented: $isPresented){
+            MaterialDetailView(model: MaterialDetailViewModelImpl())
+        }
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
+        .background(.white)
     }
     
     private var headline: some View {
@@ -40,7 +46,7 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
     }
     
     private var card: some View {
-        MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[1], .bordered, onLikeClicked: {
+        MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
             print("hello")
         }))
     }

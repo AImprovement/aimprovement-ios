@@ -30,7 +30,7 @@ public struct IndividualTrackView<Model: IndividualTrackViewModel>: View {
                 Spacer()
                 createButton
                     .navigationDestination(isPresented: $isPresented) {
-                        CreateTrackFirstView(model: CreateTrackFirstViewModelImpl())
+                        CreateTrackFirstView(model: CreateTrackViewModelImpl())
                     }
             }
             .padding(.bottom, CommonConstants.bottomPadding)
@@ -52,18 +52,17 @@ public struct IndividualTrackView<Model: IndividualTrackViewModel>: View {
         }) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Ментальное здоровье")
+                    Text("Решения")
                         .font(Fonts.subText)
                         .bold()
                         .accentColor(.black)
-                    Text("3 этапа")
+                    Text("1 этап")
                         .font(Fonts.subText)
                         .foregroundStyle(.gray)
                     
                 }
                 Spacer()
                 Image(systemName: "xmark")
-                    .padding(.trailing)
                     .accentColor(.black)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
