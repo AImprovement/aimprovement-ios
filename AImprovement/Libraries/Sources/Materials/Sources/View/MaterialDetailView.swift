@@ -12,6 +12,7 @@ import MaterialsProvider
 
 public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
     let material = MaterialsProviderImpl().getMaterials()[0]
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -19,7 +20,11 @@ public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 5) {
+            CustomNavBar(onBack: {
+                presentationMode.wrappedValue.dismiss()
+            })
             headline
+                .padding(.top, 17)
             author
             description
             link
@@ -33,6 +38,7 @@ public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
             
             Spacer()
         }
+        .navigationBarBackButtonHidden()
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)

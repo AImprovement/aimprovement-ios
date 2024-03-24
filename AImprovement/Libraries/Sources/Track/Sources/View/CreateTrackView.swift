@@ -14,6 +14,8 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationModeF: Binding<PresentationMode>
+
     
     
     public init(model: Model) {
@@ -21,32 +23,33 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     }
     
     public var body: some View {
-        NavigationStack {
-            VStack(spacing: CommonConstants.stackSpacing) {
-                headline
-                questionField
-                if state {
-                    Button(action: {
-                        isPresented = true
-                    }) {
-                        MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
-                            print("hello")
-                        }))
-                    }
-                }
-                Spacer()
-                VStack {
-                    saveButton
-                    Text("Сбросить")
-                        .font(Fonts.subText)
-                        .foregroundStyle(.gray)
+        VStack(spacing: CommonConstants.stackSpacing) {
+            CustomNavBar(onBack: {
+                presentationModeF.wrappedValue.dismiss()
+            })
+            headline
+            questionField
+            if state {
+                Button(action: {
+                    isPresented = true
+                }) {
+                    MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
+                        print("hello")
+                    }))
                 }
             }
+            Spacer()
+            VStack {
+                saveButton
+                Text("Сбросить")
+                    .font(Fonts.subText)
+                    .foregroundStyle(.gray)
+            }
         }
+        .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $isPresented) {
             MaterialDetailView(model: MaterialDetailViewModelImpl())
         }
-        .padding(.top, CommonConstants.horizontalPadding)
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
