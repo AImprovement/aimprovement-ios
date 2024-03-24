@@ -12,7 +12,7 @@ extension Project {
             organizationName: "FCS",
             packages: packages,
             targets: [
-                Target(
+                .target(
                     name: name,
                     destinations: [.iPhone],
                     product: .staticFramework,

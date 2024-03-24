@@ -5,17 +5,16 @@ let project = Project(
     organizationName: "FCS",
     packages: [.local(path: "AImprovement/Libraries")],
     targets: [
-        Target(
+        .target(
             name: "AImprovement",
             destinations: [.iPhone],
             product: .app,
             bundleId: "fcs.aimprovement",
             deploymentTargets: .iOS("16.0"),
-            infoPlist: .default,
+            infoPlist: "AImprovement/Sources/Info.plist",
             sources: ["AImprovement/Sources/**"],
-            dependencies: [
-                .package(product: "Libraries")
-            ]
+            resources: ["AImprovement/Resources/**"],
+            dependencies: [.package(product: "Libraries")]
         ),
     ]
 )
