@@ -32,7 +32,7 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
         }
         .navigationBarBackButtonHidden()
         .navigationDestination(isPresented: $isPresented){
-            MaterialDetailView(model: MaterialDetailViewModelImpl())
+            MaterialDetailView(material: MaterialsProviderImpl().getMaterials()[0])
         }
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)

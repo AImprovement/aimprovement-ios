@@ -11,14 +11,12 @@ public struct CreateReviewViewState {
     static var initial = CreateReviewViewState()
 }
 
-@MainActor
 public protocol CreateReviewViewModel: ObservableObject {
     func onViewAppear()
     func onLoginTap()
     func onViewDisappear()
 }
 
-@MainActor
 public final class CreateReviewViewModelImpl: CreateReviewViewModel {
 
     @Published private(set) public var viewState: CreateReviewViewState = .initial

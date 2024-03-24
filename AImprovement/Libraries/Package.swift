@@ -81,7 +81,8 @@ let package = Package(
         .target(
             name: "Materials",
             dependencies: [
-                "UIComponents"
+                "UIComponents",
+                "Types"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
