@@ -6,17 +6,20 @@ import Questions
 
 struct ContentView: View {
 
-    @ObservedObject var container: AppContainer = AppContainer()
+    init() {
+        self._isAuthorized = State(initialValue: false)
+    }
 
     var body: some View {
-        if isAuthorized {
-            MainView()
-        } else {
-            EntryPointView()
-        }
+        MainView()
+            .overlay {
+                if !isAuthorized {
+                    EntryPointView(isAuthorized: $isAuthorized)
+                }
+            }
     }
 
     // Add REAL checker
-    private let isAuthorized: Bool = true
+    @State var isAuthorized: Bool
 
 }

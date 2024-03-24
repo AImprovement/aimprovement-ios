@@ -1,8 +1,9 @@
 import SwiftUI
 import UIComponents
 
+public struct ConfirmEmailView<Model: LoginViewModel>: View {
 
-public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @State private var action: Int? = 0
 
@@ -12,23 +13,31 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
 
     public var body: some View {
         VStack(spacing: CommonConstants.stackSpacing) {
-            headline
-            description
-            textField
-            Spacer()
-            MainButton(model: .text("Дальше"), style: .accentFilled, action: {
-                self.action = 1
+            CustomNavBar(onBack: {
+                presentationMode.wrappedValue.dismiss()
             })
-            link
+            VStack(spacing: CommonConstants.stackSpacing) {
+                headline
+                description
+                textField
+                Spacer()
+                MainButton(model: .text("Дальше"), style: .accentFilled, action: {
+                    self.action = 1
+                })
+                nextButton
+            }
+            .padding(.bottom, CommonConstants.bottomPadding)
+            .padding(.horizontal, CommonConstants.horizontalPadding)
         }
-        .padding(.top, CommonConstants.topPadding)
-        .padding(.bottom, CommonConstants.bottomPadding)
-        .padding(.horizontal, CommonConstants.horizontalPadding)
+        .navigationBarBackButtonHidden()
     }
 
-    private var link: some View {
-        NavigationLink(destination: NewPasswordView(model: NewPasswordViewModelImpl(textFieldValidator: TextFieldValidatorImpl())), tag: 1, selection: $action)
-        {
+    private var nextButton: some View {
+        NavigationLink(
+            destination: NewPasswordView(model: model),
+            tag: 1,
+            selection: $action
+        ) {
             EmptyView()
         }
     }
@@ -66,11 +75,7 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
 
     private var resendCodeButton: some View {
         NavigationLink(
-            destination: RestorePasswordView(
-                model: RestorePasswordViewModelImpl(
-                    textFieldValidator: TextFieldValidatorImpl()
-                )
-            )
+            destination: RestorePasswordView(model: model)
         )
         {
             Text("отправить повторно")
@@ -87,8 +92,9 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
 
 #Preview {
     RestorePasswordView(
-        model: RestorePasswordViewModelImpl(
-            textFieldValidator: TextFieldValidatorImpl()
+        model: LoginViewModelImpl(
+            textFieldValidator: TextFieldValidatorImpl(),
+            onLoginComplete: {}
         )
     )
 }

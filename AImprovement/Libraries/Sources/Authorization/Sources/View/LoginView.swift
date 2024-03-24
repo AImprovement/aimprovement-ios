@@ -3,21 +3,28 @@ import UIComponents
 
 public struct LoginView<Model: LoginViewModel>: View {
 
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
     }
 
     public var body: some View {
         VStack(spacing: CommonConstants.stackSpacing) {
-            headline
-            textFields
-            Spacer()
-            loginButton
+            CustomNavBar(onBack: {
+                presentationMode.wrappedValue.dismiss()
+            })
+            VStack(spacing: CommonConstants.stackSpacing) {
+                headline
+                textFields
+                Spacer()
+                loginButton
+            }
+            .padding(.bottom, CommonConstants.bottomPadding)
+            .padding(.horizontal, CommonConstants.horizontalPadding)
+            .background(.white)
         }
-        .padding(.top, CommonConstants.topPadding)
-        .padding(.bottom, CommonConstants.bottomPadding)
-        .padding(.horizontal, CommonConstants.horizontalPadding)
-        .background(.white)
+        .navigationBarBackButtonHidden()
     }
 
     private var headline: some View {
@@ -63,14 +70,7 @@ public struct LoginView<Model: LoginViewModel>: View {
     }
 
     private var restorePasswordButton: some View {
-        NavigationLink(
-            destination: RestorePasswordView(
-                model: RestorePasswordViewModelImpl(
-                    textFieldValidator: TextFieldValidatorImpl()
-                )
-            )
-        )
-        {
+        NavigationLink(destination: RestorePasswordView(model: model)) {
             Text("не помню пароль")
                 .font(Fonts.subText)
                 .foregroundColor(.gray)
@@ -94,5 +94,5 @@ public struct LoginView<Model: LoginViewModel>: View {
 }
 
 #Preview {
-    LoginView(model: LoginViewModelImpl(textFieldValidator: TextFieldValidatorImpl()))
+    LoginView(model: LoginViewModelImpl(textFieldValidator: TextFieldValidatorImpl(), onLoginComplete: {}))
 }

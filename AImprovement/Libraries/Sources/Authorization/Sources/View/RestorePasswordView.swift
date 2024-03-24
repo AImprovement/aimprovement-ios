@@ -1,7 +1,9 @@
 import SwiftUI
 import UIComponents
 
-public struct RestorePasswordView<Model: RestorePasswordViewModel>: View {
+public struct RestorePasswordView<Model: LoginViewModel>: View {
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @State private var action: Int? = 0
 
@@ -10,25 +12,32 @@ public struct RestorePasswordView<Model: RestorePasswordViewModel>: View {
     }
 
     public var body: some View {
-        VStack(spacing: CommonConstants.stackSpacing) {
-            headline
-            description
-            textField
-            Spacer()
-            MainButton(model: .text("Дальше"), style: .accentFilled, action: {
-                self.action = 1
+        VStack {
+            CustomNavBar(onBack: {
+                presentationMode.wrappedValue.dismiss()
             })
-            link
+            VStack(spacing: CommonConstants.stackSpacing) {
+                headline
+                description
+                textField
+                Spacer()
+                MainButton(model: .text("Дальше"), style: .accentFilled, action: {
+                    self.action = 1
+                })
+                nextButton
+            }
+            .padding(.bottom, CommonConstants.bottomPadding)
+            .padding(.horizontal, CommonConstants.horizontalPadding)
         }
-        .padding(.top, CommonConstants.topPadding)
-        .padding(.bottom, CommonConstants.bottomPadding)
-        .padding(.horizontal, CommonConstants.horizontalPadding)
-        
+        .navigationBarBackButtonHidden()
     }
 
-    private var link: some View {
-        NavigationLink(destination: NewPasswordView(model: NewPasswordViewModelImpl(textFieldValidator: TextFieldValidatorImpl())), tag: 1, selection: $action)
-        {
+    private var nextButton: some View {
+        NavigationLink(
+            destination: NewPasswordView(model: model),
+            tag: 1,
+            selection: $action
+        ) {
             EmptyView()
         }
     }
@@ -68,8 +77,9 @@ public struct RestorePasswordView<Model: RestorePasswordViewModel>: View {
 
 #Preview {
     RestorePasswordView(
-        model: RestorePasswordViewModelImpl(
-            textFieldValidator: TextFieldValidatorImpl()
+        model: LoginViewModelImpl(
+            textFieldValidator: TextFieldValidatorImpl(),
+            onLoginComplete: {}
         )
     )
 }

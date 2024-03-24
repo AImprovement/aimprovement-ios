@@ -1,7 +1,9 @@
 import SwiftUI
 import UIComponents
 
-public struct NewPasswordView<Model: NewPasswordViewModel>: View {
+public struct NewPasswordView<Model: LoginViewModel>: View {
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -9,17 +11,22 @@ public struct NewPasswordView<Model: NewPasswordViewModel>: View {
 
     public var body: some View {
         VStack(spacing: CommonConstants.stackSpacing) {
-            headline
-            VStack {
-                newPasswordTextField
-                repeatPasswordTextField
+            CustomNavBar(onBack: {
+                presentationMode.wrappedValue.dismiss()
+            })
+            VStack(spacing: CommonConstants.stackSpacing) {
+                headline
+                VStack {
+                    newPasswordTextField
+                    repeatPasswordTextField
+                }
+                Spacer()
+                MainButton(model: .text("Сменить пароль"), style: .accentFilled, action: {})
             }
-            Spacer()
-            MainButton(model: .text("Сменить пароль"), style: .accentFilled, action: {})
+            .padding(.bottom, CommonConstants.bottomPadding)
+            .padding(.horizontal, CommonConstants.horizontalPadding)
         }
-        .padding(.top, CommonConstants.topPadding)
-        .padding(.bottom, CommonConstants.bottomPadding)
-        .padding(.horizontal, CommonConstants.horizontalPadding)
+        .navigationBarBackButtonHidden()
     }
 
     private var headline: some View {
@@ -62,5 +69,5 @@ public struct NewPasswordView<Model: NewPasswordViewModel>: View {
 }
 
 #Preview {
-    NewPasswordView(model: NewPasswordViewModelImpl(textFieldValidator: TextFieldValidatorImpl()))
+    NewPasswordView(model: LoginViewModelImpl(textFieldValidator: TextFieldValidatorImpl(), onLoginComplete: {}))
 }
