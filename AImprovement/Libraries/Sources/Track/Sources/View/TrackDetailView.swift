@@ -1,6 +1,6 @@
 import SwiftUI
 import UIComponents
-import MaterialsProvider
+import Providers
 import Materials
 
 struct TrackDetailView<Model: TrackDetailViewModel>: View {

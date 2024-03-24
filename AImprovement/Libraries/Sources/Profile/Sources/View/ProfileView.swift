@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIComponents
+import Providers
 
 #if canImport(UIKit)
 extension View {
@@ -18,7 +19,6 @@ extension View {
 
 
 public struct ProfileView<Model: ProfileViewModel>: View {
-
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
     }
@@ -57,12 +57,12 @@ public struct ProfileView<Model: ProfileViewModel>: View {
     
     private var nickMail: some View {
         VStack (alignment: .center, spacing: 5) {
-            Text("Алиса\nВышегородцева")
+            Text(model.getProfile().nick)
                 .font(Fonts.mainText)
                 .multilineTextAlignment(.center)
-            Text("a.g.vyshegorodtseva@tinkoff.ru")
+            Text(model.getProfile().email)
                 .font(Fonts.subText)
-                .accentColor(.gray)
+                .foregroundStyle(.gray)
         }
         
     }
@@ -76,7 +76,7 @@ public struct ProfileView<Model: ProfileViewModel>: View {
                 Spacer()
             }
             TextField(
-                "Расскажите о себе",
+                model.getProfile().description,
                 text: $desc,
                 axis: .vertical
             )
@@ -107,6 +107,6 @@ private enum Static {
     }
 }
 
-#Preview {
-    ProfileView(model: ProfileViewModelImpl(onLogoutAction: {}))
-}
+//#Preview {
+//    ProfileView(model: ProfileViewModelImpl(onLogoutAction: {}))
+//}

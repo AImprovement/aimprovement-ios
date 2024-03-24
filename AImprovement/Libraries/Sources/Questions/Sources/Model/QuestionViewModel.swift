@@ -1,5 +1,5 @@
 import SwiftUI
-import MaterialsProvider
+import Providers
 import Types
 
 @MainActor
