@@ -8,7 +8,7 @@ public enum RegistrationInputType {
 @MainActor
 public protocol RegistrationViewModel: ObservableObject {
     func onViewAppear()
-    func onLoginTap()
+    func onRegisterTap()
     func onViewDisappear()
     func isValid(_ inputType: InputType) -> Bool
 }
@@ -16,14 +16,16 @@ public protocol RegistrationViewModel: ObservableObject {
 @MainActor
 public final class RegistrationViewModelImpl: RegistrationViewModel {
 
-    public init(textFieldValidator: TextFieldValidator) {
+    public init(textFieldValidator: TextFieldValidator, onRegistrationComplete: @escaping () -> Void) {
         self.textFieldValidator = textFieldValidator
+        self.onRegistrationComplete = onRegistrationComplete
     }
 
     public func onViewAppear() {
     }
 
-    public func onLoginTap() {
+    public func onRegisterTap() {
+        onRegistrationComplete()
     }
 
     public func onViewDisappear() {
@@ -34,5 +36,6 @@ public final class RegistrationViewModelImpl: RegistrationViewModel {
     }
 
     private let textFieldValidator: TextFieldValidator
+    private let onRegistrationComplete: () -> Void
 
 }
