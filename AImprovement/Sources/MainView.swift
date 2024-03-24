@@ -10,10 +10,7 @@ struct MainView: View {
 
     @State var selectedTab: TabItem = .chat
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
-
-    init() {
-        UITabBar.appearance().backgroundColor = UIColor(named: "AccentColor")
-    }
+    @Binding var isAuthorized: Bool
 
     var body: some View {
         VStack {
@@ -25,7 +22,9 @@ struct MainView: View {
             case .favourite:
                 IndividualTrackView(model: IndividualTrackViewModelImpl())
             case .profile:
-                ProfileView(model: ProfileViewModelImpl())
+                ProfileView(model: ProfileViewModelImpl(onLogoutAction: {
+                    isAuthorized = false
+                }))
             }
 
             Spacer()

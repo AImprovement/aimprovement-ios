@@ -21,11 +21,7 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
             headline
             ScrollView {
                 if state {
-                    Button(action: {
-                        isPresented = true
-                    }) {
-                        card
-                    }
+                    card
                 }
             }
             Spacer()
@@ -49,6 +45,9 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
     private var card: some View {
         MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
             print("hello")
+        }, onTap: {
+            isPresented = true
+//            MaterialsProviderImpl().getMaterials()[0]
         }))
     }
 

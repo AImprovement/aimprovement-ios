@@ -92,7 +92,9 @@ let package = Package(
             dependencies: [
                 "UIComponents",
                 "MaterialsProvider",
-                "Types"
+                "Types",
+                "Materials",
+                "Authorization"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]

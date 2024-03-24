@@ -14,8 +14,7 @@ public struct ProfileViewState {
 @MainActor
 public protocol ProfileViewModel: ObservableObject {
     func onViewAppear()
-    func onLoginTap()
-    func onViewDisappear()
+    func onLogoutTap()
 }
 
 @MainActor
@@ -23,16 +22,17 @@ public final class ProfileViewModelImpl: ProfileViewModel {
 
     @Published private(set) public var viewState: ProfileViewState = .initial
 
-    public init() {
+    public init(onLogoutAction: @escaping () -> Void) {
         self.viewState = ProfileViewState()
+        self.onLogoutAction = onLogoutAction
     }
 
     public func onViewAppear() {
     }
 
-    public func onLoginTap() {
+    public func onLogoutTap() {
+        onLogoutAction()
     }
 
-    public func onViewDisappear() {
-    }
+    private let onLogoutAction: () -> Void
 }

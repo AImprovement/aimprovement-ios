@@ -12,24 +12,22 @@ public struct FullRegistrationView<Model: RegistrationViewModel>: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: CommonConstants.stackSpacing) {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
             })
-            VStack(spacing: CommonConstants.stackSpacing) {
-                headline
-                nicknameTextField
-                passwordTextField
-                repeatPasswordTextField
-                Spacer()
-                MainButton(model: .text("Зарегистрироваться"), style: .accentFilled, action: {
-                    model.onRegisterTap()
-                })
-            }
-            .padding(.bottom, CommonConstants.bottomPadding)
-            .padding(.horizontal, CommonConstants.horizontalPadding)
-            .background(.white)
+            headline
+            nicknameTextField
+            passwordTextField
+            repeatPasswordTextField
+            Spacer()
+            MainButton(model: .text("Зарегистрироваться"), style: .accentFilled, action: {
+                model.onRegisterTap()
+            })
         }
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
+        .background(.white)
         .navigationBarBackButtonHidden()
     }
 

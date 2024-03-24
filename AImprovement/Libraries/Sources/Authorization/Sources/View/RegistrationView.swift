@@ -12,23 +12,21 @@ public struct RegistrationView<Model: RegistrationViewModel>: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: CommonConstants.stackSpacing) {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
             })
-            VStack(spacing: CommonConstants.stackSpacing) {
-                headline
-                textField
-                Spacer()
-                MainButton(model: .text("Дальше"), style: .accentFilled, action: {
-                    self.action = 1
-                })
-                nextButton
-            }
-            .padding(.bottom, CommonConstants.bottomPadding)
-            .padding(.horizontal, CommonConstants.horizontalPadding)
-            .background(.white)
+            headline
+            textField
+            Spacer()
+            MainButton(model: .text("Дальше"), style: .accentFilled, action: {
+                self.action = 1
+            })
+            nextButton
         }
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
+        .background(.white)
         .navigationBarBackButtonHidden()
     }
 

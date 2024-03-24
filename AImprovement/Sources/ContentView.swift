@@ -13,7 +13,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        MainView()
+        MainView(isAuthorized: $isAuthorized)
             .overlay {
                 if !isAuthorized {
                     EntryPointView(isAuthorized: $isAuthorized)

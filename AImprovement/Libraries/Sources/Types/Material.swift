@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct Material: Identifiable {
+public struct Material: Identifiable, Hashable {
 
     public enum Icon: String {
         case book
@@ -20,7 +20,10 @@ public struct Material: Identifiable {
         icon: Material.Icon,
         isLiked: Bool,
         rating: Double,
-        ratingCount: String
+        ratingCount: String,
+        link: URL,
+        price: String,
+        site: String
     ) {
         self.id = id
         self.author = author
@@ -30,6 +33,9 @@ public struct Material: Identifiable {
         self.isLiked = isLiked
         self.rating = rating
         self.ratingCount = ratingCount
+        self.link = link
+        self.price = price
+        self.site = site
     }
 
     public var id: Int
@@ -40,6 +46,9 @@ public struct Material: Identifiable {
     public var isLiked: Bool
     public let rating: Double
     public let ratingCount: String
+    public let link: URL
+    public let price: String
+    public let site: String
 
     public mutating func updateLike() {
         isLiked.toggle()
