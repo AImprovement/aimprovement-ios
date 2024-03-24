@@ -1,5 +1,4 @@
 import UIKit
-import Foundation
 
 class KeyboardHeightHelper: ObservableObject {
     @Published var keyboardHeight: CGFloat = 0
