@@ -8,8 +8,8 @@ struct ContentView: View {
     @ObservedObject var container: AppContainer = AppContainer()
 
     var body: some View {
-        ProfileView(model: ProfileViewModelImpl())
-//        EntryPointView()
+//        ProfileView(model: ProfileViewModelImpl())
+        EntryPointView()
 //        Router {
 //            TabView {
 //                NavigationStack {
