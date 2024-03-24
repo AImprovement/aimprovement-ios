@@ -1,6 +1,7 @@
 import SwiftUI
 import UIComponents
 
+
 public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
 
     @State private var action: Int? = 0
@@ -10,7 +11,7 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
     }
 
     public var body: some View {
-        VStack(spacing: 22) {
+        VStack(spacing: CommonConstants.stackSpacing) {
             headline
             description
             textField
@@ -20,9 +21,9 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
             })
             link
         }
-        .padding(.top, 103)
-        .padding(.bottom, 24)
-        .padding(.horizontal, 31)
+        .padding(.top, CommonConstants.topPadding)
+        .padding(.bottom, CommonConstants.bottomPadding)
+        .padding(.horizontal, CommonConstants.horizontalPadding)
     }
 
     private var link: some View {
@@ -34,15 +35,15 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
 
     private var headline: some View {
         Text("Регистрация")
-            .font(Static.Fonts.main)
+            .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var description: some View {
         Group {
-            Text("На вашу электронную почту ").font(Static.Fonts.description) +
-            Text(model.viewState.email).font(Static.Fonts.email) +
-            Text(" было отправлено письмо с кодом").font(Static.Fonts.description)
+            Text("На вашу электронную почту ").font(Fonts.mainText) +
+            Text(model.viewState.email).font(Fonts.mainTextBold) +
+            Text(" было отправлено письмо с кодом").font(Fonts.mainText)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -73,7 +74,7 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
         )
         {
             Text("отправить повторно")
-                .font(Static.Fonts.hintButton)
+                .font(Fonts.subText)
                 .foregroundColor(Static.Colors.hint)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -85,13 +86,6 @@ public struct ConfirmEmailView<Model: ConfirmEmailViewModel>: View {
 }
 
 private enum Static {
-    enum Fonts {
-        static let main: Font = Font.custom("CoFoSans-Bold", size: 35)
-        static let description: Font = Font.custom("CoFoSans-Regular", size: 20)
-        static let email: Font = Font.custom("CoFoSans-Bold", size: 20)
-        static let hintButton: Font = Font.custom("CoFoSans-Regular", size: 15)
-    }
-
     enum Colors {
         static let hint: Color = Color("HintColor", bundle: .main)
     }
