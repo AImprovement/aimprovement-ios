@@ -73,7 +73,7 @@ public struct LoginView<Model: LoginViewModel>: View {
         {
             Text("не помню пароль")
                 .font(Fonts.subText)
-                .foregroundColor(Static.Colors.hint)
+                .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
@@ -91,12 +91,6 @@ public struct LoginView<Model: LoginViewModel>: View {
     @State private var passwordInput: String = ""
     @State private var usernameOrEmailInputState: TextFieldView.InputState = .idle
     @State private var passwordInputState: TextFieldView.InputState = .idle
-}
-
-private enum Static {
-    enum Colors {
-        static let hint: Color = Color("HintColor", bundle: .main)
-    }
 }
 
 #Preview {
