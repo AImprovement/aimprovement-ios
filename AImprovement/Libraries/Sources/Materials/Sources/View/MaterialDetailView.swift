@@ -8,16 +8,17 @@
 import SwiftUI
 import UIComponents
 import MaterialsProvider
+import Types
 
 
-public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
-    let material = MaterialsProviderImpl().getMaterials()[0]
+public struct MaterialDetailView: View {
+    private let material: Types.Material
     @State private var isPresented: Bool = false
     @State private var showingSheet: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    public init(model: Model) {
-        self._model = ObservedObject(wrappedValue: model)
+    public init(material: Types.Material) {
+        self.material = material
     }
     
     public var body: some View {
@@ -160,9 +161,7 @@ public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
             .font(Fonts.subText)
             .foregroundStyle(.black)
     }
-    
-    @ObservedObject private var model: Model
-    
+        
 }
 
 private enum Static {
@@ -180,6 +179,6 @@ private enum Static {
     
 }
 
-#Preview {
-    MaterialDetailView(model: MaterialDetailViewModelImpl())
-}
+//#Preview {
+//    MaterialDetailView(material: MaterialDetailViewModelImpl())
+//}
