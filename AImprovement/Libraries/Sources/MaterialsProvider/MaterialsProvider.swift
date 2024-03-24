@@ -7,6 +7,8 @@ public protocol MaterialsProvider {
 
 public final class MaterialsProviderImpl: MaterialsProvider {
 
+    public init() { }
+
     public func getMaterials() -> [Types.Material] {
         return materials
     }
