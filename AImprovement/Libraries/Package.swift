@@ -17,7 +17,8 @@ let package = Package(
                 "Profile",
                 "Questions",
                 "Types",
-                "MaterialsProvider"
+                "MaterialsProvider",
+                "Track"
             ]
         ),
     ],
@@ -59,6 +60,15 @@ let package = Package(
             name: "Profile",
             dependencies: [
                 "UIComponents"
+            ],
+            sources: ["Sources"],
+            resources: [.process("Resources")]
+        ),
+        .target(
+            name: "Track",
+            dependencies: [
+                "UIComponents",
+                "MaterialsProvider"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]

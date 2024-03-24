@@ -20,7 +20,6 @@ public struct RestorePasswordView<Model: RestorePasswordViewModel>: View {
             })
             link
         }
-        .padding(.top, CommonConstants.topPadding)
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         

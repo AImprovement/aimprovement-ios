@@ -14,7 +14,6 @@ public struct LoginView<Model: LoginViewModel>: View {
             Spacer()
             loginButton
         }
-        .padding(.top, CommonConstants.topPadding)
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
