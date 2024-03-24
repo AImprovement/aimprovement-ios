@@ -19,27 +19,28 @@ public struct MaterialDetailView<Model: MaterialDetailViewModel>: View {
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack() {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
             })
-            headline
-                .padding(.top, 17)
-            author
-            description
-            link
-                .padding(.top)
-            rating
-                .padding(.top)
-            Text("Отзывы пользователей")
-                .font(Fonts.subText)
-                .bold()
-            review
-            
-            Spacer()
+            ScrollView{
+                VStack(alignment: .leading,spacing: 5){
+                    headline
+                        .padding(.top, 17)
+                    author
+                    description
+                    link
+                        .padding(.top)
+                    rating
+                        .padding(.top)
+                    Text("Отзывы пользователей")
+                        .font(Fonts.subText)
+                        .bold()
+                    review
+                }
+            }
         }
         .navigationBarBackButtonHidden()
-        .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
     }

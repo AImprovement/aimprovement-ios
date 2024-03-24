@@ -21,11 +21,15 @@ public struct IndividualTrackView<Model: IndividualTrackViewModel>: View {
         NavigationStack {
             VStack(spacing: CommonConstants.stackSpacing) {
                 headline
-                if state {
-                    card
-                        .navigationDestination(isPresented: $isPresentedDetail) {
-                            TrackDetailView(model: TrackDetailViewModelImpl())
-                        }
+                ScrollView{
+                    if state {
+                        card
+                            .navigationDestination(isPresented: $isPresentedDetail) {
+                                TrackDetailView(model: TrackDetailViewModelImpl())
+                            }
+                        card
+                        card
+                    }
                 }
                 Spacer()
                 createButton
