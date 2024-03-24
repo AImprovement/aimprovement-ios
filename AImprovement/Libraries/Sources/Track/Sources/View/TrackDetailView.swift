@@ -26,11 +26,13 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
                 presentationMode.wrappedValue.dismiss()
             })
             headline
-            if state {
-                Button(action: {
-                    isPresented = true
-                }) {
-                    card
+            ScrollView {
+                if state {
+                    Button(action: {
+                        isPresented = true
+                    }) {
+                        card
+                    }
                 }
             }
             Spacer()
