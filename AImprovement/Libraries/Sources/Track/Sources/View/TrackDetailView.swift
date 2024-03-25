@@ -4,10 +4,15 @@ import Providers
 import Materials
 import Types
 
-struct TrackDetailView: View {
+
+struct TrackDetailView<Model: TrackViewModel>: View {
+    var state: Bool = true
+    @State private var isPresented: Bool = false
+    @State private var loading: Bool = true
 
     var track: Types.Track
     var onLikeClicked: (Int) -> Void
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     public init(track: Types.Track, onLikeClicked: @escaping (Int) -> Void) {
@@ -21,13 +26,25 @@ struct TrackDetailView: View {
                 presentationMode.wrappedValue.dismiss()
             })
             headline
-            trackView
+            if loading {
+                Spacer()
+                ProgressView()
+            } else {
+                trackView
+            }
             Spacer()
         }
         .navigationBarBackButtonHidden()
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
+
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.loading.toggle()
+            }
+            model.fetchMaterialsForTrack()
+        }
     }
 
     private var trackView: some View {

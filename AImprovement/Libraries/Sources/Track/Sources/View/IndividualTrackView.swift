@@ -8,6 +8,7 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
     @State private var isPresented: Bool = false
     @State private var materalIsPresented: Bool = false
     @State private var isPresentedDetail: Bool = false
+    @State private var loading: Bool = true
     
     public init(model: Model) {
         self._model = StateObject(wrappedValue: model)
@@ -18,13 +19,21 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
             ScrollView {
                 VStack(spacing: CommonConstants.stackSpacing) {
                     headline
-                    tracks
+                    if loading {
+                        ProgressView()
+                    } else {
+                        tracks
+                    }
                     createButton
                         .navigationDestination(isPresented: $isPresented) {
                             CreateTrackFirstView(model: model)
                         }
                     headlineLiked
-                    saved
+                    if loading {
+                        ProgressView()
+                    } else {
+                        saved
+                    }
                     Spacer()
                 }
                 .padding(.bottom, CommonConstants.bottomPadding)
@@ -35,6 +44,9 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
             .refreshable { }
         }
         .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.loading.toggle()
+            }
             model.getMaterials()
             model.fetchTracks()
         }
