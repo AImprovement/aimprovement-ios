@@ -52,6 +52,9 @@ public struct SearchView<Model: SearchViewModel>: View {
                 }
             }
         }
+        .refreshable {
+            
+        }
         .scrollClipDisabled()
         .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)

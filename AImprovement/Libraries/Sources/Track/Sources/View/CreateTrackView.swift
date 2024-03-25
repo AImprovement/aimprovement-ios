@@ -3,6 +3,7 @@ import UIComponents
 import Materials
 import Providers
 import Types
+import Lottie
 
 public struct CreateTrackFirstView<Model: TrackViewModel>: View {
     var state: Bool = true
@@ -87,6 +88,8 @@ public struct CreateTrackFirstView<Model: TrackViewModel>: View {
         Text("Что хотите развивать?")
             .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
+        //        LottieView(animation: .named("question.json"))
+        //            .playbackMode(.playing(.toProgress(1, loopMode: .loop)))
     }
     
     private var questionField: some View {

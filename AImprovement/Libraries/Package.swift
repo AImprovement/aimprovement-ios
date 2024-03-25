@@ -48,7 +48,7 @@ let package = Package(
                 "UIComponents",
                 "Providers",
                 "Types",
-                "Chat"
+                "Chat",
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]

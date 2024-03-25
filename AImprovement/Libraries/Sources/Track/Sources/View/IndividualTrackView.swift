@@ -40,6 +40,7 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
         }
         .scrollClipDisabled()
         .scrollIndicators(.hidden)
+        .refreshable { }
     }
 
     private var headline: some View {

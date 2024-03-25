@@ -42,6 +42,7 @@ public struct MaterialDetailView: View {
                     review
                 }
             }
+            .scrollClipDisabled()
             .scrollIndicators(.hidden)
             createButton
             
@@ -125,7 +126,7 @@ public struct MaterialDetailView: View {
     }
     
     public var review: some View {
-        VStack() {
+        VStack(spacing: 19) {
             ForEach(Array(material.reviews.enumerated()), id: \.1.id) { ind, review in
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
