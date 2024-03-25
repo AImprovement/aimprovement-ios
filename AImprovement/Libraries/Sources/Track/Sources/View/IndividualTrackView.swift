@@ -20,10 +20,14 @@ public struct IndividualTrackView<Model: IndividualTrackViewModel>: View {
                             .navigationDestination(isPresented: $isPresentedDetail) {
                                 TrackDetailView(model: TrackDetailViewModelImpl())
                             }
-                        card
-                        card
+                            .padding(.bottom, 19)
                     }
                 }
+                .scrollClipDisabled()
+                .refreshable {
+                    
+                }
+                
                 Spacer()
                 createButton
                     .navigationDestination(isPresented: $isPresented) {

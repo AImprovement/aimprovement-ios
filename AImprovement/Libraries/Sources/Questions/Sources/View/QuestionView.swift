@@ -2,6 +2,7 @@ import SwiftUI
 import Chat
 import Types
 import UIComponents
+import Lottie
 
 public struct QuestionView<Model: QuestionViewModel>: View {
 

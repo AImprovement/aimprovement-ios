@@ -33,7 +33,7 @@ public struct LoginView<Model: LoginViewModel>: View {
     }
     
     private var textFields: some View {
-        VStack {
+        VStack(spacing: CommonConstants.stackSpacing) {
             emailTextField
             passwordTextField
         }

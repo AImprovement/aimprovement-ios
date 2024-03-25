@@ -4,7 +4,6 @@ import Types
 import UIComponents
 
 public struct ChatView: View {
-
     var messages: [Types.Message]
 
     public init(messages: [Types.Message]) {
@@ -12,22 +11,26 @@ public struct ChatView: View {
     }
 
     public var body: some View {
-        VStack {
-            ScrollViewReader { proxy in
-                ScrollView {
-                    LazyVStack {
-                        ForEach(messages) { message in
-                            MessageBubble(message: message)
+        if messages.isEmpty {
+            
+        } else {
+            VStack {
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(messages) { message in
+                                MessageBubble(message: message)
+                            }
                         }
-                    }
-                    .onReceive(Just(messages)) { _ in
-                        withAnimation {
-                            proxy.scrollTo(messages.last, anchor: .bottom)
+                        .onReceive(Just(messages)) { _ in
+                            withAnimation {
+                                proxy.scrollTo(messages.last, anchor: .bottom)
+                            }
                         }
-                    }
-                    .onAppear {
-                        withAnimation {
-                            proxy.scrollTo(messages.last, anchor: .bottom)
+                        .onAppear {
+                            withAnimation {
+                                proxy.scrollTo(messages.last, anchor: .bottom)
+                            }
                         }
                     }
                 }
