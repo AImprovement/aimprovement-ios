@@ -7,6 +7,8 @@ import Types
 struct TrackDetailView<Model: TrackViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
+    @State private var loading: Bool = true
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     public init(model: Model) {
@@ -19,7 +21,12 @@ struct TrackDetailView<Model: TrackViewModel>: View {
                 presentationMode.wrappedValue.dismiss()
             })
             headline
-            track
+            if loading {
+                Spacer()
+                ProgressView()
+            } else {
+                track
+            }
             Spacer()
         }
         .navigationBarBackButtonHidden()
@@ -30,6 +37,9 @@ struct TrackDetailView<Model: TrackViewModel>: View {
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
         .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.loading.toggle()
+            }
             model.fetchMaterialsForTrack()
         }
     }

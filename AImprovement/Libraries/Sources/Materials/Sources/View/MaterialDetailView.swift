@@ -15,6 +15,8 @@ public struct MaterialDetailView: View {
     private let material: Types.Material
     @State private var isPresented: Bool = false
     @State private var showingSheet: Bool = false
+    @State private var loading: Bool = true
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     public init(material: Types.Material) {
@@ -26,26 +28,37 @@ public struct MaterialDetailView: View {
             CustomNavBar(onBack: {
                 presentationMode.wrappedValue.dismiss()
             })
-            ScrollView {
-                VStack(alignment: .leading,spacing: 5){
-                    headline
-                        .padding(.top, 17)
-                    author
-                    description
-                    link
-                        .padding(.top)
-                    rating
-                        .padding(.top)
-                    Text("Отзывы пользователей")
-                        .font(Fonts.subText)
-                        .bold()
-                    review
+            if loading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading,spacing: 5){
+                        headline
+                            .padding(.top, 17)
+                        author
+                        description
+                        link
+                            .padding(.top)
+                        rating
+                            .padding(.top)
+                        Text("Отзывы пользователей")
+                            .font(Fonts.subText)
+                            .bold()
+                        review
+                    }
                 }
+                .scrollClipDisabled()
+                .scrollIndicators(.hidden)
+                createButton
             }
-            .scrollClipDisabled()
-            .scrollIndicators(.hidden)
-            createButton
             
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.loading.toggle()
+            }
         }
         .padding(.bottom, CommonConstants.bottomPadding)
         .navigationBarBackButtonHidden()
