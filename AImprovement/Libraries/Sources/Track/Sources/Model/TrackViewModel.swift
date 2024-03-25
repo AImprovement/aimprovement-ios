@@ -27,7 +27,7 @@ public final class TrackViewModelImpl: TrackViewModel {
     }
 
     public func onViewAppear() {
-        materials = materialsProvider.getMaterials()
+        getMaterials()
     }
     
     public func getMaterials() {
@@ -45,7 +45,7 @@ public final class TrackViewModelImpl: TrackViewModel {
     public func onLikedMaterial(ind: Int) {
         materialsProvider.updateMaterial(id: ind)
         tracks = tracksProvider.getTracks()
-        materials = materialsProvider.getMaterials()
+        getMaterials()
     }
 
     private let materialsProvider: MaterialsProvider

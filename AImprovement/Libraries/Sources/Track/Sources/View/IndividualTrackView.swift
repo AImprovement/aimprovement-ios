@@ -36,8 +36,6 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
         }
         .onAppear {
             model.getMaterials()
-        }
-        .onAppear {
             model.fetchTracks()
         }
     }
@@ -63,7 +61,6 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
                             message: Types.Message(id: ind, type: .material(material)),
                             onLikeClicked: {
                                 model.onLikedMaterial(ind: ind)
-                                model.getMaterials()
                             },
                             onTap: {
                                 materalIsPresented = true
@@ -82,7 +79,14 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         
     }
-  
+
+    private var headlineLiked: some View {
+        Text("Избранное")
+            .font(Fonts.heading)
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+    }
+
     private func trackCard(track: Types.Track) -> some View {
         HStack {
             VStack(alignment: .leading) {

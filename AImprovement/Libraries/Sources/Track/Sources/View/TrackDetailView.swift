@@ -56,14 +56,4 @@ struct TrackDetailView: View {
         
     }
 
-//    private var card: some View {
-//        MessageBubble(
-//            message: Types.Message(id: 0, type: .material(MaterialsProviderImpl().getMaterials()[0])),
-//            onLikeClicked: {},
-//            onTap: {
-//                isPresented = true
-//            }
-//        )
-//    }
-
 }
