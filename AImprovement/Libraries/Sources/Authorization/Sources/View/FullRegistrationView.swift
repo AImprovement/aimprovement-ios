@@ -22,7 +22,26 @@ public struct FullRegistrationView<Model: RegistrationViewModel>: View {
             repeatPasswordTextField
             Spacer()
             MainButton(model: .text("Зарегистрироваться"), style: .accentFilled, action: {
-                model.onRegisterTap()
+                var correct: Bool = true
+                if !model.isValid(.usernameOrEmail(nicknameInput)) {
+                    nicknameInputState = .incorrect
+                    correct = false
+                }
+                if !model.isValid(.password(passwordInput)) {
+                    passwordInputState = .incorrect
+                    correct = false
+                }
+                if !model.isValid(.password(repeatPasswordInput)) {
+                    repeatPasswordInputState = .incorrect
+                    correct = false
+                }
+                if repeatPasswordInput != passwordInput {
+                    repeatPasswordInputState = .passwords
+                    correct = false
+                }
+                if correct {
+                    model.onRegisterTap()
+                }
             })
         }
         .padding(.bottom, CommonConstants.bottomPadding)
@@ -43,36 +62,30 @@ public struct FullRegistrationView<Model: RegistrationViewModel>: View {
             input: $nicknameInput,
             inputState: $nicknameInputState
         )
-        .onSubmit {
-            if !model.isValid(.usernameOrEmail(nicknameInput)) {
-                nicknameInputState = .incorrect
-            }
+        .onTapGesture {
+            nicknameInputState = .idle
         }
     }
 
     private var passwordTextField: some View {
         TextFieldView(
-            model: .default(headline: "Пароль", placeholder: ""),
+            model: .password(headline: "Пароль", placeholder: "введите пароль"),
             input: $passwordInput,
             inputState: $passwordInputState
         )
-        .onSubmit {
-            if !model.isValid(.usernameOrEmail(passwordInput)) {
-                passwordInputState = .incorrect
-            }
+        .onTapGesture {
+            passwordInputState = .idle
         }
     }
 
     private var repeatPasswordTextField: some View {
         TextFieldView(
-            model: .default(headline: "Повтор пароля", placeholder: ""),
+            model: .password(headline: "Повтор пароля", placeholder: "повторите пароль"),
             input: $repeatPasswordInput,
             inputState: $repeatPasswordInputState
         )
-        .onSubmit {
-            if !model.isValid(.usernameOrEmail(repeatPasswordInput)) {
-                repeatPasswordInputState = .incorrect
-            }
+        .onTapGesture {
+            repeatPasswordInputState = .idle
         }
     }
 

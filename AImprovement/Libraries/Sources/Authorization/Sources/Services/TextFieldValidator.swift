@@ -10,9 +10,9 @@ public enum InputType {
 }
 
 public final class TextFieldValidatorImpl: TextFieldValidator {
-
+    
     public init() {}
-
+    
     public func isInputValid(_ input: InputType) -> Bool {
         switch input {
         case .usernameOrEmail(let text):
@@ -23,7 +23,7 @@ public final class TextFieldValidatorImpl: TextFieldValidator {
             return isRestoreCodeValid(text)
         }
     }
-
+    
     private func isUsernameOrEmailValid(_ text: String) -> Bool {
         guard text.count > 0 else { return false }
         if text.contains("@") {
@@ -36,13 +36,19 @@ public final class TextFieldValidatorImpl: TextFieldValidator {
             return usernamePred.evaluate(with: text)
         }
     }
-
+    
     private func isPasswordValid(_ password: String) -> Bool {
-        return true
+        guard password.count > 0 else { return false }
+        let usernameRegEx = "\\w{4,18}"
+        let usernamePred = NSPredicate(format:"SELF MATCHES %@", usernameRegEx)
+        return usernamePred.evaluate(with: password)
     }
-
+    
     private func isRestoreCodeValid(_ code: String) -> Bool {
-        return true
+        if code == "123456" {
+            return true
+        }
+        return false
     }
-
+    
 }

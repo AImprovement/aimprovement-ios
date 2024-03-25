@@ -12,6 +12,7 @@ public struct TextFieldView: View {
     public enum InputState {
         case idle
         case incorrect
+        case passwords
     }
 
     @Binding var input: String
@@ -73,6 +74,9 @@ public struct TextFieldView: View {
                     .disableAutocorrection(true)
                 if case .incorrect = inputState {
                     Text("Некорректный ввод")
+                        .foregroundStyle(.red)
+                } else if case .passwords = inputState {
+                    Text("Пароли не совпадают")
                         .foregroundStyle(.red)
                 }
             case .question(let placeholder, let onSubmit):
