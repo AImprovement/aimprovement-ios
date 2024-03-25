@@ -4,8 +4,8 @@ import Types
 public struct MessageBubble: View {
     
     public enum Model {
-        case text(String, Style)
-        case material(Types.Material, Style, onLikeClicked: () -> Void, onTap: () -> Void)
+        case text(Types.Message)
+        case material(Types.Message, onLikeClicked: () -> Void, onTap: () -> Void)
     }
     
     public enum Style {
@@ -13,17 +13,19 @@ public struct MessageBubble: View {
         case bordered
     }
     
-    public init(type: Model) {
-        self.type = type
+    public init(message: Types.Message, onLikeClicked: (() -> Void)? = nil, onTap: (() -> Void)? = nil) {
+        self.message = message
+        self.onLikeClicked = onLikeClicked
+        self.onTap = onTap
     }
     
     public var body: some View {
-        switch type {
-        case .text(let text, let style):
-            textMessage(text: text, style: style)
-        case .material(let material, let style, let onLikeCliked, let onTap):
+        switch message.type {
+        case .text(let text):
+            textMessage(text: text, style: .filled, icon: message.icon?.image, fromUser: message.fromUser)
+        case .material(let material):
             VStack (alignment: .leading, spacing: 8) {
-                title(material: material, onLikeClicked: onLikeCliked)
+                title(material: material, onLikeClicked: onLikeClicked)
                 rating(material: material)
                 Text(material.description)
                     .foregroundStyle(.black)
@@ -32,22 +34,42 @@ public struct MessageBubble: View {
                     .font(Fonts.subText)
             }
             .onTapGesture {
-                onTap()
+                onTap?()
             }
-            .shapeStyled(with: style)
+            .shapeStyled(with: .bordered)
         }
     }
     
-    private func textMessage(text: String, style: Style) -> some View {
-        Text(text)
-            .font(Fonts.subText)
-            .foregroundStyle(style == .filled ? Color.white : Color.blue)
-            .multilineTextAlignment(.leading)
-            .frame(maxWidth: .infinity)
-            .shapeStyled(with: style)
+    @ViewBuilder
+    private func textMessage(text: String, style: Style, icon: Image?, fromUser: Bool) -> some View {
+        if fromUser {
+            HStack(spacing: CommonConstants.verticalTextFieldPadding) {
+                Text(text)
+                    .font(Fonts.subText)
+                    .foregroundStyle(style == .filled ? Color.white : Color.blue)
+                    .multilineTextAlignment(.leading)
+                    .shapeStyled(with: style)
+                icon?
+                    .resizable()
+                    .frame(width: 26, height: 17)
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        } else {
+            HStack(spacing: CommonConstants.verticalTextFieldPadding) {
+                icon?
+                    .resizable()
+                    .frame(width: 28, height: 28)
+                Text(text)
+                    .font(Fonts.subText)
+                    .foregroundStyle(style == .filled ? Color.white : Color.blue)
+                    .multilineTextAlignment(.leading)
+                    .shapeStyled(with: style)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
     
-    private func title(material: Types.Material, onLikeClicked: @escaping () -> Void) -> some View {
+    private func title(material: Types.Material, onLikeClicked: (() -> Void)?) -> some View {
         HStack(alignment: .top) {
             HStack(alignment: .center) {
                 material.icon.image
@@ -68,7 +90,7 @@ public struct MessageBubble: View {
             }
             Spacer()
             Button {
-                onLikeClicked()
+                onLikeClicked?()
             } label: {
                 material.isLiked
                 ? Static.Symbols.heartFilled
@@ -96,8 +118,10 @@ public struct MessageBubble: View {
         }
     }
     
-    private let type: Model
-    
+    private let message: Types.Message
+    private let onLikeClicked: (() -> Void)?
+    private let onTap: (() -> Void)?
+
 }
 
 private enum Static {
@@ -150,6 +174,3 @@ extension View {
         modifier(ShapeStyle(style: style))
     }
 }
-
-
-

@@ -2,6 +2,7 @@ import SwiftUI
 import UIComponents
 import Providers
 import Materials
+import Types
 
 struct TrackDetailView<Model: TrackDetailViewModel>: View {
     var state: Bool = true
@@ -41,14 +42,15 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         
     }
-    
+
     private var card: some View {
-        MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
-            print("hello")
-        }, onTap: {
-            isPresented = true
-//            MaterialsProviderImpl().getMaterials()[0]
-        }))
+        MessageBubble(
+            message: Types.Message(type: .material(MaterialsProviderImpl().getMaterials()[0])),
+            onLikeClicked: {},
+            onTap: {
+                isPresented = true
+            }
+        )
     }
 
     @ObservedObject private var model: Model

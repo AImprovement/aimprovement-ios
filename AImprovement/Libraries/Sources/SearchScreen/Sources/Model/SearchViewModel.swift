@@ -1,7 +1,6 @@
 import SwiftUI
 import Types
 import Providers
-import Combine
 
 public enum SearchViewState {
     case initial
