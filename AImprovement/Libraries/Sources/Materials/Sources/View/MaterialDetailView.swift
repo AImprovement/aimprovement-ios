@@ -80,16 +80,25 @@ public struct MaterialDetailView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    public func getMeanReviews() -> CGFloat {
+        var sumArray: CGFloat = 0
+        material.reviews.forEach { review in
+            sumArray += CGFloat(review.stars)
+        }
+        let avgArrayValue = CGFloat(sumArray) / CGFloat(material.reviews.count)
+        return avgArrayValue
+    }
+    
     private var rating: some View {
         HStack {
             Static.Symbols.star
                 .renderingMode(.template)
                 .foregroundStyle(Static.Colors.accent)
                 .frame(width: 15, height: 15)
-            Text(material.rating.description)
+            Text(getMeanReviews().description)
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
-            Text(material.ratingCount.description)
+            Text("\(material.reviews.count.description) отзыва")
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
         }
@@ -116,52 +125,48 @@ public struct MaterialDetailView: View {
     }
     
     public var review: some View {
-        ZStack {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Image(.profile)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30)
-                        .symbolRenderingMode(.monochrome)
-                        .foregroundColor(.black)
-                    VStack(alignment: .leading) {
-                        Text("Алиса Вышегородцева")
-                            .font(Fonts.subText)
-                        Text("a.g.vyshegorodtseva@tinkoff.ru")
-                            .font(Fonts.subText)
-                            .accentColor(.gray)
+        VStack() {
+            ForEach(Array(material.reviews.enumerated()), id: \.1.id) { ind, review in
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Image(.profile)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30)
+                            .symbolRenderingMode(.monochrome)
+                            .foregroundColor(.black)
+                        VStack(alignment: .leading) {
+                            Text(review.author.nick)
+                                .font(Fonts.subText)
+                            Text(review.author.email)
+                                .font(Fonts.subText)
+                                .foregroundStyle(.gray)
+                        }
                     }
+                    stars(count: review.stars)
+                    Text(review.text)
+                        .font(Fonts.subText)
+                        .foregroundStyle(.black)
                 }
-                stars
-                rewText
-            }
-            .padding(10)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.black)
+                .padding(10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.black)
+                }
             }
         }
     }
     
-    public var stars: some View {
+    public func stars(count: Int) -> some View {
         HStack {
-            Static.Symbols.star
-            Static.Symbols.star
-            Static.Symbols.star
-            Static.Symbols.star
-            Static.Symbols.star
+            ForEach(0..<count) { i in
+                Static.Symbols.star
+            }
         }
         .foregroundStyle(Static.Colors.accent)
     }
     
-    public var rewText: some View {
-        Text("Мне понравились некоторые инсайты этой книги, извлекла для себя много полезного")
-            .font(Fonts.subText)
-            .foregroundStyle(.black)
-    }
-        
 }
 
 private enum Static {
