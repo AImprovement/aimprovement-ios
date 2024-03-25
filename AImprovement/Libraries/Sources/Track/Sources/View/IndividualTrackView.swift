@@ -62,6 +62,7 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
                 }
             }
         }
+        .scrollClipDisabled()
     }
     
     private var saved: some View {
