@@ -16,6 +16,9 @@ public struct SearchView<Model: SearchViewModel>: View {
                 materialsList(model.materials)
                 Spacer()
                 questionField
+                    .background {
+                        Color.white
+                    }
             }
         }
         .onAppear {
@@ -24,7 +27,6 @@ public struct SearchView<Model: SearchViewModel>: View {
     }
 
     @State private var inputState: TextFieldView.InputState = .idle
-//    @State private var materials: [Types.Material] = []
     @State private var searchText: String = ""
 
     var filteredItems: [Types.Material] {
