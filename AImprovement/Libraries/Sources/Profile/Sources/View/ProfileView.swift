@@ -57,7 +57,7 @@ public struct ProfileView<Model: ProfileViewModel>: View {
     
     private var nickMail: some View {
         VStack (alignment: .center, spacing: 5) {
-            Text(model.getProfile().nick)
+            Text(model.getProfile().nick.components(separatedBy: " ").joined(separator: "\n"))
                 .font(Fonts.mainText)
                 .multilineTextAlignment(.center)
             Text(model.getProfile().email)

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,7 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		174343F09E756588203C094B /* Localizable.xcstrings */ = {isa = PBXFileReference; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		174343F09E756588203C094B /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		214ABEB8F1C40C38DCD75A30 /* TuistAssets+AImprovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+AImprovement.swift"; sourceTree = "<group>"; };
 		34720F1204CC940F9B5C6B6A /* AImprovement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AImprovement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453946E5B9C0A9C468A6634B /* EntryPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointView.swift; sourceTree = "<group>"; };
@@ -223,8 +223,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = FCS;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 8DA82007B3159AA4FD26DB60 /* Build configuration list for PBXProject "AImprovement" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -397,6 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = LM3CWDSTFW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AImprovement/Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -422,6 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = LM3CWDSTFW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AImprovement/Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -435,10 +435,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
