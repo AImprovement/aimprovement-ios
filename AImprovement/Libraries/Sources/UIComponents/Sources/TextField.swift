@@ -16,15 +16,18 @@ public struct TextFieldView: View {
 
     @Binding var input: String
     @Binding var inputState: InputState
+    var isSendButtonAvailable: Bool
 
     public init(
         model: Model,
         input: Binding<String>,
-        inputState: Binding<InputState>
+        inputState: Binding<InputState>,
+        isSendButtonAvailable: Bool = true
     ) {
         self.model = model
         self._input = input
         self._inputState = inputState
+        self.isSendButtonAvailable = isSendButtonAvailable
     }
 
     public var body: some View {
@@ -78,7 +81,9 @@ public struct TextFieldView: View {
                         .frame(minHeight: 28)
                         .focused($isFocused)
                         .disableAutocorrection(true)
+                        .disabled(!isSendButtonAvailable)
                     Button {
+                        isFocused = false
                         onSubmit()
                     } label: {
                         Static.Symbols.send
@@ -86,6 +91,7 @@ public struct TextFieldView: View {
                             .frame(width: 22, height: 18)
                             .foregroundStyle(isFocused ? .black : .gray)
                     }
+                    .disabled(!isSendButtonAvailable)
                 }
                 .padding(15)
                 .overlay(
@@ -102,6 +108,7 @@ public struct TextFieldView: View {
                         .focused($isFocused)
                         .disableAutocorrection(true)
                     Button {
+                        isFocused = false
                         onSubmit()
                     } label: {
                         Static.Symbols.clear

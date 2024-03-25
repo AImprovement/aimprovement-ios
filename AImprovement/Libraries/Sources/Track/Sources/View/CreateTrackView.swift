@@ -2,6 +2,7 @@ import SwiftUI
 import UIComponents
 import Materials
 import Providers
+import Types
 
 public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     var state: Bool = true
@@ -23,19 +24,26 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
             questionField
             ScrollView {
                 if state {
-                    MessageBubble(type: .material(MaterialsProviderImpl().getMaterials()[0], .bordered, onLikeClicked: {
-                        print("hello")
-                    }, onTap: {
-                        isPresented = true
-                    }))
+                    MessageBubble(
+                        message: Types.Message(type: .material(MaterialsProviderImpl().getMaterials()[0])),
+                        onLikeClicked: {},
+                        onTap: {
+                            isPresented = true
+                        }
+                    )
                 }
             }
+            .scrollDismissesKeyboard(.immediately)
             Spacer()
             VStack {
                 saveButton
-                Text("Сбросить")
-                    .font(Fonts.subText)
-                    .foregroundStyle(.gray)
+                Button {
+                    hideKeyboard()
+                } label: {
+                    Text("Сбросить")
+                        .font(Fonts.subText)
+                        .foregroundStyle(.gray)
+                }
             }
         }
         .navigationBarBackButtonHidden()

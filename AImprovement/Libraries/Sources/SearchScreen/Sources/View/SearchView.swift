@@ -18,16 +18,13 @@ public struct SearchView<Model: SearchViewModel>: View {
                 questionField
             }
         }
-//        .onTapGesture {
-//            hideKeyboard()
-//        }
         .onAppear {
             model.getMaterials()
         }
     }
 
     @State private var inputState: TextFieldView.InputState = .idle
-    @State private var materials: [Types.Material] = []
+//    @State private var materials: [Types.Material] = []
     @State private var searchText: String = ""
 
     var filteredItems: [Types.Material] {
@@ -42,19 +39,19 @@ public struct SearchView<Model: SearchViewModel>: View {
             ForEach(Array(filteredItems.enumerated()), id: \.1.id) { ind, material in
                 NavigationLink(destination: MaterialDetailView(material: material)) {
                     MessageBubble(
-                        type: .material(
-                            material,
-                            .bordered,
-                            onLikeClicked: {
-                                model.onLikedMaterial(ind: ind)
-                            }, onTap: {}
-                        )
+                        message: Types.Message(type: .material(material)),
+                        onLikeClicked: {
+                            model.onLikedMaterial(ind: ind)
+                        },
+                        onTap: {}
                     )
                     .padding(.horizontal, CommonConstants.horizontalPadding)
                     .padding(.bottom, 19)
                 }
             }
         }
+        .scrollClipDisabled()
+        .scrollDismissesKeyboard(.immediately)
         .scrollIndicators(.hidden)
     }
 

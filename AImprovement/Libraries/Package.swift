@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Libraries",
     defaultLocalization: "ru",
-    platforms: [.iOS(.v16)],
+    platforms: [.iOS(.v17)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -20,7 +20,8 @@ let package = Package(
                 "Providers",
                 "Track",
                 "Materials",
-				"SearchScreen"
+				"SearchScreen",
+                "Chat"
             ]
         ),
     ],
@@ -46,7 +47,8 @@ let package = Package(
             dependencies: [
                 "UIComponents",
                 "Providers",
-                "Types"
+                "Types",
+                "Chat"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
@@ -74,7 +76,8 @@ let package = Package(
             dependencies: [
                 "UIComponents",
                 "Providers",
-                "Materials"
+                "Materials",
+                "Types"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
@@ -94,11 +97,18 @@ let package = Package(
                 "UIComponents",
                 "Providers",
                 "Types",
-                "Materials",
-                "Authorization"
+                "Materials"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
+        ),
+        .target(
+            name: "Chat",
+            dependencies: [
+                "UIComponents",
+                "Types"
+            ],
+            sources: ["Sources"]
         ),
     ]
 )

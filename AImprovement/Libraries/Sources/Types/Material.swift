@@ -38,8 +38,8 @@ public struct Material: Identifiable, Hashable {
         getMeanReviews()
     }
 
-    public var id: Int
-    public var author: String
+    public let id: Int
+    public let author: String
     public let title: String
     public let description: String
     public let icon: Material.Icon

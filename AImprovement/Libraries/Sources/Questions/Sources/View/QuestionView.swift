@@ -1,20 +1,20 @@
 import SwiftUI
+import Chat
+import Types
 import UIComponents
 
 public struct QuestionView<Model: QuestionViewModel>: View {
 
     public init(model: Model) {
-        self._model = ObservedObject(wrappedValue: model)
+        self._model = StateObject(wrappedValue: model)
     }
 
     public var body: some View {
         VStack {
             headline
+            Chat.ChatView(messages: model.messages)
             Spacer()
             questionField
-        }
-        .onTapGesture {
-            hideKeyboard()
         }
         .padding(.horizontal, 35)
         .padding(.bottom, 22)
@@ -23,7 +23,7 @@ public struct QuestionView<Model: QuestionViewModel>: View {
     @State private var input: String = ""
     @State private var inputState: TextFieldView.InputState = .idle
 
-    @ObservedObject private var model: Model
+    @StateObject private var model: Model
 
     private var headline: some View {
         Text("Какой у вас вопрос?", bundle: .module)
@@ -34,23 +34,17 @@ public struct QuestionView<Model: QuestionViewModel>: View {
     private var questionField: some View {
         TextFieldView(
             model: .question(
-                placeholder: "задайте вопрос...",
+                placeholder: model.isSendingAvailable ? "задайте вопрос..." : "ожидайте ответа",
                 onSubmit: {
-                    hideKeyboard()
-                    model.getMaterials(for: input)
+                    guard !input.isEmpty else { return }
+                    model.onSubmitTap(question: input)
+                    input = ""
                 }
             ),
             input: $input,
-            inputState: $inputState
+            inputState: $inputState,
+            isSendButtonAvailable: model.isSendingAvailable
         )
     }
 
 }
-
-#if canImport(UIKit)
-extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-#endif
