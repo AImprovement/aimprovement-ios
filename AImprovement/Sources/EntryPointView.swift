@@ -4,9 +4,9 @@ import Authorization
 
 @MainActor
 struct EntryPointView: View {
-
+    
     @Binding var isAuthorized: Bool
-
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: CommonConstants.stackSpacing) {
@@ -21,14 +21,17 @@ struct EntryPointView: View {
             }
             .padding(.bottom, 58)
             .background {
-                Image(.brandBackground)
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
+                GeometryReader { geo in
+                    Image(.brandBackground)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geo.size.width)
+                        .ignoresSafeArea()
+                }
             }
         }
     }
-
+    
     private var loginView: some View {
         NavigationLink(
             destination: LoginView(
@@ -52,7 +55,7 @@ struct EntryPointView: View {
                 }
         }
     }
-
+    
     private var registrationView: some View {
         NavigationLink(
             destination: RegistrationView(
@@ -82,7 +85,7 @@ private enum Static {
         static let logo: Font = Font.custom("CoFoSans-Bold", size: 40)
         static let main: Font = Font.custom("CoFoSans-Bold", size: 20)
     }
-
+    
     enum Colors {
         static let accent: Color = Color("AccentColor", bundle: .main)
     }

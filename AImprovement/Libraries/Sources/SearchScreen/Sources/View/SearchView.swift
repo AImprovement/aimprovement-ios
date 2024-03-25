@@ -69,6 +69,7 @@ public struct SearchView<Model: SearchViewModel>: View {
             input: $searchText,
             inputState: $inputState
         )
+        .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
     }
 

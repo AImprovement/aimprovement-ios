@@ -2,13 +2,13 @@ import SwiftUI
 import UIComponents
 
 public struct LoginView<Model: LoginViewModel>: View {
-
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
     }
-
+    
     public var body: some View {
         VStack(spacing: CommonConstants.stackSpacing) {
             CustomNavBar(onBack: {
@@ -16,6 +16,7 @@ public struct LoginView<Model: LoginViewModel>: View {
             })
             headline
             textFields
+            restorePasswordButton
             Spacer()
             loginButton
         }
@@ -24,20 +25,21 @@ public struct LoginView<Model: LoginViewModel>: View {
         .background(.white)
         .navigationBarBackButtonHidden()
     }
-
+    
     private var headline: some View {
         Text("Вход")
             .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
-
+    
     private var textFields: some View {
         VStack {
             emailTextField
             passwordTextField
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
-
+    
     private var emailTextField: some View {
         TextFieldView(
             model: .default(headline: "email", placeholder: "timcook@apple.com"),
@@ -50,23 +52,20 @@ public struct LoginView<Model: LoginViewModel>: View {
             }
         }
     }
-
+    
     private var passwordTextField: some View {
-        VStack {
-            TextFieldView(
-                model: .password(headline: "Пароль", placeholder: "your password here"),
-                input: $passwordInput,
-                inputState: $passwordInputState
-            )
-            .onSubmit {
-                if !model.isValid(.password(passwordInput)) {
-                    passwordInputState = .incorrect
-                }
+        TextFieldView(
+            model: .password(headline: "Пароль", placeholder: "your password here"),
+            input: $passwordInput,
+            inputState: $passwordInputState
+        )
+        .onSubmit {
+            if !model.isValid(.password(passwordInput)) {
+                passwordInputState = .incorrect
             }
-            restorePasswordButton
         }
     }
-
+    
     private var restorePasswordButton: some View {
         NavigationLink(destination: RestorePasswordView(model: model)) {
             Text("не помню пароль")
@@ -75,7 +74,7 @@ public struct LoginView<Model: LoginViewModel>: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
-
+    
     private var loginButton: some View {
         MainButton(
             model: .text("Войти"),
@@ -85,7 +84,7 @@ public struct LoginView<Model: LoginViewModel>: View {
             }
         )
     }
-
+    
     @ObservedObject private var model: Model
     @State private var usernameOrEmailInput: String = ""
     @State private var passwordInput: String = ""
