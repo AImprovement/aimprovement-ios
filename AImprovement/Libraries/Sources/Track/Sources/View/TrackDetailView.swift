@@ -5,7 +5,7 @@ import Materials
 import Types
 
 
-struct TrackDetailView<Model: TrackViewModel>: View {
+struct TrackDetailView: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
     @State private var loading: Bool = true
@@ -43,7 +43,6 @@ struct TrackDetailView<Model: TrackViewModel>: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.loading.toggle()
             }
-            model.fetchMaterialsForTrack()
         }
     }
 
