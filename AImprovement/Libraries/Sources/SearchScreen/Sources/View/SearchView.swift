@@ -41,7 +41,7 @@ public struct SearchView<Model: SearchViewModel>: View {
             ForEach(Array(filteredItems.enumerated()), id: \.1.id) { ind, material in
                 NavigationLink(destination: MaterialDetailView(material: material)) {
                     MessageBubble(
-                        message: Types.Message(type: .material(material)),
+                        message: Types.Message(id: ind, type: .material(material)),
                         onLikeClicked: {
                             model.onLikedMaterial(ind: ind)
                         },

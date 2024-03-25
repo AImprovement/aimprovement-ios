@@ -41,9 +41,35 @@ public final class QuestionViewModelImpl: QuestionViewModel {
     }
 
     private func getAnswer(for question: String) {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            messages.append(<#T##newElement: Message##Message#>)
-//        }
+        currId += 1
+        messages.append(Types.Message(id: currId, type: .loading))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            guard let self else { return }
+            messages.removeLast()
+            currId += 1
+            messages.append(
+                Types.Message(
+                    id: currId,
+                    type: .text("Подобрал вам кое-что интересное"),
+                    fromUser: false,
+                    shouldShowIcon: true
+                )
+            )
+
+            currId += 1
+            messages.append(
+                Types.Message(
+                    id: currId,
+                    type: .material(getMaterial()),
+                    fromUser: false,
+                    shouldShowIcon: false
+                )
+            )
+        }
+    }
+
+    private func getMaterial() -> Types.Material {
+        return materialsProvider.getMaterials()[0]
     }
 
     private let materialsProvider: MaterialsProvider

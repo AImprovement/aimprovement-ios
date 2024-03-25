@@ -5,6 +5,7 @@ public struct Message: Identifiable, Hashable {
     public enum MessageType: Hashable {
         case text(String)
         case material(Types.Material)
+        case loading
     }
 
     public enum Icon: String {
@@ -16,16 +17,16 @@ public struct Message: Identifiable, Hashable {
             case .user:
                 return Image(systemName: rawValue)
             case .app:
-                return Image("Profile", bundle: .module)
+                return Image("profile", bundle: .module)
             }
         }
     }
 
-    public init(type: Message.MessageType) {
-        self.id = .random(in: 0...1000)
+    public init(id: Int, type: Message.MessageType) {
+        self.id = id
         self.type = type
         self.fromUser = false
-        self.icon = nil
+        self.icon = type == .loading ? .app : nil
     }
 
     public init(id: Int, type: Message.MessageType, fromUser: Bool, shouldShowIcon: Bool) {

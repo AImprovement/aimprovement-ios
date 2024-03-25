@@ -4,12 +4,10 @@ import Materials
 import Providers
 import Types
 
-public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
+public struct CreateTrackFirstView<Model: TrackViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Environment(\.presentationMode) var presentationModeF: Binding<PresentationMode>
-
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -18,32 +16,13 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     public var body: some View {
         VStack(spacing: CommonConstants.stackSpacing) {
             CustomNavBar(onBack: {
-                presentationModeF.wrappedValue.dismiss()
+                presentationMode.wrappedValue.dismiss()
             })
             headline
             questionField
-            ScrollView {
-                if state {
-                    MessageBubble(
-                        message: Types.Message(type: .material(MaterialsProviderImpl().getMaterials()[0])),
-                        onLikeClicked: {},
-                        onTap: {
-                            isPresented = true
-                        }
-                    )
-                }
-            }
-            .scrollDismissesKeyboard(.immediately)
-            Spacer()
-            VStack {
-                saveButton
-                Button {
-                    hideKeyboard()
-                } label: {
-                    Text("Сбросить")
-                        .font(Fonts.subText)
-                        .foregroundStyle(.gray)
-                }
+            VStack(spacing: 10) {
+                materials
+                bottomButtons
             }
         }
         .navigationBarBackButtonHidden()
@@ -53,14 +32,57 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
+        .onAppear {
+            model.onViewAppear()
+        }
     }
-    
+
+    private var materials: some View {
+        ScrollView {
+            if state {
+                ForEach(Array(model.materials.enumerated()), id: \.1.id) { ind, material in
+                    NavigationLink(destination: MaterialDetailView(material: material)) {
+                        MessageBubble(
+                            message: Types.Message(id: ind, type: .material(material)),
+                            onLikeClicked: {
+                                model.onLikedMaterial(ind: ind)
+                            },
+                            onTap: {
+                                isPresented = true
+                            }
+                        )
+                        .padding(.bottom, 19)
+                    }
+                }
+            }
+        }
+        .scrollIndicators(.hidden)
+        .scrollDismissesKeyboard(.immediately)
+    }
+
+    private var bottomButtons: some View {
+        VStack {
+            saveButton
+            hideButton
+        }
+    }
+
     private var saveButton: some View {
         MainButton(model: .text("Сохранить"), style: .accentFilled, action: {
             self.presentationMode.wrappedValue.dismiss()
         })
     }
-    
+
+    private var hideButton: some View {
+        Button {
+            hideKeyboard()
+        } label: {
+            Text("Сбросить")
+                .font(Fonts.subText)
+                .foregroundStyle(.gray)
+        }
+    }
+
     private var headline: some View {
         Text("Что хотите развивать?")
             .font(Fonts.heading)
@@ -70,10 +92,8 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     private var questionField: some View {
         TextFieldView(
             model: .question(
-                placeholder: "задайте вопрос...",
-                onSubmit: {
-                    hideKeyboard()
-                }
+                placeholder: "",
+                onSubmit: { }
             ),
             input: $input,
             inputState: $inputState
@@ -98,8 +118,3 @@ extension View {
     }
 }
 #endif
-
-
-#Preview {
-    CreateTrackFirstView(model: CreateTrackViewModelImpl())
-}
