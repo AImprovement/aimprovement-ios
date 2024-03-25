@@ -4,11 +4,10 @@ import Providers
 import Materials
 import Types
 
-struct TrackDetailView<Model: TrackDetailViewModel>: View {
+struct TrackDetailView<Model: TrackViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -20,11 +19,7 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
                 presentationMode.wrappedValue.dismiss()
             })
             headline
-            ScrollView {
-                if state {
-                    card
-                }
-            }
+            track
             Spacer()
         }
         .navigationBarBackButtonHidden()
@@ -34,8 +29,32 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
+        .onAppear {
+            model.fetchMaterialsForTrack()
+        }
     }
-    
+
+    private var track: some View {
+        ScrollView {
+            ForEach(Array(model.materials.enumerated()), id: \.1.id) { ind, material in
+                NavigationLink(destination: MaterialDetailView(material: material)) {
+                    MessageBubble(
+                        message: Types.Message(id: ind, type: .material(material)),
+                        onLikeClicked: {
+                            model.onLikedMaterial(ind: ind)
+                        },
+                        onTap: {
+                            isPresented = true
+                        }
+                    )
+                    .padding(.bottom, 19)
+                }
+            }
+        }
+        .scrollClipDisabled()
+        .scrollIndicators(.hidden)
+    }
+
     private var headline: some View {
         Text("Решения")
             .font(Fonts.heading)
@@ -45,7 +64,7 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
 
     private var card: some View {
         MessageBubble(
-            message: Types.Message(type: .material(MaterialsProviderImpl().getMaterials()[0])),
+            message: Types.Message(id: 0, type: .material(MaterialsProviderImpl().getMaterials()[0])),
             onLikeClicked: {},
             onTap: {
                 isPresented = true
@@ -54,8 +73,4 @@ struct TrackDetailView<Model: TrackDetailViewModel>: View {
     }
 
     @ObservedObject private var model: Model
-}
-
-#Preview {
-    TrackDetailView(model: TrackDetailViewModelImpl())
 }

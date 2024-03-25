@@ -47,7 +47,8 @@ public final class SearchViewModelImpl: SearchViewModel {
     }
 
     public func onLikedMaterial(ind: Int) {
-        materials[ind].updateLike()
+        materialsProvider.updateMaterial(id: ind)
+        materials = materialsProvider.getMaterials()
     }
 
     private let materialsProvider: MaterialsProvider

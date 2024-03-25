@@ -3,6 +3,7 @@ import Types
 
 public protocol MaterialsProvider {
     func getMaterials() -> [Types.Material]
+    func updateMaterial(id: Int)
 }
 
 public final class MaterialsProviderImpl: MaterialsProvider {
@@ -11,7 +12,7 @@ public final class MaterialsProviderImpl: MaterialsProvider {
         return materials
     }
 
-    public func updateMaterial(id: Types.Material.ID) {
+    public func updateMaterial(id: Int) {
         materials[id].isLiked.toggle()
     }
 

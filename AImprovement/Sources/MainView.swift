@@ -12,7 +12,6 @@ struct MainView: View {
     @State var selectedTab: TabItem = .chat
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
     @Binding var isAuthorized: Bool
-    let profileProvider: ProfileProvider = ProfileProviderImpl()
 
     var body: some View {
         VStack {
@@ -22,7 +21,7 @@ struct MainView: View {
             case .search:
                 SearchView(model: SearchViewModelImpl(materialsProvider: materialsProvider))
             case .favourite:
-                IndividualTrackView(model: IndividualTrackViewModelImpl())
+                IndividualTrackView(model: TrackViewModelImpl(materialsProvider: materialsProvider))
             case .profile:
                 ProfileView(model: ProfileViewModelImpl(onLogoutAction: {
                     isAuthorized = false
@@ -37,5 +36,6 @@ struct MainView: View {
     }
 
     private let materialsProvider: MaterialsProvider = MaterialsProviderImpl()
+    private let profileProvider: ProfileProvider = ProfileProviderImpl()
 
 }

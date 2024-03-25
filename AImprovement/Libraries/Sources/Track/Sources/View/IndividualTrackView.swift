@@ -1,37 +1,24 @@
 import SwiftUI
 import UIComponents
 
-public struct IndividualTrackView<Model: IndividualTrackViewModel>: View {
+public struct IndividualTrackView<Model: TrackViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
     @State private var isPresentedDetail: Bool = false
     
     public init(model: Model) {
-        self._model = ObservedObject(wrappedValue: model)
+        self._model = StateObject(wrappedValue: model)
     }
     
     public var body: some View {
         NavigationStack {
             VStack(spacing: CommonConstants.stackSpacing) {
                 headline
-                ScrollView{
-                    if state {
-                        card
-                            .navigationDestination(isPresented: $isPresentedDetail) {
-                                TrackDetailView(model: TrackDetailViewModelImpl())
-                            }
-                            .padding(.bottom, 19)
-                    }
-                }
-                .scrollClipDisabled()
-                .refreshable {
-                    
-                }
-                
+                tracks
                 Spacer()
                 createButton
                     .navigationDestination(isPresented: $isPresented) {
-                        CreateTrackFirstView(model: CreateTrackViewModelImpl())
+                        CreateTrackFirstView(model: model)
                     }
             }
             .padding(.bottom, CommonConstants.bottomPadding)
@@ -39,7 +26,23 @@ public struct IndividualTrackView<Model: IndividualTrackViewModel>: View {
             .background(.white)
         }
     }
-    
+
+    private var tracks: some View {
+        ScrollView{
+            if state {
+                card
+                    .navigationDestination(isPresented: $isPresentedDetail) {
+                        TrackDetailView(model: model)
+                    }
+                card
+                card
+            }
+        }
+        .scrollClipDisabled()
+        .scrollIndicators(.hidden)
+        .refreshable { }
+    }
+
     private var headline: some View {
         Text("Индивидуальное обучение")
             .font(Fonts.heading)
@@ -81,7 +84,7 @@ public struct IndividualTrackView<Model: IndividualTrackViewModel>: View {
         })
     }
     
-    @ObservedObject private var model: Model
+    @StateObject private var model: Model
     @State private var showingSheet = false
 }
 
@@ -89,8 +92,4 @@ private enum Static {
     enum Colors {
         static let accent: Color = Color("AccentColor", bundle: .main)
     }
-}
-
-#Preview {
-    IndividualTrackView(model: IndividualTrackViewModelImpl())
 }
