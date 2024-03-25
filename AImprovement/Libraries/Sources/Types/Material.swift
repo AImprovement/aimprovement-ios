@@ -19,11 +19,10 @@ public struct Material: Identifiable, Hashable {
         description: String,
         icon: Material.Icon,
         isLiked: Bool,
-        rating: Double,
-        ratingCount: String,
         link: URL,
         price: String,
-        site: String
+        site: String,
+        reviews: [Types.Review]
     ) {
         self.id = id
         self.author = author
@@ -31,11 +30,12 @@ public struct Material: Identifiable, Hashable {
         self.description = description
         self.icon = icon
         self.isLiked = isLiked
-        self.rating = rating
-        self.ratingCount = ratingCount
         self.link = link
         self.price = price
         self.site = site
+        self.reviews = reviews
+        self.ratingCount = reviews.count
+        getMeanReviews()
     }
 
     public let id: Int
@@ -44,14 +44,24 @@ public struct Material: Identifiable, Hashable {
     public let description: String
     public let icon: Material.Icon
     public var isLiked: Bool
-    public let rating: Double
-    public let ratingCount: String
+    public var rating: Double?
+    public let ratingCount: Int
     public let link: URL
     public let price: String
     public let site: String
+    public let reviews: [Types.Review]
 
     public mutating func updateLike() {
         isLiked.toggle()
+    }
+    
+    public mutating func getMeanReviews() {
+        var sumArray: Double = 0
+        reviews.forEach { review in
+            sumArray += Double(review.stars)
+        }
+        let avgArrayValue = Double(sumArray) / Double(reviews.count)
+        self.rating = avgArrayValue
     }
 
 }

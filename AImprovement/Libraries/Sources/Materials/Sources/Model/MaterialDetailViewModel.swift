@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Types
+import SwiftUI
 
 public struct MaterialDetailViewState {
     static var initial = MaterialDetailViewState()
@@ -14,7 +16,6 @@ public struct MaterialDetailViewState {
 @MainActor
 public protocol MaterialDetailViewModel: ObservableObject {
     func onViewAppear()
-    func onLoginTap()
     func onViewDisappear()
 }
 
@@ -26,11 +27,9 @@ public final class MaterialDetailViewModelImpl: MaterialDetailViewModel {
     public init() {
         self.viewState = MaterialDetailViewState()
     }
+    
 
     public func onViewAppear() {
-    }
-
-    public func onLoginTap() {
     }
 
     public func onViewDisappear() {

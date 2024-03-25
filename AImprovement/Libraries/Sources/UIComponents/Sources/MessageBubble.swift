@@ -109,10 +109,10 @@ public struct MessageBubble: View {
                 .renderingMode(.template)
                 .foregroundStyle(Static.Colors.accent)
                 .frame(width: 15, height: 15)
-            Text(material.rating.description)
+            Text(material.rating?.description ?? "0")
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
-            Text(material.ratingCount.description)
+            Text("\(material.ratingCount.description) отзыва")
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
         }

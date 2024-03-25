@@ -38,7 +38,6 @@ public struct TextFieldView: View {
                     .font(Fonts.mainText)
                 TextField(placeholder, text: $input)
                     .frame(
-                        width: Static.Layout.width,
                         height: Static.Layout.height
                     )
                     .padding(.horizontal, CommonConstants.cornerRadius)
@@ -60,7 +59,6 @@ public struct TextFieldView: View {
                     .font(Fonts.mainText)
                 SecureField(placeholder, text: $input)
                     .frame(
-                        width: Static.Layout.width,
                         height: Static.Layout.height
                     )
                     .padding(.horizontal, CommonConstants.cornerRadius)

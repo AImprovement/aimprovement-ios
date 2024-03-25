@@ -13,7 +13,6 @@ public struct Review: Identifiable, Hashable {
         self.author = author
         self.text = text
         self.stars = stars
-
     }
 
     public var id: Int
