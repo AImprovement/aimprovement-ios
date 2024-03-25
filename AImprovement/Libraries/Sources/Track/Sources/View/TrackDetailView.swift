@@ -4,12 +4,9 @@ import Providers
 import Materials
 import Types
 
-
 struct TrackDetailView: View {
-    var state: Bool = true
-    @State private var isPresented: Bool = false
-    @State private var loading: Bool = true
 
+    @State private var loading: Bool = true
     var track: Types.Track
     var onLikeClicked: (Int) -> Void
 
