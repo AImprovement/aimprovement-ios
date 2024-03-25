@@ -20,7 +20,7 @@ extension View {
 
 public struct ProfileView<Model: ProfileViewModel>: View {
     public init(model: Model) {
-        self._model = ObservedObject(wrappedValue: model)
+        self._model = StateObject(wrappedValue: model)
     }
     
     public var body: some View {
@@ -37,6 +37,7 @@ public struct ProfileView<Model: ProfileViewModel>: View {
         }
         .onTapGesture {
             self.hideKeyboard()
+            model.updateDescription()
         }
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
@@ -76,8 +77,8 @@ public struct ProfileView<Model: ProfileViewModel>: View {
                 Spacer()
             }
             TextField(
-                model.getProfile().description,
-                text: $desc,
+                "расскажите о себе",
+                text: $model.description,
                 axis: .vertical
             )
             .focused($isFocused)
@@ -95,7 +96,7 @@ public struct ProfileView<Model: ProfileViewModel>: View {
         }
     }
     
-    @ObservedObject private var model: Model
+    @StateObject private var model: Model
     @FocusState private var isFocused: Bool
     @State private var desc: String = ""
     
