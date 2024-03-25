@@ -36,7 +36,10 @@ public struct CreateTrackFirstView<Model: TrackViewModel>: View {
     private var materials: some View {
         ScrollView {
             ForEach(model.filteredMaterials) { material in
-                NavigationLink(destination: MaterialDetailView(material: material)) {
+                NavigationLink(destination: MaterialDetailView(material: material, onReviewAdded: { review, rating in
+                    model.addReview(materialId: material.id, text: review, rating: rating)
+                    model.getMaterialsForGoal(input)
+                })) {
                     MessageBubble(
                         message: Types.Message(id: material.id, type: .material(material)),
                         onLikeClicked: {

@@ -1,26 +1,20 @@
-//
-//  SwiftUIView.swift
-//
-//
-//  Created by Алиса Вышегородцева on 24.03.2024.
-//
-
 import SwiftUI
 import UIComponents
 import Providers
 import Types
 
-
 public struct MaterialDetailView: View {
     private let material: Types.Material
+    private let onReviewAdded: (_ review: String, _ rating: Int) -> Void
     @State private var isPresented: Bool = false
     @State private var showingSheet: Bool = false
     @State private var loading: Bool = true
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    public init(material: Types.Material) {
+    public init(material: Types.Material, onReviewAdded: @escaping (_ review: String, _ rating: Int) -> Void) {
         self.material = material
+        self.onReviewAdded = onReviewAdded
     }
     
     public var body: some View {
@@ -70,8 +64,10 @@ public struct MaterialDetailView: View {
         MainButton(model: .text("Написать отзыв"), style: .accentFilled, action: {
             showingSheet.toggle()
         })
-        .sheet(isPresented: $showingSheet){
-            CreateReviewView(model: CreateReviewViewModelImpl())
+        .sheet(isPresented: $showingSheet) {
+            CreateReviewView(onSaveButtonClick: { review, rating in
+                onReviewAdded(review, rating)
+            })
         }
     }
     
@@ -112,13 +108,18 @@ public struct MaterialDetailView: View {
             Text(getMeanReviews().description)
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
-            Text("\(material.reviews.count.description) отзыва")
+            Text("\(material.ratingCount) \(number(material.ratingCount, ["отзыв", "отзыва", "отзывов"]))")
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
         }
     }
-    
-    public var link: some View {
+
+    private func number(_ n: Int, _ titles: [String]) -> String {
+        let cases = [2, 0, 1, 1, 1, 2]
+        return titles[(n % 100 > 4 && n % 100 < 20) ? 2 : cases[min(n % 10, 5)]]
+    }
+
+    private var link: some View {
         Link(destination: material.link) {
             ZStack {
                 HStack(spacing:3) {
@@ -140,7 +141,7 @@ public struct MaterialDetailView: View {
     
     public var review: some View {
         VStack(spacing: 19) {
-            ForEach(Array(material.reviews.enumerated()), id: \.1.id) { ind, review in
+            ForEach(material.reviews) { review in
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
                         Image(.profile)
@@ -197,7 +198,3 @@ private enum Static {
     }
     
 }
-
-//#Preview {
-//    MaterialDetailView(material: MaterialDetailViewModelImpl())
-//}

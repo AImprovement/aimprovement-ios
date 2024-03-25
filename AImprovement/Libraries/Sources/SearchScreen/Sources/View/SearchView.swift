@@ -48,12 +48,14 @@ public struct SearchView<Model: SearchViewModel>: View {
     @ViewBuilder
     private func materialsList(_ materials: [Types.Material]) -> some View {
         ScrollView {
-            ForEach(Array(filteredItems.enumerated()), id: \.1.id) { ind, material in
-                NavigationLink(destination: MaterialDetailView(material: material)) {
+            ForEach(filteredItems) { material in
+                NavigationLink(destination: MaterialDetailView(material: material, onReviewAdded: { review, rating in
+                    model.addReview(materialId: material.id, text: review, rating: rating)
+                })) {
                     MessageBubble(
-                        message: Types.Message(id: ind, type: .material(material)),
+                        message: Types.Message(id: material.id, type: .material(material)),
                         onLikeClicked: {
-                            model.onLikedMaterial(ind: ind)
+                            model.onLikedMaterial(ind: material.id)
                         },
                         onTap: {}
                     )

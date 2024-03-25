@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//
-//
-//  Created by Алиса Вышегородцева on 24.03.2024.
-//
-
 import SwiftUI
 import UIComponents
 import Providers
@@ -18,15 +11,12 @@ extension View {
 #endif
 
 public struct ReviewView: View {
+
     @Binding var rating: Int
-
     var label = ""
-
     var maximumRating = 5
-
     var offImage = Image(systemName: "star")
     var onImage = Image(systemName: "star.fill")
-
     var offColor = Color.gray
     var onColor = Color.yellow
     
@@ -68,13 +58,15 @@ public struct ReviewView: View {
 }
 
 
-public struct CreateReviewView<Model: CreateReviewViewModel>: View {
+public struct CreateReviewView: View {
     @Environment(\.dismiss) var dismiss
     @State private var rating = 3
-    
-    public init(model: Model) {
-        self._model = ObservedObject(wrappedValue: model)
-    }
+
+    public var onSaveButtonClick: (_ review: String, _ rating: Int) -> Void
+
+//    public init(model: Model) {
+//        self._model = ObservedObject(wrappedValue: model)
+//    }
     
     public var body: some View {
         VStack  {
@@ -97,7 +89,6 @@ public struct CreateReviewView<Model: CreateReviewViewModel>: View {
         .padding(.top, 20)
         .background(.white)
     }
-    
     
     private var reviewText: some View {
         VStack (alignment: .center, spacing: 5) {
@@ -123,11 +114,12 @@ public struct CreateReviewView<Model: CreateReviewViewModel>: View {
     
     private var createButton: some View {
         MainButton(model: .text("Сохранить"), style: .accentFilled, action: {
+            onSaveButtonClick(desc, rating)
             dismiss()
         })
     }
     
-    @ObservedObject private var model: Model
+//    @ObservedObject private var model: Model
     @State private var desc: String = ""
     @FocusState private var isFocused: Bool
     
@@ -147,8 +139,4 @@ private enum Static {
         static let heartFilled: Image = Image(systemName: "heart.fill")
     }
     
-}
-
-#Preview {
-    CreateReviewView(model: CreateReviewViewModelImpl())
 }

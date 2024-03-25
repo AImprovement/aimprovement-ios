@@ -44,24 +44,24 @@ public struct Material: Identifiable, Hashable {
     public let description: String
     public let icon: Material.Icon
     public var isLiked: Bool
-    public var rating: Double?
-    public let ratingCount: Int
+    public var rating: Int?
+    public var ratingCount: Int
     public let link: URL
     public let price: String
     public let site: String
-    public let reviews: [Types.Review]
+    public var reviews: [Types.Review]
 
-    public mutating func updateLike() {
-        isLiked.toggle()
-    }
-    
     public mutating func getMeanReviews() {
+        guard !reviews.isEmpty else {
+            self.rating = 0
+            return
+        }
         var sumArray: Double = 0
         reviews.forEach { review in
             sumArray += Double(review.stars)
         }
         let avgArrayValue = Double(sumArray) / Double(reviews.count)
-        self.rating = avgArrayValue
+        self.rating = Int(avgArrayValue)
     }
 
 }
