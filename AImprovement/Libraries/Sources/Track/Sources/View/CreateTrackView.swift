@@ -3,11 +3,9 @@ import UIComponents
 import Materials
 import Providers
 import Types
-import Lottie
 
 public struct CreateTrackFirstView<Model: TrackViewModel>: View {
-    var state: Bool = true
-    @State private var isPresented: Bool = false
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     public init(model: Model) {
@@ -27,33 +25,27 @@ public struct CreateTrackFirstView<Model: TrackViewModel>: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .navigationDestination(isPresented: $isPresented) {
-            MaterialDetailView(material: MaterialsProviderImpl().getMaterials()[0])
-        }
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
         .onAppear {
-            model.onViewAppear()
+            model.resetFilteredMaterials()
         }
     }
 
     private var materials: some View {
         ScrollView {
-            if state {
-                ForEach(Array(model.materials.enumerated()), id: \.1.id) { ind, material in
-                    NavigationLink(destination: MaterialDetailView(material: material)) {
-                        MessageBubble(
-                            message: Types.Message(id: ind, type: .material(material)),
-                            onLikeClicked: {
-                                model.onLikedMaterial(ind: ind)
-                            },
-                            onTap: {
-                                isPresented = true
-                            }
-                        )
-                        .padding(.bottom, 19)
-                    }
+            ForEach(model.filteredMaterials) { material in
+                NavigationLink(destination: MaterialDetailView(material: material)) {
+                    MessageBubble(
+                        message: Types.Message(id: material.id, type: .material(material)),
+                        onLikeClicked: {
+                            model.onLikedMaterial(ind: material.id)
+                            model.getMaterialsForGoal(input)
+                        },
+                        onTap: { }
+                    )
+                    .padding(.bottom, 19)
                 }
             }
         }
@@ -70,12 +62,17 @@ public struct CreateTrackFirstView<Model: TrackViewModel>: View {
 
     private var saveButton: some View {
         MainButton(model: .text("Сохранить"), style: .accentFilled, action: {
+            if !input.isEmpty {
+                model.createNewTrack(name: input)
+            }
             self.presentationMode.wrappedValue.dismiss()
         })
     }
 
     private var hideButton: some View {
         Button {
+            input = ""
+            model.resetFilteredMaterials()
             hideKeyboard()
         } label: {
             Text("Сбросить")
@@ -88,15 +85,15 @@ public struct CreateTrackFirstView<Model: TrackViewModel>: View {
         Text("Что хотите развивать?")
             .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
-        //        LottieView(animation: .named("question.json"))
-        //            .playbackMode(.playing(.toProgress(1, loopMode: .loop)))
     }
     
     private var questionField: some View {
         TextFieldView(
             model: .question(
                 placeholder: "",
-                onSubmit: { }
+                onSubmit: { 
+                    model.getMaterialsForGoal(input)
+                }
             ),
             input: $input,
             inputState: $inputState
@@ -106,12 +103,6 @@ public struct CreateTrackFirstView<Model: TrackViewModel>: View {
     @ObservedObject private var model: Model
     @State private var input: String = ""
     @State private var inputState: TextFieldView.InputState = .idle
-}
-
-private enum Static {
-    enum Colors {
-        static let accent: Color = Color("AccentColor", bundle: .main)
-    }
 }
 
 #if canImport(UIKit)
