@@ -1,6 +1,6 @@
 import SwiftUI
 import Materials
-import MaterialsProvider
+import Providers
 import UIComponents
 import Types
 

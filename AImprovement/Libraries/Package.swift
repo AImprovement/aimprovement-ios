@@ -17,7 +17,7 @@ let package = Package(
                 "Profile",
                 "Questions",
                 "Types",
-                "MaterialsProvider",
+                "Providers",
                 "Track",
                 "Materials",
 				"SearchScreen"
@@ -45,7 +45,7 @@ let package = Package(
             name: "Questions",
             dependencies: [
                 "UIComponents",
-                "MaterialsProvider",
+                "Providers",
                 "Types"
             ],
             sources: ["Sources"],
@@ -55,7 +55,7 @@ let package = Package(
             name: "Types"
         ),
         .target(
-            name: "MaterialsProvider",
+            name: "Providers",
             dependencies: [
                 "Types",
             ]
@@ -63,7 +63,8 @@ let package = Package(
         .target(
             name: "Profile",
             dependencies: [
-                "UIComponents"
+                "UIComponents",
+                "Providers"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
@@ -72,7 +73,7 @@ let package = Package(
             name: "Track",
             dependencies: [
                 "UIComponents",
-                "MaterialsProvider",
+                "Providers",
                 "Materials"
             ],
             sources: ["Sources"],
@@ -82,7 +83,7 @@ let package = Package(
             name: "Materials",
             dependencies: [
                 "UIComponents",
-                "Types"
+                "Providers"
             ],
             sources: ["Sources"],
             resources: [.process("Resources")]
@@ -91,7 +92,7 @@ let package = Package(
             name: "SearchScreen",
             dependencies: [
                 "UIComponents",
-                "MaterialsProvider",
+                "Providers",
                 "Types",
                 "Materials",
                 "Authorization"

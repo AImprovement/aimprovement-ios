@@ -96,9 +96,17 @@
 			children = (
 				A57D0B132D3EE037B4C4F33F /* Project */,
 				3F6189A64856F3D1C12A859F /* Frameworks */,
+				3B0C496D13DC2DC784192E95 /* Cache */,
 				50BEAB3D7621D72AC1AA09B1 /* Products */,
 				D5F91F84A6E3DA6276AD7236 /* Packages */,
 			);
+			sourceTree = "<group>";
+		};
+		3B0C496D13DC2DC784192E95 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cache;
 			sourceTree = "<group>";
 		};
 		3F6189A64856F3D1C12A859F /* Frameworks */ = {
@@ -387,7 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 44SSZB2XV9;
+				DEVELOPMENT_TEAM = LM3CWDSTFW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AImprovement/Sources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -414,7 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 44SSZB2XV9;
+				DEVELOPMENT_TEAM = LM3CWDSTFW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = AImprovement/Sources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";

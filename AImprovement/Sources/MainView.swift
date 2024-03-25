@@ -1,16 +1,18 @@
 import SwiftUI
 import Questions
 import UIComponents
-import MaterialsProvider
+import Providers
 import SearchScreen
 import Track
 import Profile
+import Types
 
 struct MainView: View {
 
     @State var selectedTab: TabItem = .chat
     @ObservedObject var keyboardHeightHelper = KeyboardHeightHelper()
     @Binding var isAuthorized: Bool
+    let profileProvider: ProfileProvider = ProfileProviderImpl()
 
     var body: some View {
         VStack {
@@ -24,7 +26,7 @@ struct MainView: View {
             case .profile:
                 ProfileView(model: ProfileViewModelImpl(onLogoutAction: {
                     isAuthorized = false
-                }))
+                }, provider: profileProvider))
             }
 
             Spacer()
