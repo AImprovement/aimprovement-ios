@@ -22,6 +22,8 @@ struct EntryPointView: View {
             .padding(.bottom, 58)
             .background {
                 Image(.brandBackground)
+                    .resizable()
+                    .scaledToFill()
                     .ignoresSafeArea()
             }
         }
