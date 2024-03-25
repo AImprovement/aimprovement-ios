@@ -4,6 +4,7 @@ import UIComponents
 public struct LoginView<Model: LoginViewModel>: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var restorePresented: Bool = false
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -22,6 +23,9 @@ public struct LoginView<Model: LoginViewModel>: View {
         }
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
+        .navigationDestination(isPresented: $restorePresented) {
+            RestorePasswordView(model: model)
+        }
         .background(.white)
         .navigationBarBackButtonHidden()
     }
@@ -46,10 +50,8 @@ public struct LoginView<Model: LoginViewModel>: View {
             input: $usernameOrEmailInput,
             inputState: $usernameOrEmailInputState
         )
-        .onSubmit {
-            if !model.isValid(.usernameOrEmail(usernameOrEmailInput)) {
-                usernameOrEmailInputState = .incorrect
-            }
+        .onTapGesture {
+            usernameOrEmailInputState = .idle
         }
     }
     
@@ -59,15 +61,19 @@ public struct LoginView<Model: LoginViewModel>: View {
             input: $passwordInput,
             inputState: $passwordInputState
         )
-        .onSubmit {
-            if !model.isValid(.password(passwordInput)) {
-                passwordInputState = .incorrect
-            }
+        .onTapGesture {
+            passwordInputState = .idle
         }
     }
     
     private var restorePasswordButton: some View {
-        NavigationLink(destination: RestorePasswordView(model: model)) {
+        Button(action: {
+            if model.isValid(.usernameOrEmail(usernameOrEmailInput)) {
+                restorePresented = true
+            } else {
+                usernameOrEmailInputState = .incorrect
+            }
+        }) {
             Text("не помню пароль")
                 .font(Fonts.subText)
                 .foregroundColor(.gray)
@@ -80,7 +86,18 @@ public struct LoginView<Model: LoginViewModel>: View {
             model: .text("Войти"),
             style: .accentFilled,
             action: {
-                model.onLoginTap()
+                var correct: Bool = true
+                if !model.isValid(.password(passwordInput)) {
+                    passwordInputState = .incorrect
+                    correct = false
+                }
+                if !model.isValid(.usernameOrEmail(usernameOrEmailInput)) {
+                    usernameOrEmailInputState = .incorrect
+                    correct = false
+                }
+                if correct {
+                    model.onLoginTap()
+                }
             }
         )
     }

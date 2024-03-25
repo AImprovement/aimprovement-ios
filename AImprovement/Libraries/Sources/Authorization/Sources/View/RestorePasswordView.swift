@@ -21,7 +21,11 @@ public struct RestorePasswordView<Model: LoginViewModel>: View {
             textField
             Spacer()
             MainButton(model: .text("Дальше"), style: .accentFilled, action: {
-                self.action = 1
+                if !model.isValid(.restoreCode(codeInput)) {
+                    codeInputState = .incorrect
+                } else {
+                    self.action = 1
+                }
             })
             nextButton
         }
@@ -61,10 +65,8 @@ public struct RestorePasswordView<Model: LoginViewModel>: View {
             input: $codeInput,
             inputState: $codeInputState
         )
-        .onSubmit {
-            if !model.isValid(.restoreCode(codeInput)) {
-                codeInputState = .incorrect
-            }
+        .onTapGesture {
+            codeInputState = .idle
         }
     }
 

@@ -20,7 +20,14 @@ public struct RegistrationView<Model: RegistrationViewModel>: View {
             textField
             Spacer()
             MainButton(model: .text("Дальше"), style: .accentFilled, action: {
-                self.action = 1
+                var correct: Bool = true
+                if !model.isValid(.usernameOrEmail(emailInput)) {
+                    emailInputState = .incorrect
+                    correct = false
+                }
+                if correct {
+                    self.action = 1
+                }
             })
             nextButton
         }
@@ -43,8 +50,8 @@ public struct RegistrationView<Model: RegistrationViewModel>: View {
             inputState: $emailInputState
         )
         .onSubmit {
-            if !model.isValid(.usernameOrEmail(emailInput)) {
-                emailInputState = .incorrect
+            if model.isValid(.usernameOrEmail(emailInput)) {
+                emailInputState = .idle
             }
         }
     }
