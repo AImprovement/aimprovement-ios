@@ -19,6 +19,8 @@ extension View {
 
 
 public struct ProfileView<Model: ProfileViewModel>: View {
+    @State private var loading: Bool = false
+    
     public init(model: Model) {
         self._model = StateObject(wrappedValue: model)
     }
@@ -33,7 +35,11 @@ public struct ProfileView<Model: ProfileViewModel>: View {
             description
                 .padding(.top, 16)
             Spacer()
-            logoutButton
+            if loading {
+                ProgressView()
+            } else {
+                logoutButton
+            }
         }
         .onTapGesture {
             self.hideKeyboard()
@@ -52,7 +58,11 @@ public struct ProfileView<Model: ProfileViewModel>: View {
     
     private var logoutButton: some View {
         MainButton(model: .text("Выйти"), style: .accentFilled, action: {
-            model.onLogoutTap()
+            loading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                loading = false
+                model.onLogoutTap()
+            }
         })
     }
     
