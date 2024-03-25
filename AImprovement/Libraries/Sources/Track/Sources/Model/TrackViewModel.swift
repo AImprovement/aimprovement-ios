@@ -11,7 +11,7 @@ public protocol TrackViewModel: ObservableObject {
     func fetchMaterialsForTrack()
     func onLikedMaterial(ind: Int)
     func fetchTracks()
-
+    func getMaterials()
 }
 
 @MainActor
@@ -19,6 +19,7 @@ public final class TrackViewModelImpl: TrackViewModel {
 
     @Published private(set) public var materials: [Types.Material] = []
     @Published private(set) public var tracks: [Types.Track] = []
+
 
     public init(materialsProvider: MaterialsProvider) {
         self.materialsProvider = materialsProvider
@@ -28,7 +29,11 @@ public final class TrackViewModelImpl: TrackViewModel {
     public func onViewAppear() {
         materials = materialsProvider.getMaterials()
     }
-
+    
+    public func getMaterials() {
+        materials = materialsProvider.getMaterials()
+    }
+    
     public func fetchMaterialsForTrack() {
         materials = [materialsProvider.getMaterials()[0], materialsProvider.getMaterials()[1]]
     }
