@@ -37,17 +37,19 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
         .onAppear {
             model.getMaterials()
         }
+        .onAppear {
+            model.fetchTracks()
+        }
     }
     
     private var tracks: some View {
-        VStack(spacing: 19) {
-            if state {
-                card
-                    .navigationDestination(isPresented: $isPresentedDetail) {
-                        TrackDetailView(model: model)
-                    }
-                card
-                card
+        ScrollView {
+            ForEach(model.tracks) { track in
+                NavigationLink(destination: TrackDetailView(track: track, onLikeClicked: { ind in
+                    model.onLikedMaterial(ind: ind)
+                })) {
+                    trackCard(track: track)
+                }
             }
         }
     }
@@ -80,42 +82,31 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         
     }
-    
-    private var headlineLiked: some View {
-        Text("Избранное")
-            .font(Fonts.heading)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        
-    }
-    
-    private var card: some View {
-        Button(action: {
-            isPresentedDetail = true
-        }) {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Решения")
-                        .font(Fonts.subText)
-                        .bold()
-                        .accentColor(.black)
-                    Text("1 этап")
-                        .font(Fonts.subText)
-                        .foregroundStyle(.gray)
-                    
-                }
-                Spacer()
-                Image(systemName: "xmark")
+  
+    private func trackCard(track: Types.Track) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(track.name)
+                    .font(Fonts.subText)
+                    .bold()
                     .accentColor(.black)
+                Text(track.stepsCount)
+                    .font(Fonts.subText)
+                    .foregroundStyle(.gray)
+
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
-                    .stroke(.black)
-            )
+            Spacer()
+            Image(systemName: "xmark")
+                .accentColor(.black)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: CommonConstants.cornerRadius)
+                .stroke(.black)
+        )
     }
-    
+
     private var createButton: some View {
         MainButton(model: .text("Создать"), style: .accentFilled, action: {
             isPresented = true
@@ -123,7 +114,6 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
     }
     
     @StateObject private var model: Model
-    @State private var showingSheet = false
 }
 
 private enum Static {
