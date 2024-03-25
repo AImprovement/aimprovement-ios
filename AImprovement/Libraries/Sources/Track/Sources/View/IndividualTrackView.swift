@@ -1,9 +1,12 @@
 import SwiftUI
 import UIComponents
+import Types
+import Materials
 
 public struct IndividualTrackView<Model: TrackViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
+    @State private var materalIsPresented: Bool = false
     @State private var isPresentedDetail: Bool = false
     
     public init(model: Model) {
@@ -12,23 +15,32 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
     
     public var body: some View {
         NavigationStack {
-            VStack(spacing: CommonConstants.stackSpacing) {
-                headline
-                tracks
-                Spacer()
-                createButton
-                    .navigationDestination(isPresented: $isPresented) {
-                        CreateTrackFirstView(model: model)
-                    }
+            ScrollView {
+                VStack(spacing: CommonConstants.stackSpacing) {
+                    headline
+                    tracks
+                    createButton
+                        .navigationDestination(isPresented: $isPresented) {
+                            CreateTrackFirstView(model: model)
+                        }
+                    headlineLiked
+                    saved
+                    Spacer()
+                }
+                .padding(.bottom, CommonConstants.bottomPadding)
+                .padding(.horizontal, CommonConstants.horizontalPadding)
+                .background(.white)
             }
-            .padding(.bottom, CommonConstants.bottomPadding)
-            .padding(.horizontal, CommonConstants.horizontalPadding)
-            .background(.white)
+            .scrollClipDisabled()
+            .refreshable { }
+        }
+        .onAppear {
+            model.getMaterials()
         }
     }
-
+    
     private var tracks: some View {
-        ScrollView{
+        VStack(spacing: 19) {
             if state {
                 card
                     .navigationDestination(isPresented: $isPresentedDetail) {
@@ -38,13 +50,39 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
                 card
             }
         }
-        .scrollClipDisabled()
-        .scrollIndicators(.hidden)
-        .refreshable { }
     }
-
+    
+    private var saved: some View {
+        VStack {
+            ForEach(Array(model.materials.enumerated()), id: \.1.id) { ind, material in
+                if material.isLiked {
+                    NavigationLink(destination: MaterialDetailView(material: material)) {
+                        MessageBubble(
+                            message: Types.Message(id: ind, type: .material(material)),
+                            onLikeClicked: {
+                                model.onLikedMaterial(ind: ind)
+                                model.getMaterials()
+                            },
+                            onTap: {
+                                materalIsPresented = true
+                            }
+                        )
+                        .padding(.bottom, 19)
+                    }
+                }
+            }
+        }
+    }
+    
     private var headline: some View {
         Text("Индивидуальное обучение")
+            .font(Fonts.heading)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        
+    }
+    
+    private var headlineLiked: some View {
+        Text("Избранное")
             .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
         
