@@ -49,6 +49,7 @@ public struct TextFieldView: View {
                                 lineWidth: Static.Layout.borderWidth
                             )
                     )
+                    .autocapitalization(.none)
                     .focused($isFocused)
                     .disableAutocorrection(true)
                 if case .incorrect = inputState {
@@ -70,6 +71,7 @@ public struct TextFieldView: View {
                                 lineWidth: Static.Layout.borderWidth
                             )
                     )
+                    .autocapitalization(.none)
                     .focused($isFocused)
                     .disableAutocorrection(true)
                 if case .incorrect = inputState {

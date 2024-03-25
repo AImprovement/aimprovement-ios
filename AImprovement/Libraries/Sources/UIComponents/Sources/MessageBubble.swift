@@ -122,15 +122,20 @@ public struct MessageBubble: View {
                 .renderingMode(.template)
                 .foregroundStyle(Static.Colors.accent)
                 .frame(width: 15, height: 15)
-            Text(material.rating?.description ?? "0")
+            Text("\(material.rating ?? 0)")
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
-            Text("\(material.ratingCount.description) отзыва")
+            Text("\(material.ratingCount) \(number(material.ratingCount, ["отзыв", "отзыва", "отзывов"]))")
                 .foregroundStyle(.black)
                 .font(Fonts.subText)
         }
     }
-    
+
+    private func number(_ n: Int, _ titles: [String]) -> String {
+        let cases = [2, 0, 1, 1, 1, 2]
+        return titles[(n % 100 > 4 && n % 100 < 20) ? 2 : cases[min(n % 10, 5)]]
+    }
+
     private let message: Types.Message
     private let onLikeClicked: (() -> Void)?
     private let onTap: (() -> Void)?

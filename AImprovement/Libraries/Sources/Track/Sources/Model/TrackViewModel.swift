@@ -16,6 +16,7 @@ public protocol TrackViewModel: ObservableObject {
     func getMaterialsForGoal(_ input: String)
     func createNewTrack(name: String)
     func resetFilteredMaterials()
+    func addReview(materialId: Int, text: String, rating: Int)
 }
 
 @MainActor
@@ -26,9 +27,10 @@ public final class TrackViewModelImpl: TrackViewModel {
     @Published private(set) public var tracks: [Types.Track] = []
 
 
-    public init(materialsProvider: MaterialsProvider) {
+    public init(materialsProvider: MaterialsProvider, profileProvider: ProfileProvider) {
         self.materialsProvider = materialsProvider
         self.tracksProvider = TracksProviderImpl(materialsProvider: materialsProvider)
+        self.profileProvider = profileProvider
     }
 
     public func onViewAppear() {
@@ -94,6 +96,11 @@ public final class TrackViewModelImpl: TrackViewModel {
         fetchTracks()
     }
 
+    public func addReview(materialId: Int, text: String, rating: Int) {
+        materialsProvider.addReview(materialId: materialId, review: text, author: profileProvider.getCurrentUser(), stars: rating)
+        getMaterials()
+    }
+
     public func onLikedMaterial(ind: Int) {
         materialsProvider.updateMaterial(id: ind)
         tracks = tracksProvider.getTracks()
@@ -102,4 +109,5 @@ public final class TrackViewModelImpl: TrackViewModel {
 
     private let materialsProvider: MaterialsProvider
     private let tracksProvider: TracksProvider
+    private let profileProvider: ProfileProvider
 }

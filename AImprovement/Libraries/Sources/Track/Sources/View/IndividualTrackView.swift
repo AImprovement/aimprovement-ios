@@ -57,6 +57,8 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
             ForEach(model.tracks) { track in
                 NavigationLink(destination: TrackDetailView(track: track, onLikeClicked: { ind in
                     model.onLikedMaterial(ind: ind)
+                }, onReviewAdded: { materialId, review, rating in
+                    model.addReview(materialId: materialId, text: review, rating: rating)
                 })) {
                     trackCard(track: track)
                 }
@@ -67,13 +69,15 @@ public struct IndividualTrackView<Model: TrackViewModel>: View {
     
     private var saved: some View {
         VStack {
-            ForEach(Array(model.materials.enumerated()), id: \.1.id) { ind, material in
+            ForEach(model.materials) { material in
                 if material.isLiked {
-                    NavigationLink(destination: MaterialDetailView(material: material)) {
+                    NavigationLink(destination: MaterialDetailView(material: material, onReviewAdded: { review, rating in
+                        model.addReview(materialId: material.id, text: review, rating: rating)
+                    })) {
                         MessageBubble(
-                            message: Types.Message(id: ind, type: .material(material)),
+                            message: Types.Message(id: material.id, type: .material(material)),
                             onLikeClicked: {
-                                model.onLikedMaterial(ind: ind)
+                                model.onLikedMaterial(ind: material.id)
                             },
                             onTap: {
                                 materalIsPresented = true

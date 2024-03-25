@@ -19,9 +19,9 @@ struct MainView: View {
             case .chat:
                 QuestionView(model: QuestionViewModelImpl(materialsProvider: materialsProvider))
             case .search:
-                SearchView(model: SearchViewModelImpl(materialsProvider: materialsProvider))
+                SearchView(model: SearchViewModelImpl(materialsProvider: materialsProvider, profileProvider: profileProvider))
             case .favourite:
-                IndividualTrackView(model: TrackViewModelImpl(materialsProvider: materialsProvider))
+                IndividualTrackView(model: TrackViewModelImpl(materialsProvider: materialsProvider, profileProvider: profileProvider))
             case .profile:
                 ProfileView(model: ProfileViewModelImpl(onLogoutAction: {
                     isAuthorized = false

@@ -16,13 +16,15 @@ public protocol SearchViewModel: ObservableObject {
     func onSearchTap(text: String) -> [Types.Material]
     func onLikedMaterial(ind: Int)
     func getMaterials()
+    func addReview(materialId: Int, text: String, rating: Int)
 }
 
 @MainActor
 public final class SearchViewModelImpl: SearchViewModel {
 
-    public init(materialsProvider: MaterialsProvider) {
+    public init(materialsProvider: MaterialsProvider, profileProvider: ProfileProvider) {
         self.materialsProvider = materialsProvider
+        self.profileProvider = profileProvider
     }
 
     @Published private(set) public var viewState: SearchViewState = .initial
@@ -51,6 +53,12 @@ public final class SearchViewModelImpl: SearchViewModel {
         materials = materialsProvider.getMaterials()
     }
 
+    public func addReview(materialId: Int, text: String, rating: Int) {
+        materialsProvider.addReview(materialId: materialId, review: text, author: profileProvider.getCurrentUser(), stars: rating)
+        getMaterials()
+    }
+
     private let materialsProvider: MaterialsProvider
+    private let profileProvider: ProfileProvider
 
 }
