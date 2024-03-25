@@ -3,13 +3,14 @@ import UIComponents
 import Materials
 import Providers
 import Types
+import Lottie
 
 public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
     var state: Bool = true
     @State private var isPresented: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.presentationMode) var presentationModeF: Binding<PresentationMode>
-
+    
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -33,6 +34,7 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
                     )
                 }
             }
+            .scrollClipDisabled()
             .scrollDismissesKeyboard(.immediately)
             Spacer()
             VStack {
@@ -65,6 +67,8 @@ public struct CreateTrackFirstView<Model: CreateTrackViewModel>: View {
         Text("Что хотите развивать?")
             .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
+        //        LottieView(animation: .named("question.json"))
+        //            .playbackMode(.playing(.toProgress(1, loopMode: .loop)))
     }
     
     private var questionField: some View {
