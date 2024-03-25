@@ -5,6 +5,7 @@ public struct LoginView<Model: LoginViewModel>: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var restorePresented: Bool = false
+    @State private var loading: Bool = false
     
     public init(model: Model) {
         self._model = ObservedObject(wrappedValue: model)
@@ -19,7 +20,11 @@ public struct LoginView<Model: LoginViewModel>: View {
             textFields
             restorePasswordButton
             Spacer()
-            loginButton
+            if loading {
+                ProgressView()
+            } else {
+                loginButton
+            }
         }
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
@@ -86,17 +91,22 @@ public struct LoginView<Model: LoginViewModel>: View {
             model: .text("Войти"),
             style: .accentFilled,
             action: {
-                var correct: Bool = true
-                if !model.isValid(.password(passwordInput)) {
-                    passwordInputState = .incorrect
-                    correct = false
-                }
-                if !model.isValid(.usernameOrEmail(usernameOrEmailInput)) {
-                    usernameOrEmailInputState = .incorrect
-                    correct = false
-                }
-                if correct {
-                    model.onLoginTap()
+                loading = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    loading = false
+                    var correct: Bool = true
+                    if !model.isValid(.password(passwordInput)) {
+                        passwordInputState = .incorrect
+                        correct = false
+                    }
+                    if !model.isValid(.usernameOrEmail(usernameOrEmailInput)) {
+                        usernameOrEmailInputState = .incorrect
+                        correct = false
+                    }
+                    if correct {
+                        model.onLoginTap()
+                    }
+                    loading = false
                 }
             }
         )

@@ -58,7 +58,7 @@ public struct FullRegistrationView<Model: RegistrationViewModel>: View {
 
     private var nicknameTextField: some View {
         TextFieldView(
-            model: .default(headline: "Никнейм", placeholder: "Алиса Вышегородцева"),
+            model: .default(headline: "Никнейм", placeholder: "имя пользователя"),
             input: $nicknameInput,
             inputState: $nicknameInputState
         )

@@ -19,8 +19,10 @@ extension View {
 
 
 public struct ProfileView<Model: ProfileViewModel>: View {
+    @State private var loading: Bool = false
+    
     public init(model: Model) {
-        self._model = ObservedObject(wrappedValue: model)
+        self._model = StateObject(wrappedValue: model)
     }
     
     public var body: some View {
@@ -33,10 +35,15 @@ public struct ProfileView<Model: ProfileViewModel>: View {
             description
                 .padding(.top, 16)
             Spacer()
-            logoutButton
+            if loading {
+                ProgressView()
+            } else {
+                logoutButton
+            }
         }
         .onTapGesture {
             self.hideKeyboard()
+            model.updateDescription()
         }
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
@@ -51,7 +58,11 @@ public struct ProfileView<Model: ProfileViewModel>: View {
     
     private var logoutButton: some View {
         MainButton(model: .text("Выйти"), style: .accentFilled, action: {
-            model.onLogoutTap()
+            loading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                loading = false
+                model.onLogoutTap()
+            }
         })
     }
     
@@ -76,8 +87,8 @@ public struct ProfileView<Model: ProfileViewModel>: View {
                 Spacer()
             }
             TextField(
-                model.getProfile().description,
-                text: $desc,
+                "расскажите о себе",
+                text: $model.description,
                 axis: .vertical
             )
             .focused($isFocused)
@@ -95,7 +106,7 @@ public struct ProfileView<Model: ProfileViewModel>: View {
         }
     }
     
-    @ObservedObject private var model: Model
+    @StateObject private var model: Model
     @FocusState private var isFocused: Bool
     @State private var desc: String = ""
     
