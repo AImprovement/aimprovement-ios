@@ -4,13 +4,15 @@ import Providers
 import Materials
 import Types
 
-struct TrackDetailView<Model: TrackViewModel>: View {
-    var state: Bool = true
-    @State private var isPresented: Bool = false
+struct TrackDetailView: View {
+
+    var track: Types.Track
+    var onLikeClicked: (Int) -> Void
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    public init(model: Model) {
-        self._model = ObservedObject(wrappedValue: model)
+    public init(track: Types.Track, onLikeClicked: @escaping (Int) -> Void) {
+        self.track = track
+        self.onLikeClicked = onLikeClicked
     }
     
     var body: some View {
@@ -19,33 +21,25 @@ struct TrackDetailView<Model: TrackViewModel>: View {
                 presentationMode.wrappedValue.dismiss()
             })
             headline
-            track
+            trackView
             Spacer()
         }
         .navigationBarBackButtonHidden()
-        .navigationDestination(isPresented: $isPresented){
-            MaterialDetailView(material: MaterialsProviderImpl().getMaterials()[0])
-        }
         .padding(.bottom, CommonConstants.bottomPadding)
         .padding(.horizontal, CommonConstants.horizontalPadding)
         .background(.white)
-        .onAppear {
-            model.fetchMaterialsForTrack()
-        }
     }
 
-    private var track: some View {
+    private var trackView: some View {
         ScrollView {
-            ForEach(Array(model.materials.enumerated()), id: \.1.id) { ind, material in
+            ForEach(track.materials) { material in
                 NavigationLink(destination: MaterialDetailView(material: material)) {
                     MessageBubble(
-                        message: Types.Message(id: ind, type: .material(material)),
+                        message: Types.Message(id: material.id, type: .material(material)),
                         onLikeClicked: {
-                            model.onLikedMaterial(ind: ind)
+                            onLikeClicked(material.id)
                         },
-                        onTap: {
-                            isPresented = true
-                        }
+                        onTap: { }
                     )
                     .padding(.bottom, 19)
                 }
@@ -56,21 +50,20 @@ struct TrackDetailView<Model: TrackViewModel>: View {
     }
 
     private var headline: some View {
-        Text("Решения")
+        Text(track.name)
             .font(Fonts.heading)
             .frame(maxWidth: .infinity, alignment: .leading)
         
     }
 
-    private var card: some View {
-        MessageBubble(
-            message: Types.Message(id: 0, type: .material(MaterialsProviderImpl().getMaterials()[0])),
-            onLikeClicked: {},
-            onTap: {
-                isPresented = true
-            }
-        )
-    }
+//    private var card: some View {
+//        MessageBubble(
+//            message: Types.Message(id: 0, type: .material(MaterialsProviderImpl().getMaterials()[0])),
+//            onLikeClicked: {},
+//            onTap: {
+//                isPresented = true
+//            }
+//        )
+//    }
 
-    @ObservedObject private var model: Model
 }
